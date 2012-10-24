@@ -1,0 +1,29 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+  <h2>{{ app.translator.trans('gallery.latest.pictures') }}</h2>
+
+  <div id="gallery">
+  {% for image in page.gallery.images %}
+    <figure>
+      <img src="{{ cdn_url }}images/mannequin/shots/{{ image.image }}" alt="">
+      <figcaption>{{ app.translator.trans('gallery.picture.caption', {'user_name':image.user_name, 'date':image.date}) }}</figcaption>
+      <p><a href="" class="like button">{{ app.translator.trans('gallery.picture.like') }}</a></p>
+    </figure>
+  {% else %}
+    <p>{{ app.translator.trans('gallery.no.pictures') }}</p>
+  {% endfor %}
+  </div>
+
+  <a href="{{ url('gallery_add') }}" class="button">{{ app.translator.trans('gallery.button.add.picture') }}</a>
+
+{% endblock %}
+
+{% block navigation %}
+  <ul>
+    <li><a href="{{ url('gallery_homepage') }}">{{ app.translator.trans('gallery.button.homepage') }}</a></li>
+    <li><a href="{{ url('gallery_add') }}">{{ app.translator.trans('gallery.button.add.picture') }}</a></li>
+    <li><a href="{{ url('gallery_random') }}">{{ app.translator.trans('gallery.button.random.pictures') }}</a></li>
+    <li><a href="{{ url('gallery_about') }}">{{ app.translator.trans('gallery.button.about') }}</a></li>
+  </ul>
+{% endblock %}

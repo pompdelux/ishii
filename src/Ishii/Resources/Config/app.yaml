@@ -1,0 +1,21 @@
+locale:           "da"
+cdn:              "http://cdn.pdl.bc/"
+redis:
+    dsn:
+        schema:   "tcp"
+        host:     "127.0.0.1"
+        port:     6379
+        database: 2
+    options:
+        profile:  "2.2"
+        prefix:   "ishii:"
+db:
+    driver: "pdo_mysql"
+    host: "127.0.0.1"
+    dbname: "ishii"
+    user: "root"
+    password: "root"
+facebook:
+    app_id: 157476597607900
+    secret: "457fc9febaf3d093b88d27f79b361d6e"
+    page_id: 157476597607900

@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="da" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="404.title">
+                <source>404.title</source>
+                <target>Det søgte findes ikke.</target>
+            </trans-unit>
+            <trans-unit id="404.description">
+                <source>404.description</source>
+                <target><![CDATA[Du har forespurgt på noget indhold, som vi ikke har her på siden.<br><br>Prøv om ikke en af kategorierne indeholder det du søger eller benyt søgeformularen herunder.]]></target>
+            </trans-unit>
+            <trans-unit id="500.title">
+                <source>500.title</source>
+                <target>Woops!</target>
+            </trans-unit>
+            <trans-unit id="500.description">
+                <source>500.description</source>
+                <target><![CDATA[
+                    <p>Du er røget ind i afdelingen for tekniske vanskeligheder, vi beklager.</p>
+                    <p>Hvis problemet fortsætter eller genopstår kan du kontakte kundeservice på telefon: (+45) 8678 7871, eller skrive til os på <a href="mailto:mail@pompdelux.dk">mail@pompdelux.dk</a></p>
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="default.browser.title">
+                <source>default.browser.title</source>
+                <target>POMPdeLUX - Vild med børnetøj » Facebook galleri</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

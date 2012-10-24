@@ -1,0 +1,21 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+  <h2>{{ app.translator.trans('gallery.add.picture') }}</h2>
+
+  <form action="#" method="post" id="add-picture" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+    <input type="submit" class="button">{{ app.translator.trans('gallery.button.add.picture') }}</input>
+  </form>
+
+
+{% endblock %}
+
+{% block navigation %}
+  <ul>
+    <li><a href="{{ url('gallery_homepage') }}">{{ app.translator.trans('gallery.button.homepage') }}</a></li>
+    <li><a href="{{ url('gallery_add') }}">{{ app.translator.trans('gallery.button.add.picture') }}</a></li>
+    <li><a href="{{ url('gallery_random') }}">{{ app.translator.trans('gallery.button.random.pictures') }}</a></li>
+    <li><a href="{{ url('gallery_about') }}">{{ app.translator.trans('gallery.button.about') }}</a></li>
+  </ul>
+{% endblock %}
