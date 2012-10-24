@@ -16,6 +16,6 @@ db:
     user: "root"
     password: "root"
 facebook:
-    app_id: 157476597607900
-    secret: "457fc9febaf3d093b88d27f79b361d6e"
-    page_id: 157476597607900
+    app_id: 369414099809404
+    secret: "1150097b7dbd7d0dcf806cea7931c9b5"
+    page_id: 152545524804286
