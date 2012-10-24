@@ -4,10 +4,10 @@
   <h2>{{ app.translator.trans('gallery.latest.pictures') }}</h2>
 
   <div id="gallery">
-  {% for image in page.gallery.images %}
+  {% for image in page.images %}
     <figure>
-      <img src="{{ cdn_url }}images/mannequin/shots/{{ image.image }}" alt="">
-      <figcaption>{{ app.translator.trans('gallery.picture.caption', {'user_name':image.user_name, 'date':image.date}) }}</figcaption>
+      <img src="{{ cdn_url }}images/mannequin/shots/{{ image.url }}" alt="">
+      <figcaption>{{ app.translator.trans('gallery.picture.caption', {'user_name':image.first_name, 'date':image.created_date}) }}</figcaption>
       <p><a href="" class="like button">{{ app.translator.trans('gallery.picture.like') }}</a></p>
     </figure>
   {% else %}
@@ -15,14 +15,12 @@
   {% endfor %}
   </div>
 
-  <a href="{{ url('gallery_add') }}" class="button">{{ app.translator.trans('gallery.button.add.picture') }}</a>
-
 {% endblock %}
 
 {% block navigation %}
   <ul>
-    <li><a href="{{ url('gallery_homepage') }}">{{ app.translator.trans('gallery.button.homepage') }}</a></li>
-    <li><a href="{{ url('gallery_add') }}">{{ app.translator.trans('gallery.button.add.picture') }}</a></li>
+    <li><a href="{{ url('gallery_homepage', {'galleryId' : page.gallery.id }) }}">{{ app.translator.trans('gallery.button.homepage') }}</a></li>
+    <li><a href="{{ url('gallery_add', {'galleryId' : page.gallery.id }) }}">{{ app.translator.trans('gallery.button.add.picture') }}</a></li>
     <li><a href="{{ url('gallery_random') }}">{{ app.translator.trans('gallery.button.random.pictures') }}</a></li>
     <li><a href="{{ url('gallery_about') }}">{{ app.translator.trans('gallery.button.about') }}</a></li>
   </ul>

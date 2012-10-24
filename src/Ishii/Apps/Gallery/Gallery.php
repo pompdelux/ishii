@@ -26,13 +26,17 @@ class Gallery
      * @param  Request $request Request object
      * @return Response         Response object
      */
-    public function index(Request $request)
+    public function index(Request $request, $galleryId)
     {
 
         $this->app['page']['title'] = 'POMPdeLUX Facebook galleri';
         $this->app['page']['browser_title'] = ' » Seneste';
 
-        $this->app['page']->setGallery(array('images' => array()));
+        $gallery_pictures = $this->app['db']->fetchAssoc("SELECT * FROM gallery_pictures p LEFT JOIN gallery_users u ON (u.uid = p.uid) WHERE gallery_id = ? ", array((int) $galleryId));
+        $gallery = $this->app['db']->fetchAssoc("SELECT * FROM gallery_galleries WHERE id = ? ", array((int) $galleryId));
+
+        $this->app['page']->setGallery($gallery);
+        $this->app['page']->setImages(array($gallery_pictures));
 
         return $this->app->render("Gallery/index.twig");
     }

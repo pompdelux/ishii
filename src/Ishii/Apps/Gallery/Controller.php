@@ -25,8 +25,8 @@ class Controller implements ControllerProviderInterface
 
         $gallery = $this->gallery;
 
-        $controller->get('/', function (Application $app, Request $request) use ($gallery) {
-            return $gallery->index($request);
+        $controller->get('/{galleryId}', function (Application $app, Request $request, $galleryId) use ($gallery) {
+            return $gallery->index($request, $galleryId);
         })->bind('gallery_homepage');
 
         $controller->match('/add/{galleryId}', function (Application $app, Request $request, $galleryId) use ($gallery) {
