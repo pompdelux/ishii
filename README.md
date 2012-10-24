@@ -5,12 +5,12 @@ facebook app(s) for pompdelux
 
 Database
 =====
-
+Pompdelux tables are prefixed with "gallery_"
 --
--- Table structure for table `galleries`
+-- Table structure for table `gallery_galleries`
 --
 
-CREATE TABLE IF NOT EXISTS `galleries` (
+CREATE TABLE IF NOT EXISTS `gallery_galleries` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
   `description` text,
@@ -24,13 +24,14 @@ CREATE TABLE IF NOT EXISTS `galleries` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pictures`
+-- Table structure for table `gallery_pictures`
 --
 
-CREATE TABLE IF NOT EXISTS `pictures` (
+CREATE TABLE IF NOT EXISTS `gallery_pictures` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `gallery_id` int(11) NOT NULL,
   `uid` bigint(20) NOT NULL,
+  `url` varchar(255) NOT NULL,
   `title` varchar(255) DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
   `active` tinyint(1) NOT NULL DEFAULT '1',
@@ -43,10 +44,10 @@ CREATE TABLE IF NOT EXISTS `pictures` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Table structure for table `gallery_users`
 --
 
-CREATE TABLE IF NOT EXISTS `users` (
+CREATE TABLE IF NOT EXISTS `gallery_users` (
   `uid` bigint(20) NOT NULL,
   `first_name` varchar(255) NOT NULL,
   `last_name` varchar(255) NOT NULL,

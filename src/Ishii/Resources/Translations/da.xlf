@@ -8,7 +8,7 @@
             </trans-unit>
             <trans-unit id="404.description">
                 <source>404.description</source>
-                <target><![CDATA[Du har forespurgt på noget indhold, som vi ikke har her på siden.<br><br>Prøv om ikke en af kategorierne indeholder det du søger eller benyt søgeformularen herunder.]]></target>
+                <target><![CDATA[Du har forespurgt på noget indhold, som vi ikke har her på siden.<br><br>]]></target>
             </trans-unit>
             <trans-unit id="500.title">
                 <source>500.title</source>

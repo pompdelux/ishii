@@ -10,3 +10,4 @@ web/bundles/*
 
 # Configuration files
 app/config/parameters.ini
+src/Ishii/Resources/Config/app.yaml

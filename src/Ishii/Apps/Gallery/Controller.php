@@ -29,14 +29,23 @@ class Controller implements ControllerProviderInterface
             return $gallery->index($request);
         })->bind('gallery_homepage');
 
-        $controller->match('/add', function (Application $app, Request $request) use ($gallery) {
+        $controller->match('/add/{galleryId}', function (Application $app, Request $request, $galleryId) use ($gallery) {
             // $user = $app['facebook']->getUser();
             // if(!$user){
             //     return $app->redirect($app['url_generator']->generate('fan_gate'));
             // }
 
-            return $gallery->add($request);
+            return $gallery->add($request, $galleryId);
         })->bind('gallery_add');
+
+        $controller->get('/picture/{pictureId}', function (Application $app, Request $request, $pictureId) use ($gallery) {
+            // $user = $app['facebook']->getUser();
+            // if(!$user){
+            //     return $app->redirect($app['url_generator']->generate('fan_gate'));
+            // }
+
+            return $gallery->view($request, $pictureId);
+        })->bind('gallery_picture');
 
         $controller->get('/random', function (Application $app, Request $request) use ($gallery) {
             // $user = $app['facebook']->getUser();

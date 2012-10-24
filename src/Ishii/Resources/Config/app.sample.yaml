@@ -1,5 +1,6 @@
-locale:           "da"
-cdn:              "http://cdn.pdl.bc/"
+locale: "da"
+cdn: "http://cdn.pdl.bc/"
+upload_path: "/web/uploads"
 redis:
     dsn:
         schema:   "tcp"
