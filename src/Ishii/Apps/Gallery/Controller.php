@@ -18,10 +18,15 @@ class Controller implements ControllerProviderInterface
     {
         $controller = $app['controllers_factory'];
 
+        // https://github.com/tobiassjosten/FacebookServiceProvider
+        $app->register(new FacebookServiceProvider(), array(
+            'facebook.app_id' => $app['config']['facebook_apps']['gallery']['app_id'],
+            'facebook.secret' => $app['config']['facebook_apps']['gallery']['secret'],
+        ));
+
         if (!$this->gallery) {
             $this->gallery = new Gallery($app);
         }
-
 
         $gallery = $this->gallery;
 

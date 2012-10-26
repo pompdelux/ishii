@@ -54,11 +54,12 @@ class Application extends SilexApplication
             ),
         ));
 
+        // SKAL DETTE MÅSKE VÆRE I HVER ENESTE APPS? *********************************************************************************************************************
         // https://github.com/tobiassjosten/FacebookServiceProvider
-        $this->register(new FacebookServiceProvider(), array(
-            'facebook.app_id' => $this['config']['facebook']['app_id'],
-            'facebook.secret' => $this['config']['facebook']['secret'],
-        ));
+        // $this->register(new FacebookServiceProvider(), array(
+        //     'facebook.app_id' => $this['config']['facebook']['app_id'],
+        //     'facebook.secret' => $this['config']['facebook']['secret'],
+        // ));
 
         $this['twig'] = $this->share($this->extend('twig', function($twig, $app) {
             $twig->setCache(__DIR__.'/../../tmp/cache/');
