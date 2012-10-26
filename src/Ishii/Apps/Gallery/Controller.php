@@ -17,24 +17,34 @@ class Controller implements ControllerProviderInterface
     public function connect(Application $app)
     {
         $controller = $app['controllers_factory'];
+        
+        $this->app = $app;
+        
+        $controller->before(function (Request $request){
+            //ugly method to find the gallery id
+            $galleryId = explode('/',$request->getPathInfo())[2];
 
-        // https://github.com/tobiassjosten/FacebookServiceProvider
-        $app->register(new FacebookServiceProvider(), array(
-            'facebook.app_id' => $app['config']['facebook_apps']['gallery']['app_id'],
-            'facebook.secret' => $app['config']['facebook_apps']['gallery']['secret'],
-        ));
+            //do the gallery exists?
+            $this->app['gallery'] = $this->app['db']->fetchAssoc("SELECT * FROM gallery_galleries WHERE id = ? LIMIT 1", array((int) $galleryId));
+            if(empty($this->app['gallery'])){
+                $this->app->abort(404, $this->app['translator']->trans('404.title'));
+            }
+
+            $this->app['facebook']->setAppId($this->app['gallery']['app_id']);
+            $this->app['facebook']->setApiSecret($this->app['gallery']['secret']);
+        });
 
         if (!$this->gallery) {
             $this->gallery = new Gallery($app);
         }
 
         $gallery = $this->gallery;
-
+        
         $controller->match('/{galleryId}', function (Application $app, Request $request, $galleryId) use ($gallery) {
             return $gallery->index($request, $galleryId);
         })->bind('gallery_homepage');
 
-        $controller->match('/add/{galleryId}', function (Application $app, Request $request, $galleryId) use ($gallery) {
+        $controller->match('/{galleryId}/add/', function (Application $app, Request $request, $galleryId) use ($gallery) {
             // $user = $app['facebook']->getUser();
             // if(!$user){
             //     return $app->redirect($app['url_generator']->generate('fan_gate'));
@@ -43,13 +53,13 @@ class Controller implements ControllerProviderInterface
             return $gallery->add($request, $galleryId);
         })->bind('gallery_add');
 
-        $controller->get('/picture/{pictureId}', function (Application $app, Request $request, $pictureId) use ($gallery) {
+        $controller->get('{galleryId}/picture/{pictureId}', function (Application $app, Request $request, $galleryId, $pictureId) use ($gallery) {
             // $user = $app['facebook']->getUser();
             // if(!$user){
             //     return $app->redirect($app['url_generator']->generate('fan_gate'));
             // }
 
-            return $gallery->view($request, $pictureId);
+            return $gallery->view($request, $galleryId, $pictureId);
         })->bind('gallery_picture');
 
         $controller->get('/random', function (Application $app, Request $request) use ($gallery) {

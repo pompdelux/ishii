@@ -33,7 +33,11 @@ class Application extends SilexApplication
         $this['page'] = $this->share(function () {
             return new \Ishii\Page();
         });
-        
+        // https://github.com/tobiassjosten/FacebookServiceProvider
+        $this->register(new FacebookServiceProvider(), array(
+            'facebook.app_id' => $this['config']['facebook_apps']['default']['app_id'],
+            'facebook.secret' => $this['config']['facebook_apps']['default']['secret']
+        ));
         $this->register(new SessionServiceProvider());
 
         $this->register(new UrlGeneratorServiceProvider());
@@ -53,13 +57,6 @@ class Application extends SilexApplication
                 'password'  => $this['config']['db']['password'],
             ),
         ));
-
-        // SKAL DETTE MÅSKE VÆRE I HVER ENESTE APPS? *********************************************************************************************************************
-        // https://github.com/tobiassjosten/FacebookServiceProvider
-        // $this->register(new FacebookServiceProvider(), array(
-        //     'facebook.app_id' => $this['config']['facebook']['app_id'],
-        //     'facebook.secret' => $this['config']['facebook']['secret'],
-        // ));
 
         $this['twig'] = $this->share($this->extend('twig', function($twig, $app) {
             $twig->setCache(__DIR__.'/../../tmp/cache/');
