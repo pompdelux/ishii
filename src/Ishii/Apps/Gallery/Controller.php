@@ -30,7 +30,7 @@ class Controller implements ControllerProviderInterface
 
         $gallery = $this->gallery;
 
-        $controller->get('/{galleryId}', function (Application $app, Request $request, $galleryId) use ($gallery) {
+        $controller->match('/{galleryId}', function (Application $app, Request $request, $galleryId) use ($gallery) {
             return $gallery->index($request, $galleryId);
         })->bind('gallery_homepage');
 
