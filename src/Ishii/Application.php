@@ -66,6 +66,7 @@ class Application extends SilexApplication
             $twig->addGlobal('base_url', $app['request']->getSchemeAndHttpHost().'/');
             $twig->addGlobal('cdn_url', $app['config']['cdn']);
             $twig->addGlobal('page', $app['page']);
+            $twig->addGlobal('facebook', $app['config']['facebook_aps']);
 
             return $twig;
         }));
