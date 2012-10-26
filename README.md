@@ -16,6 +16,8 @@ CREATE TABLE IF NOT EXISTS `gallery_galleries` (
   `description` text,
   `active` tinyint(1) NOT NULL DEFAULT '1',
   `is_open` tinyint(1) NOT NULL DEFAULT '1',
+  `app_id` bigint(20) DEFAULT NULL,
+  `secret` varchar(255) DEFAULT NULL,
   `created_date` datetime NOT NULL,
   `updated_date` datetime NOT NULL,
   PRIMARY KEY (`id`)
