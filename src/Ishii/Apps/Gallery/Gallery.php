@@ -18,7 +18,8 @@ class Gallery
     {
         $this->app = $app;
         $this->user = $this->app['facebook']->getUser();
-        print_r($this->app['facebook']->getSignedRequest());
+        $this->signedRequest = $this->app['facebook']->getSignedRequest()['code'];
+        echo parse_signed_request($this->app['facebook']->getSignedRequest());
     }
 
     /**
