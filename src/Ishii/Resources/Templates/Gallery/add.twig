@@ -13,7 +13,7 @@
 
 {% block navigation %}
   <ul>
-    <li><a href="{{ url('gallery_homepage') }}">{{ app.translator.trans('gallery.button.homepage') }}</a></li>
+    <li><a href="{{ url('gallery_homepage', {'galleryId' : galleryId }) }}">{{ app.translator.trans('gallery.button.homepage') }}</a></li>
     <li><a href="{{ url('gallery_add', {'galleryId' : galleryId }) }}">{{ app.translator.trans('gallery.button.add.picture') }}</a></li>
     <li><a href="{{ url('gallery_random') }}">{{ app.translator.trans('gallery.button.random.pictures') }}</a></li>
     <li><a href="{{ url('gallery_about') }}">{{ app.translator.trans('gallery.button.about') }}</a></li>
