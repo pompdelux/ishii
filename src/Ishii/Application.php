@@ -84,5 +84,10 @@ class Application extends SilexApplication
         $this->register(new MonologServiceProvider(), array(
             'monolog.logfile' => __DIR__.'/../../logs/development.log',
         ));
+
+        $app->register(new Grom\Silex\ImagineServiceProvider(), array(
+            'imagine.factory' => 'Gd',
+            'imagine.base_path' => __DIR__.'/vendor/imagine',
+        ));
     }
 }
