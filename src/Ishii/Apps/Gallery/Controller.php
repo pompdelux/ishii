@@ -34,12 +34,15 @@ class Controller implements ControllerProviderInterface
             $this->app['facebook']->setAppId($this->app['gallery']['app_id']);
             $this->app['facebook']->setApiSecret($this->app['gallery']['secret']);
 
-            //Get the app_data field from signed request. Redirect to the right picture
+            //Get the app_data field from signed request.
             $signed_request = $this->app['facebook']->getSignedRequest();
             print_r($signed_request);
             if(isset($signed_request['page'])){
+
+                // Redirect to the right picture if app_data is set
                 if(isset($signed_request['app_data'])){
-                    return $this->app->redirect($this->app['url_generator']->generate('gallery_picture', array('galleryId' => $galleryId, 'pictureId' => $signed_request['app_data'])));
+                    //return $this->app->redirect(
+                        echo $this->app['url_generator']->generate('gallery_picture', array('galleryId' => $galleryId, 'pictureId' => $signed_request['app_data']));//);
                 }
             }
 
