@@ -10,7 +10,8 @@
         "symfony/form": "2.1.*",
         "twig/twig": ">=1.8,<2.0-dev",
     	"doctrine/dbal": "2.2.*",
-	    "tobiassjosten/facebook-service-provider": "dev-master"
+	    "tobiassjosten/facebook-service-provider": "dev-master",
+        "grom/silex-service-provider": "dev-master"
     },
     "minimum-stability": "dev"
 }
