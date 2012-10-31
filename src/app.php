@@ -12,6 +12,16 @@ function _log($data, $back = 0) {
 $app = new Application(array('debug' => true));
 $app['debug'] = true;
 
+$app->before( function() use ( $app ) {
+    $flash = $app[ 'session' ]->get( 'flash' );
+    $app[ 'session' ]->set( 'flash', null );
+
+    if ( !empty( $flash ) )
+    {
+        $app[ 'twig' ]->addGlobal( 'flash', $flash );
+    }
+});
+
 $app->mount('/gallery', new Ishii\Apps\Gallery\Controller());
 
 return $app;

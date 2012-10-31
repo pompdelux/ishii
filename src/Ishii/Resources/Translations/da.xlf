@@ -33,6 +33,14 @@
                 <source>gallery.picture.caption</source>
                 <target>d. %date% af %user_name%</target>
             </trans-unit>
+            <trans-unit id="new.picture.is.uploaded.short">
+                <source>new.picture.is.uploaded.short</source>
+                <target>Tillykke!</target>
+            </trans-unit>
+            <trans-unit id="new.picture.is.uploaded.description">
+                <source>new.picture.is.uploaded.description</source>
+                <target>Dit billede er nu blevet indsendt.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

@@ -6,6 +6,8 @@ use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Silex\Application\UrlGeneratorTrait;
+use Imagine\Filter\Transformation;
+use Imagine\Image\Box;
 
 class Gallery
 {
@@ -129,8 +131,14 @@ class Gallery
                 $new_filename .= '-'.time();
                 $new_filename .= ($file->guessExtension())?'.'.$file->guessExtension():'.bin';
                 
-                if($file->move(__DIR__.'/../../../../'.$this->app['config']['upload_path'], $new_filename)){
+                if($file->move(__DIR__.'/../../../..'.$this->app['config']['upload_path'], $new_filename)){
                     // TODO. Make resized images here or does they have there own controller?
+                    $image = $this->app['imagine']->open(__DIR__.'/../../../..'.$this->app['config']['upload_path'].'/'.$new_filename);
+                    $size = $image->getSize();
+                    $transformation = new Transformation();
+                    $transformation->resize($size->widen(600));
+                    $image = $transformation->apply($image)->save(__DIR__.'/../../../..'.$this->app['config']['upload_path'].'/'.$new_filename);
+
                     $post = $this->app['db']->insert('gallery_pictures', array(
                         'gallery_id' => $this->app['gallery']['id'],
                         'uid' => $this->app->user['id'],
@@ -138,6 +146,12 @@ class Gallery
                         'description' => $data['description'],
                         'created_date' => date("Y-m-d H:i:s")
                     ));
+                    $this->app['session']->set('flash', array(
+                        'type' => 'success',
+                        'short' => $this->app['translator']->trans('new.picture.is.uploaded.short'),
+                        'ext' => $this->app['translator']->trans('new.picture.is.uploaded.description')
+                    ));
+
                     return $this->app->redirect($this->app->url('gallery_picture', array('pictureId' => $this->app['db']->lastInsertId(), 'galleryId' => $this->app['gallery']['id'])));
                 }
             }

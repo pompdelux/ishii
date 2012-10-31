@@ -30,6 +30,7 @@
 <body>
 
 <div id="container">
+
   <header>
     <h1>{{ page.title }}</h1>
   </header>
@@ -37,6 +38,15 @@
     {% block navigation %}{% endblock %}
   </nav>
   <div id="main">
+    {% block flash %}
+      {% if flash is defined %}
+      <div class="alert-message {{ flash.type }}">
+      <div class="container">
+        <p><strong>{{ flash.short }}</strong> {{ flash.ext }}</p>
+      </div>
+      </div>
+      {% endif %}
+    {% endblock flash %}
     {% block content %}{% endblock %}
   </div>
 </div>
@@ -54,7 +64,7 @@
     });
 
     // Additional initialization code such as adding Event Listeners goes here
-
+    FB.Canvas.setAutoGrow();
   };
 
   // Load the SDK's source Asynchronously
@@ -62,7 +72,7 @@
      var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
      if (d.getElementById(id)) {return;}
      js = d.createElement('script'); js.id = id; js.async = true;
-     js.src = "//connect.facebook.net/da_DK/all.js";
+     js.src = "//connect.facebook.net/da_DK/all.js#xfbml=1&appId={{ facebook_apps.default.app_id }}";
      ref.parentNode.insertBefore(js, ref);
    }(document));
 </script>
@@ -74,8 +84,8 @@
 var base_url = '{{ base_url }}';
 var cdn_url = '{{ cdn_url }}';
 </script>
-<script src="{{ base_url }}fx/js/main.js"></script>
-<script src="{{ base_url }}fx/js/plugins.js"></script>
+<script src="{{ base_url }}ishii/web/fx/js/main.js"></script>
+<script src="{{ base_url }}ishii/web/fx/js/plugins.js"></script>
 
 {# <script>
 var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
