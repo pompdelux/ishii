@@ -4,15 +4,17 @@
   <h2>{{ app.translator.trans('gallery.latest.pictures') }}</h2>
 
   <div id="gallery">
-  {% for image in page.images %}
-    <figure>
-      <img src="{{ cdn_url }}images/mannequin/shots/{{ image.url }}" alt="">
-      <figcaption>{{ app.translator.trans('gallery.picture.caption', {'user_name':image.first_name, 'date':image.created_date}) }}</figcaption>
-      <p><a href="" class="like button">{{ app.translator.trans('gallery.picture.like') }}</a></p>
-    </figure>
+  {% if page.images %}
+    {% for image in page.images %}
+      <figure>
+        <img src="{{ cdn_url }}images/mannequin/shots/{{ image.url }}" alt="">
+        <figcaption>{{ app.translator.trans('gallery.picture.caption', {'user_name':image.first_name, 'date':image.created_date}) }}</figcaption>
+        <p><a href="" class="like button">{{ app.translator.trans('gallery.picture.like') }}</a></p>
+      </figure>
+    {% endfor %}
   {% else %}
     <p>{{ app.translator.trans('gallery.no.pictures') }}</p>
-  {% endfor %}
+  {% endif %}
   </div>
 
 {% endblock %}

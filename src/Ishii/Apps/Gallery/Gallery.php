@@ -22,8 +22,9 @@ class Gallery
     /**
      * index method should only be used for documentation and stuff.
      *
-     * @param  Request $request Request object
-     * @return Response         Response object
+     * @param  Request  $request    Request object
+     * @param  Int      $galleryId  the gallery id
+     * @return Response             Response object
      */
     public function index(Request $request, $galleryId)
     {
@@ -39,6 +40,34 @@ class Gallery
         return $this->app->render("Gallery/index.twig");
     }
 
+    /**
+     * Gallery. Page to show all pictures in a gallery
+     *
+     * @param  Request $request Request object
+     * @return Response         Response object
+     */
+    public function gallery(Request $request, $galleryId)
+    {
+
+        $this->app['page']['title'] = 'POMPdeLUX Facebook galleri';
+        $this->app['page']['browser_title'] = ' » Seneste';
+
+        $gallery_pictures = $this->app['db']->fetchAssoc("SELECT * FROM gallery_pictures p LEFT JOIN gallery_users u ON (u.uid = p.uid) WHERE gallery_id = ? ", array((int) $galleryId));
+
+        $this->app['page']->setGallery($this->app['gallery']);
+        $this->app['page']->setImages(array($gallery_pictures));
+
+        return $this->app->render("Gallery/index.twig");
+    }
+
+
+    /**
+     * Add method to add a picture to a gallery.
+     *
+     * @param  Request  $request    Request object
+     * @param  Int      $galleryId  the gallery id
+     * @return Response             Response object
+     */
     public function add(Request $request, $galleryId)
     {
         if(!$this->app['gallery']['is_open']){ // TODO: der skal laves en fin side! 
@@ -91,6 +120,7 @@ class Gallery
                 $new_filename .= ($file->guessExtension())?'.'.$file->guessExtension():'.bin';
                 
                 if($file->move(__DIR__.'/../../../../'.$this->app['config']['upload_path'], $new_filename)){
+                    // TODO. Make resized images here or does they have there own controller?
                     $post = $this->app['db']->insert('gallery_pictures', array(
                         'gallery_id' => $this->app['gallery']['id'],
                         'uid' => $this->app->user['id'],
@@ -109,16 +139,32 @@ class Gallery
         ));
     }
 
+
+    /**
+     * view of a picture in a gallery
+     *
+     * @param  Request  $request    Request object
+     * @param  Int      $galleryId  the gallery id
+     * @return Response             Response object
+     */
     public function view(Request $request, $galleryId, $pictureId)
     {
-        $picture = $this->app['db']->fetchAssoc("SELECT * FROM gallery_pictures WHERE id = ? AND active = TRUE ", array((int) $pictureId));
+        $picture = $this->app['db']->fetchAssoc("SELECT * FROM gallery_pictures WHERE id = ? AND gallery_id = ? AND active = TRUE ", array((int) $pictureId, (int)$galleryId));
+        //$all_pictures = $this->app['db']->fetchAssoc("SELECT * FROM gallery_pictures WHERE gallery_id = ? AND active = TRUE ", array((int)$galleryId));
+
+        // Det her er da usædvanligt grimt. Er der ikke en nemmere måde at lave next/prev knapper på specifikke rækker? Hmmm
+        $prev_picture = $this->app['db']->fetchAssoc("SELECT * FROM gallery_pictures WHERE id < ? AND gallery_id = ? AND active = TRUE ORDER BY id DESC", array((int) $pictureId, (int)$galleryId));
+        $next_picture = $this->app['db']->fetchAssoc("SELECT * FROM gallery_pictures WHERE id > ? AND gallery_id = ? AND active = TRUE ORDER BY id ASC", array((int) $pictureId, (int)$galleryId));
 
         if(!$picture){
             $this->app->abort(404, $this->app['translator']->trans('404.title'));
         }
 
         $this->app['page']->setGallery($this->app['gallery']);
-        $this->app['page']->setPicture(array($picture));
-        return $this->app->render("Gallery/picture_view.twig");
+        $this->app['page']->setPicture($picture);
+        $this->app['page']->setNext($next_picture);
+        $this->app['page']->setPrev($prev_picture);
+        //$this->app['page']->setAllPictures($all_pictures);
+        return $this->app->render("Gallery/picture.twig");
     }
 }

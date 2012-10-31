@@ -12,6 +12,7 @@ use Silex\Provider\MonologServiceProvider;
 use Silex\Provider\FormServiceProvider;
 
 use Tobiassjosten\Silex\Provider\FacebookServiceProvider;
+use Grom\Silex\ImagineServiceProvider;
 use Symfony\Component\Yaml\Yaml;
 use Symfony\Component\Translation\Loader\YamlFileLoader;
 //use Predis\Silex\PredisServiceProvider;
@@ -85,7 +86,7 @@ class Application extends SilexApplication
             'monolog.logfile' => __DIR__.'/../../logs/development.log',
         ));
 
-        $app->register(new Grom\Silex\ImagineServiceProvider(), array(
+        $this->register(new ImagineServiceProvider(), array(
             'imagine.factory' => 'Gd',
             'imagine.base_path' => __DIR__.'/vendor/imagine',
         ));

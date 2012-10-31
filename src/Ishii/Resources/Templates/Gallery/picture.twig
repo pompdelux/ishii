@@ -1,0 +1,36 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+  <h2>{{ app.translator.trans('gallery.add.picture') }}</h2>
+  <div class="picture">
+    <img src="{{ base_url }}uploads/{{ page.picture.url }}" alt="{{ page.picture.title }}">
+    <span class="caption">{{ page.picture.description }}</span>
+    <div id="links">
+      {% if page.prev %}
+      <div class="prev">
+        <a href="{{ url('gallery_picture', {'galleryId' : page.gallery.id , 'pictureId' : page.prev.id }) }}" title="{{ page.prev.title }}">
+          <img src="{{ base_url }}{{ page.prev.url }}" alt>
+        </a>
+      </div>
+      {% endif %}
+      {% if page.next %}
+      <div class="next">
+        <a href="{{ url('gallery_picture', {'galleryId' : page.gallery.id , 'pictureId' : page.next.id }) }}" title="{{ page.next.title }}">
+          <img src="{{ base_url }}{{ page.next.url }}" alt>
+        </a>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+  <div class="fb-like" data-send="false" data-layout="button_count" data-width="450" data-show-faces="true"></div>
+  <div class="fb-comments" data-href="{{ app.request.uri }}" data-num-posts="10" data-width="470"></div>
+{% endblock %}
+
+{% block navigation %}
+  <ul>
+    <li><a href="{{ url('gallery_homepage', {'galleryId' : page.gallery.id }) }}">{{ app.translator.trans('gallery.button.homepage') }}</a></li>
+    <li><a href="{{ url('gallery_add', {'galleryId' : page.gallery.id }) }}">{{ app.translator.trans('gallery.button.add.picture') }}</a></li>
+    <li><a href="{{ url('gallery_random') }}">{{ app.translator.trans('gallery.button.random.pictures') }}</a></li>
+    <li><a href="{{ url('gallery_about') }}">{{ app.translator.trans('gallery.button.about') }}</a></li>
+  </ul>
+{% endblock %}
