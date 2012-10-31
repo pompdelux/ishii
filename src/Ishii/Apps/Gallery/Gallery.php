@@ -46,16 +46,26 @@ class Gallery
      * @param  Request $request Request object
      * @return Response         Response object
      */
-    public function gallery(Request $request, $galleryId)
+    public function gallery(Request $request, $galleryId, $offset)
     {
 
         $this->app['page']['title'] = 'POMPdeLUX Facebook galleri';
         $this->app['page']['browser_title'] = ' » Seneste';
 
-        $gallery_pictures = $this->app['db']->fetchAssoc("SELECT * FROM gallery_pictures p LEFT JOIN gallery_users u ON (u.uid = p.uid) WHERE gallery_id = ? ", array((int) $galleryId));
+        $gallery_pictures = $this->app['db']->fetchAll("SELECT * FROM gallery_pictures p LEFT JOIN gallery_users u ON (u.uid = p.uid) WHERE p.gallery_id = ? AND active = TRUE ORDER BY p.created_date DESC LIMIT {$offset},10", array((int) $galleryId));
+        $total_pictures = $this->app['db']->fetchColumn("SELECT COUNT(id) FROM gallery_pictures WHERE gallery_id = ? AND active = TRUE", array((int)$galleryId));
 
         $this->app['page']->setGallery($this->app['gallery']);
-        $this->app['page']->setImages(array($gallery_pictures));
+        $this->app['page']->setImages($gallery_pictures);
+        
+        if($offset > 0){
+            $this->app['page']->setPrev(array('active' => true, 'offset' => $offset - 10));
+        }
+
+        if(($total_pictures - 10) > $offset){
+            $this->app['page']->setNext(array('active' => true, 'offset' => $offset + 10));
+        }
+            
 
         return $this->app->render("Gallery/index.twig");
     }
@@ -149,7 +159,7 @@ class Gallery
      */
     public function view(Request $request, $galleryId, $pictureId)
     {
-        $picture = $this->app['db']->fetchAssoc("SELECT * FROM gallery_pictures WHERE id = ? AND gallery_id = ? AND active = TRUE ", array((int) $pictureId, (int)$galleryId));
+        $picture = $this->app['db']->fetchAssoc("SELECT * FROM gallery_pictures p LEFT JOIN gallery_users u ON (u.uid = p.uid) WHERE p.id = ? AND p.gallery_id = ? AND active = TRUE ", array((int) $pictureId, (int)$galleryId));
         //$all_pictures = $this->app['db']->fetchAssoc("SELECT * FROM gallery_pictures WHERE gallery_id = ? AND active = TRUE ", array((int)$galleryId));
 
         // Det her er da usædvanligt grimt. Er der ikke en nemmere måde at lave next/prev knapper på specifikke rækker? Hmmm

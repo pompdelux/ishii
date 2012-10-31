@@ -25,6 +25,14 @@
                 <source>default.browser.title</source>
                 <target>POMPdeLUX - Vild med børnetøj » Facebook galleri</target>
             </trans-unit>
+            <trans-unit id="gallery.uploaded.by">
+                <source>gallery.uploaded.by</source>
+                <target>Indsendt af %username%</target>
+            </trans-unit>
+            <trans-unit id="gallery.picture.caption">
+                <source>gallery.picture.caption</source>
+                <target>d. %date% af %user_name%</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

@@ -5,7 +5,11 @@
   <div class="picture">
     <img src="{{ base_url }}uploads/{{ page.picture.url }}" alt="{{ page.picture.title }}">
     <span class="caption">{{ page.picture.description }}</span>
-    <div id="links">
+    <span class="user">
+      <img src="https://graph.facebook.com/{{ page.picture.uid }}/picture?type=small">
+      <a href="{{ page.picture.link }}">{{ app.translator.trans('gallery.uploaded.by', {'%username%' : page.picture.first_name ~ ' ' ~ page.picture.last_name}) }}</a>
+    </span>
+    <div id="pagination">
       {% if page.prev %}
       <div class="prev">
         <a href="{{ url('gallery_picture', {'galleryId' : page.gallery.id , 'pictureId' : page.prev.id }) }}" title="{{ page.prev.title }}">

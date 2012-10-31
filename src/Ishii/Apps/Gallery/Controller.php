@@ -40,9 +40,11 @@ class Controller implements ControllerProviderInterface
 
         $gallery = $this->gallery;
         
-        $controller->match('/{galleryId}', function (Application $app, Request $request, $galleryId) use ($gallery) {
-            return $gallery->index($request, $galleryId);
-        })->bind('gallery_homepage');
+        $controller->match('/{galleryId}/{offset}', function (Application $app, Request $request, $galleryId, $offset) use ($gallery) {
+            return $gallery->gallery($request, $galleryId, $offset);
+        })
+        ->bind('gallery_homepage')
+        ->value('offset', 0);
 
         $controller->match('/{galleryId}/add/', function (Application $app, Request $request, $galleryId) use ($gallery) {
             // $user = $app['facebook']->getUser();

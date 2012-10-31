@@ -6,12 +6,26 @@
   <div id="gallery">
   {% if page.images %}
     {% for image in page.images %}
-      <figure>
-        <img src="{{ cdn_url }}images/mannequin/shots/{{ image.url }}" alt="">
-        <figcaption>{{ app.translator.trans('gallery.picture.caption', {'user_name':image.first_name, 'date':image.created_date}) }}</figcaption>
-        <p><a href="" class="like button">{{ app.translator.trans('gallery.picture.like') }}</a></p>
-      </figure>
+      <div class="picture">
+        <a href="{{ url('gallery_picture', {'galleryId' : page.gallery.id, 'pictureId' : image.id}) }}" title="{{ image.title }}">
+          <img src="{{ base_url }}uploads/{{ image.url }}" alt="">
+          <span class="caption">{{ app.translator.trans('gallery.picture.caption', {'%user_name%':image.first_name, '%date%':image.created_date}) }}</span>
+        </a>
+        <div class="fb-like" data.href="{{ url('gallery_picture', {'galleryId' : page.gallery.id, 'pictureId' : image.id}) }}" data-send="false" data-layout="button_count" data-width="450" data-show-faces="true"></div>
+      </div>
     {% endfor %}
+    <div id="pagination">
+      {% if page.prev and page.prev.active %}
+      <div class="prev">
+        <a href="{{ url('gallery_homepage', {'galleryId' : page.gallery.id , 'offset' : page.prev.offset }) }}">{{ app.translator.trans('prev') }}</a>
+      </div>
+      {% endif %}
+      {% if page.next and page.next.active %}
+      <div class="next">
+        <a href="{{ url('gallery_homepage', {'galleryId' : page.gallery.id , 'offset' : page.next.offset }) }}">{{ app.translator.trans('next') }}</a>
+      </div>
+      {% endif %}
+    </div>
   {% else %}
     <p>{{ app.translator.trans('gallery.no.pictures') }}</p>
   {% endif %}
