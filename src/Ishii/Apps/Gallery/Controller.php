@@ -22,7 +22,8 @@ class Controller implements ControllerProviderInterface
         
         $controller->before(function (Request $request){
             //ugly method to find the gallery id
-            $galleryId = explode('/',$request->getPathInfo())[2];
+            $path = explode('/',$request->getPathInfo());
+            $galleryId = $path[2];
 
             //do the gallery exists?
             $this->app['gallery'] = $this->app['db']->fetchAssoc("SELECT * FROM gallery_galleries WHERE id = ? LIMIT 1", array((int) $galleryId));
@@ -33,9 +34,24 @@ class Controller implements ControllerProviderInterface
             $this->app['facebook']->setAppId($this->app['gallery']['app_id']);
             $this->app['facebook']->setApiSecret($this->app['gallery']['secret']);
 
-            //Get the app_data field from signed request.
+            //Get the app_data field from signed request. Redirect to the right picture
             $signed_request = $this->app['facebook']->getSignedRequest();
             print_r($signed_request);
+            if(isset($signed_request['page'])){
+                if(isset($signed_request['app_data'])){
+                    return $this->app->redirect($this->app['url_generator']->generate('gallery_picture', array('galleryId' => $galleryId, 'pictureId' => $signed_request['app_data'])));
+                }
+            }
+
+            // If the user comes from a link, ousite of iframe, redirect to the appropiate url on page
+            $referer = $request->server->get('HTTP_REFERER');
+            if(strpos($referer, 'facebook.com') AND !isset($signed_request['page'])){
+                $fb_app_data = $galleryId;
+                if(isset($path[4])){ // Ugly method to find pictureId
+                    $fb_app_data .= '|'.$path[4];
+                }
+                return $this->app->redirect('http://facebook.com/pages/'.$this->app['config']['facebook_apps']['default']['page'].'?sk=app_'.$this->app['gallery']['app_id'].'&app_data='.$fb_app_data);
+            }
         });
 
         if (!$this->gallery) {
