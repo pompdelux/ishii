@@ -1,6 +1,7 @@
 <?php
 
 use Ishii\Application;
+use Imagine\Filter;
 
 function _log($data, $back = 0) {
     $bt = debug_backtrace();
@@ -23,5 +24,21 @@ $app->before( function() use ( $app ) {
 });
 
 $app->mount('/gallery', new Ishii\Apps\Gallery\Controller());
+
+$app->get('/image/{file}/{width}', function($file, $width) use ($app){
+	$image = $app['imagine']->open('uploads/'.$file);
+	$size = $image->getSize();
+    $transformation = new Filter\Transformation();
+    $transformation->thumbnail($size->widen($width));
+    $image = $transformation->apply($image);
+
+    $format = pathinfo($file, PATHINFO_EXTENSION);
+
+    $response = new Symfony\Component\HttpFoundation\Response();
+    $response->headers->set('Content-type', 'image/'.$format);
+    $response->setContent($image->get($format));
+
+    return $response;
+})->bind('image')->value('width', 600);
 
 return $app;

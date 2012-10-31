@@ -8,7 +8,7 @@
     {% for image in page.images %}
       <div class="picture">
         <a href="{{ url('gallery_picture', {'galleryId' : page.gallery.id, 'pictureId' : image.id}) }}" title="{{ image.title }}">
-          <img src="{{ base_url }}uploads/{{ image.url }}" alt="">
+          <img src="{{ path('image', {'file' : image.url, 'width' : 200}) }}" alt="">
           <span class="caption">{{ app.translator.trans('gallery.picture.caption', {'%user_name%':image.first_name, '%date%':image.created_date}) }}</span>
         </a>
         <div class="fb-like" data.href="{{ url('gallery_picture', {'galleryId' : page.gallery.id, 'pictureId' : image.id}) }}" data-send="false" data-layout="button_count" data-width="450" data-show-faces="true"></div>

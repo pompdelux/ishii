@@ -1,9 +1,9 @@
 {% extends 'layout.twig' %}
 
 {% block content %}
-  <h2>{{ app.translator.trans('gallery.add.picture') }}</h2>
+  <h2>{{ page.picture.title }}</h2>
   <div class="picture">
-    <img src="{{ base_url }}uploads/{{ page.picture.url }}" alt="{{ page.picture.title }}">
+    <img src="{{ path('image', {'file' : page.picture.url, 'width' : 500}) }}" alt="{{ page.picture.title }}">
     <span class="caption">{{ page.picture.description }}</span>
     <span class="user">
       <img src="https://graph.facebook.com/{{ page.picture.uid }}/picture?type=small">
@@ -13,14 +13,14 @@
       {% if page.prev %}
       <div class="prev">
         <a href="{{ url('gallery_picture', {'galleryId' : page.gallery.id , 'pictureId' : page.prev.id }) }}" title="{{ page.prev.title }}">
-          <img src="{{ base_url }}{{ page.prev.url }}" alt>
+          <img src="{{ path('image', {'file' : page.prev.url, 'width' : 100}) }}" alt>
         </a>
       </div>
       {% endif %}
       {% if page.next %}
       <div class="next">
         <a href="{{ url('gallery_picture', {'galleryId' : page.gallery.id , 'pictureId' : page.next.id }) }}" title="{{ page.next.title }}">
-          <img src="{{ base_url }}{{ page.next.url }}" alt>
+          <img src="{{ path('image', {'file' : page.next.url, 'width' : 100}) }}" alt>
         </a>
       </div>
       {% endif %}
