@@ -44,7 +44,7 @@ class Controller implements ControllerProviderInterface
                     die('<script>location.href=\''.$this->app['url_generator']->generate('gallery_picture', array('galleryId' => $galleryId, 'pictureId' => $signed_request['app_data'])).'\'</script>');
                 }
             }
-
+            
             // If the user comes from a link, ousite of iframe, redirect to the appropiate url on page
             $referer = $request->server->get('HTTP_REFERER');
             if(strpos($referer, 'facebook.com') AND !isset($signed_request['page'])){
@@ -52,7 +52,7 @@ class Controller implements ControllerProviderInterface
                 if(isset($path[4])){ // Ugly method to find pictureId
                     $fb_app_data .= '|'.$path[4];
                 }
-                return $this->app->redirect('http://facebook.com/pages/'.$this->app['config']['facebook_apps']['default']['page'].'?sk=app_'.$this->app['gallery']['app_id'].'&app_data='.$fb_app_data);
+                return $this->app->redirect('http://facebook.com/pages/'.$this->app['config']['facebook_apps']['default']['page_id'].'?sk=app_'.$this->app['gallery']['app_id'].'&app_data='.$fb_app_data);
             }
         });
 
