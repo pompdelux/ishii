@@ -1,26 +1,70 @@
 
 $(document).ready(function () {
     // Facebook Me... :-)
-    $('.facebook-connect').click(function(e){
+    $('#add-picture button.submit').click(function(e){
         e.preventDefault();
+        $form = $('#add-picture');
         $this = $(this);
-        FB.login(function(response) {
-            if (response.authResponse) {
-                console.log('Welcome!  Fetching your information.... ');
-                FB.api('/me', function(response) {
-                    console.log('Good to see you, ' + response.name + '.');
-                    $('#form_uuid').val(response.id);
-                    $('input[type="submit"]').removeAttr('disabled');
-                    $this.hide();
-                });
-            } else {
-                console.log('User cancelled login or did not fully authorize.');
-            }
-        }, {scope: 'email'});
+        if($('#form_picture').val() && $('#form_title').val() && $('#form_description').val()){
+            FB.login(function(response) {
+                if (response.authResponse) {
+                    console.log('Welcome!  Fetching your information.... ');
+                    FB.api('/me', function(response) {
+                        console.log('Good to see you, ' + response.name + '.');
+                        $('#form_uuid').val(response.id);
+                        $this.attr("disabled", "disabled");
+                        $('#add-picture').submit();
+                    });
+                } else {
+                    console.log('User cancelled login or did not fully authorize.');
+                }
+            }, {scope: 'email'});
+        }else{ // Not all fields are filled
+
+        }
     });
+
     $('#add-picture').submit(function(e){
         if($(this).find('#form_uuid').val().length === 0){
             e.preventDefault();
         }
+    });
+
+    $('#add-picture #form_title').keyup(function(e){
+        $('#preview h3').text($(this).val());
+    });
+    $('#add-picture #form_description').keyup(function(e){
+        $('#preview p').text($(this).val());
+    });
+    $('#add-picture #form_picture').change(function(e){
+        if (this.files && this.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#preview img')
+                    .attr('src', e.target.result).show();
+            };
+
+            reader.readAsDataURL(this.files[0]);
+        }
+    });
+
+    $('.facebook-share').click(function(e){
+        e.preventDefault();
+        $this = $(this);
+        
+        // calling the API ...
+        var obj = {
+            method: 'feed',
+            link: $this.data('link'),
+            picture: $this.data('picture'),
+            name: $this.data('name'),
+            caption: $this.data('caption'),
+            description: $this.data('description')
+        };
+
+        FB.ui(obj, function(response){
+
+        });
     });
 });

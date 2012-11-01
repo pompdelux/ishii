@@ -93,6 +93,7 @@ class Gallery
 
         $form = $this->app['form.factory']->createBuilder('form')
             ->add('picture', 'file')
+            ->add('title')
             ->add('description', 'textarea', array(
                 'required' => false,
                 'max_length' => 255
@@ -144,8 +145,10 @@ class Gallery
                         'uid' => $this->app->user['id'],
                         'url' => $new_filename,
                         'description' => $data['description'],
+                        'title' => $data['title'],
                         'created_date' => date("Y-m-d H:i:s")
                     ));
+                    
                     $this->app['session']->set('flash', array(
                         'type' => 'success',
                         'short' => $this->app['translator']->trans('new.picture.is.uploaded.short'),

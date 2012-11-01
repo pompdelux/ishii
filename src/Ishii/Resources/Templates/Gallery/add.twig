@@ -3,15 +3,19 @@
 {% block content %}
   <h2>{{ app.translator.trans('gallery.add.picture') }}</h2>
 
-  <form action="#" method="post" id="add-picture" {{ form_enctype(form) }}>
+  <form action="#" method="post" id="add-picture" class="six columns alpha" {{ form_enctype(form) }}>
     {{ form_widget(form) }}
     {% if page.user is null %}
-      <input type="submit" class="button" disabled value="{{ app.translator.trans('gallery.button.add.picture') }}">
-      <a href="#" class="facebook-connect">{{ app.translator.trans('facebook.connect.button') }}</a>
+      <button class="submit" class="button">{{ app.translator.trans('gallery.button.add.picture') }}</button>
     {% else %}
-      <input type="submit" class="button" value="{{ app.translator.trans('gallery.button.add.picture') }}">
+      <input type="submit" class="button" disabled value="{{ app.translator.trans('gallery.button.add.picture') }}">
     {% endif %}
   </form>
+  <div id="preview" class="six columns omega">
+    <h3></h3>
+    <img src="" style="display:none;" class="scale-with-grid">
+    <p></p>
+  </div>
 
 
 {% endblock %}

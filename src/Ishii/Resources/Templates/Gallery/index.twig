@@ -6,9 +6,9 @@
   <div id="gallery">
   {% if page.images %}
     {% for image in page.images %}
-      <div class="picture">
+      <div class="picture three columns">
         <a href="{{ url('gallery_picture', {'galleryId' : page.gallery.id, 'pictureId' : image.id}) }}" title="{{ image.title }}">
-          <img src="{{ path('image', {'file' : image.url, 'width' : 200}) }}" alt="">
+          <img src="{{ path('image', {'file' : image.url, 'width' : 200}) }}" alt="" class="scale-with-grid">
           <span class="caption">{{ app.translator.trans('gallery.picture.caption', {'%user_name%':image.first_name, '%date%':image.created_date}) }}</span>
         </a>
         <div class="fb-like" data-href="{{ url('gallery_picture', {'galleryId' : page.gallery.id, 'pictureId' : image.id}) }}" data-send="false" data-layout="button_count" data-width="450" data-show-faces="true" data-ref="POMPdeLUX"></div>
@@ -33,11 +33,3 @@
 
 {% endblock %}
 
-{% block navigation %}
-  <ul>
-    <li><a href="{{ url('gallery_homepage', {'galleryId' : page.gallery.id }) }}">{{ app.translator.trans('gallery.button.homepage') }}</a></li>
-    <li><a href="{{ url('gallery_add', {'galleryId' : page.gallery.id }) }}">{{ app.translator.trans('gallery.button.add.picture') }}</a></li>
-    <li><a href="{{ url('gallery_random') }}">{{ app.translator.trans('gallery.button.random.pictures') }}</a></li>
-    <li><a href="{{ url('gallery_about') }}">{{ app.translator.trans('gallery.button.about') }}</a></li>
-  </ul>
-{% endblock %}

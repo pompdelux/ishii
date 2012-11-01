@@ -25,6 +25,13 @@ $app->before( function() use ( $app ) {
 
 $app->mount('/gallery', new Ishii\Apps\Gallery\Controller());
 
+/**
+ * Image getter. Returns an resized image. Image keeps ratio aspects
+ *
+ * @param  string      	$file  	the image name
+ * @param  int      	$width  the width of the wanted image
+ * @return Response             Response object
+ */
 $app->get('/image/{file}/{width}', function($file, $width) use ($app){
 	$image = $app['imagine']->open('uploads/'.$file);
 	$size = $image->getSize();

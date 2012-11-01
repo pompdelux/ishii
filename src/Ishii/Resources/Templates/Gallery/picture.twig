@@ -5,36 +5,32 @@
   <div class="picture">
     <img src="{{ path('image', {'file' : page.picture.url, 'width' : 500}) }}" alt="{{ page.picture.title }}">
     <span class="caption">{{ page.picture.description }}</span>
-    <span class="user">
-      <img src="https://graph.facebook.com/{{ page.picture.uid }}/picture?type=small">
-      <a href="{{ page.picture.link }}">{{ app.translator.trans('gallery.uploaded.by', {'%username%' : page.picture.first_name ~ ' ' ~ page.picture.last_name}) }}</a>
-    </span>
-    <div id="pagination">
-      {% if page.prev %}
-      <div class="prev">
-        <a href="{{ url('gallery_picture', {'galleryId' : page.gallery.id , 'pictureId' : page.prev.id }) }}" title="{{ page.prev.title }}">
-          <img src="{{ path('image', {'file' : page.prev.url, 'width' : 100}) }}" alt>
-        </a>
-      </div>
-      {% endif %}
-      {% if page.next %}
-      <div class="next">
-        <a href="{{ url('gallery_picture', {'galleryId' : page.gallery.id , 'pictureId' : page.next.id }) }}" title="{{ page.next.title }}">
-          <img src="{{ path('image', {'file' : page.next.url, 'width' : 100}) }}" alt>
-        </a>
-      </div>
-      {% endif %}
-    </div>
   </div>
-  <div class="fb-like" data-send="false" data-layout="button_count" data-width="450" data-show-faces="true" data-ref="POMPdeLUX"></div>
-  <div class="fb-comments" data-href="{{ app.request.uri }}" data-num-posts="10" data-width="470"></div>
-{% endblock %}
-
-{% block navigation %}
-  <ul>
-    <li><a href="{{ url('gallery_homepage', {'galleryId' : page.gallery.id }) }}">{{ app.translator.trans('gallery.button.homepage') }}</a></li>
-    <li><a href="{{ url('gallery_add', {'galleryId' : page.gallery.id }) }}">{{ app.translator.trans('gallery.button.add.picture') }}</a></li>
-    <li><a href="{{ url('gallery_random') }}">{{ app.translator.trans('gallery.button.random.pictures') }}</a></li>
-    <li><a href="{{ url('gallery_about') }}">{{ app.translator.trans('gallery.button.about') }}</a></li>
-  </ul>
+  <div class="user">
+    <img src="https://graph.facebook.com/{{ page.picture.uid }}/picture?type=small">
+    <a href="{{ page.picture.link }}">{{ app.translator.trans('gallery.uploaded.by', {'%username%' : page.picture.first_name ~ ' ' ~ page.picture.last_name}) }}</a>
+  </div>
+  <div id="pagination">
+    {% if page.prev %}
+    <div class="prev">
+      <a href="{{ url('gallery_picture', {'galleryId' : page.gallery.id , 'pictureId' : page.prev.id }) }}" title="{{ page.prev.title }}">
+        <img src="{{ path('image', {'file' : page.prev.url, 'width' : 100}) }}" alt>
+      </a>
+    </div>
+    {% endif %}
+    {% if page.next %}
+    <div class="next">
+      <a href="{{ url('gallery_picture', {'galleryId' : page.gallery.id , 'pictureId' : page.next.id }) }}" title="{{ page.next.title }}">
+        <img src="{{ path('image', {'file' : page.next.url, 'width' : 100}) }}" alt>
+      </a>
+    </div>
+    {% endif %}
+  </div>
+  <div class="share">
+    <div class="fb-like" data-send="false" data-layout="button_count" data-width="450" data-show-faces="true" data-ref="POMPdeLUX"></div>
+    <a href="#" class="facebook-share like-button" data-link="{{ app.request.uri }}" data-picture="{{ base_url ~ path('image', {'file' : page.picture.url, 'width' : 180}) }}" data-name="{{ page.picture.title }}" data-caption="{{ app.translator.trans('gallery.share.caption') }}" data-description="{{ page.picture.description }}">
+      {{ app.translator.trans('gallery.share.button') }}
+    </a>
+  </div>
+  <fb:comments href="{{ app.request.uri }}" num_posts="2" width="470"></fb:comments>
 {% endblock %}
