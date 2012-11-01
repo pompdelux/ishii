@@ -36,12 +36,11 @@ class Controller implements ControllerProviderInterface
 
             //Get the app_data field from signed request.
             $signed_request = $this->app['facebook']->getSignedRequest();
-            print_r($signed_request);
-            if(isset($signed_request['page'])){
 
+            if(isset($signed_request['page'])){
                 // Redirect to the right picture if app_data is set
                 if(isset($signed_request['app_data'])){
-                    $pictureId = explode('|', $signed_request['app_data'])[1];
+                    $pictureId = explode('|', $signed_request['app_data'])[1]; // galleryId|pictureId
                     die('<script>location.href=\''.$this->app['url_generator']->generate('gallery_picture', array('galleryId' => $galleryId, 'pictureId' => $pictureId)).'\'</script>');
                 }
             }
@@ -70,43 +69,20 @@ class Controller implements ControllerProviderInterface
         ->value('offset', 0);
 
         $controller->match('/{galleryId}/add/', function (Application $app, Request $request, $galleryId) use ($gallery) {
-            // $user = $app['facebook']->getUser();
-            // if(!$user){
-            //     return $app->redirect($app['url_generator']->generate('fan_gate'));
-            // }
-
             return $gallery->add($request, $galleryId);
         })->bind('gallery_add');
 
         $controller->get('{galleryId}/picture/{pictureId}', function (Application $app, Request $request, $galleryId, $pictureId) use ($gallery) {
-            // $user = $app['facebook']->getUser();
-            // if(!$user){
-            //     return $app->redirect($app['url_generator']->generate('fan_gate'));
-            // }
-
             return $gallery->view($request, $galleryId, $pictureId);
         })->bind('gallery_picture');
 
         $controller->get('/random', function (Application $app, Request $request) use ($gallery) {
-            // $user = $app['facebook']->getUser();
-            // if(!$user){
-            //     return $app->redirect($app['url_generator']->generate('fan_gate'));
-            // }
-
             return $gallery->index($request);
         })->bind('gallery_random');
 
         $controller->get('/about', function (Application $app, Request $request) use ($gallery) {
             return $gallery->index($request);
         })->bind('gallery_about');
-
-        $controller->get('/tab', function (Application $app, Request $request) {
-            return $gallery->tab($request);
-        });
-
-        $controller->get('/app', function (Application $app, Request $request) {
-            return $gallery->tab($request);
-        });
 
         return $controller;
     }

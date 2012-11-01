@@ -92,11 +92,16 @@ class Gallery
         }
 
         $form = $this->app['form.factory']->createBuilder('form')
-            ->add('picture', 'file')
-            ->add('title')
+            ->add('picture', 'file', array(
+                'label' => $this->app['translator']->trans('gallery.upload.picture.label')
+            ))
+            ->add('title', 'text', array(
+                'label' => $this->app['translator']->trans('gallery.upload.title.label')
+            ))
             ->add('description', 'textarea', array(
                 'required' => false,
-                'max_length' => 255
+                'max_length' => 255,
+                'label' => $this->app['translator']->trans('gallery.upload.description.label')
             ))
             ->add('uuid', 'hidden')
             ->getForm();
@@ -148,7 +153,7 @@ class Gallery
                         'title' => $data['title'],
                         'created_date' => date("Y-m-d H:i:s")
                     ));
-                    
+
                     $this->app['session']->set('flash', array(
                         'type' => 'success',
                         'short' => $this->app['translator']->trans('new.picture.is.uploaded.short'),

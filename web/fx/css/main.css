@@ -231,8 +231,18 @@ legend span {
 
 
 
+#add-picture input,
+#add-picture textarea{width: 100%}
 
-
+#preview {
+    padding: 10px;
+    border:#ccc 1px dashed;}
+#preview h4 {
+    text-transform: uppercase;
+    font-size: 12px;
+    color: #BFBFBF;
+    margin:0 0 10px;
+    line-height: normal;}
 
 .fb-comments, .fb-comments span[style], .fb-comments iframe[style] {
     width: 100% !important;

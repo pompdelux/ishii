@@ -49,6 +49,30 @@
                 <source>gallery.share.caption</source>
                 <target>Jeg har lige stemt på at dette billede skal vinde POMPdeLUX konkurrencen</target>
             </trans-unit>
+            <trans-unit id="gallery.upload.picture.h2">
+                <source>gallery.upload.picture.h2</source>
+                <target>Indsend dit billede til konkurrencen</target>
+            </trans-unit>
+            <trans-unit id="gallery.upload.picture.label">
+                <source>gallery.upload.picture.label</source>
+                <target>Dit billede</target>
+            </trans-unit>
+            <trans-unit id="gallery.upload.title.label">
+                <source>gallery.upload.title.label</source>
+                <target>Billede titel</target>
+            </trans-unit>
+            <trans-unit id="gallery.upload.description.label">
+                <source>gallery.upload.description.label</source>
+                <target>En kort beskrivelse</target>
+            </trans-unit>
+            <trans-unit id="gallery.button.upload.picture">
+                <source>gallery.button.upload.picture</source>
+                <target>Indsend billede</target>
+            </trans-unit>
+            <trans-unit id="gallery.upload.preview.h4">
+                <source>gallery.upload.preview.h4</source>
+                <target>Preview</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

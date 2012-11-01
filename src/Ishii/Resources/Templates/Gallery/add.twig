@@ -1,20 +1,23 @@
 {% extends 'layout.twig' %}
 
 {% block content %}
-  <h2>{{ app.translator.trans('gallery.add.picture') }}</h2>
+  <h2>{{ app.translator.trans('gallery.upload.picture.h2') }}</h2>
 
-  <form action="#" method="post" id="add-picture" class="six columns alpha" {{ form_enctype(form) }}>
+  <form action="#" method="post" id="add-picture" class="eight columns alpha" {{ form_enctype(form) }}>
     {{ form_widget(form) }}
     {% if page.user is null %}
-      <button class="submit" class="button">{{ app.translator.trans('gallery.button.add.picture') }}</button>
+      <button class="submit" class="button">{{ app.translator.trans('gallery.button.upload.picture') }}</button>
     {% else %}
-      <input type="submit" class="button" disabled value="{{ app.translator.trans('gallery.button.add.picture') }}">
+      <input type="submit" class="button" disabled value="{{ app.translator.trans('gallery.button.upload.picture') }}">
     {% endif %}
   </form>
-  <div id="preview" class="six columns omega">
-    <h3></h3>
-    <img src="" style="display:none;" class="scale-with-grid">
-    <p></p>
+  <div class="eight columns omega">
+    <div id="preview">
+      <h4>{{ app.translator.trans('gallery.upload.preview.h4') }}</h4>
+      <h3></h3>
+      <img src="" style="display:none;" class="scale-with-grid">
+      <p></p>
+    </div>
   </div>
 
 
@@ -23,7 +26,7 @@
 {% block navigation %}
   <ul>
     <li><a href="{{ url('gallery_homepage', {'galleryId' : galleryId }) }}">{{ app.translator.trans('gallery.button.homepage') }}</a></li>
-    <li><a href="{{ url('gallery_add', {'galleryId' : galleryId }) }}">{{ app.translator.trans('gallery.button.add.picture') }}</a></li>
+    <li><a href="{{ url('gallery_add', {'galleryId' : galleryId }) }}">{{ app.translator.trans('gallery.button.upload.picture') }}</a></li>
     <li><a href="{{ url('gallery_random') }}">{{ app.translator.trans('gallery.button.random.pictures') }}</a></li>
     <li><a href="{{ url('gallery_about') }}">{{ app.translator.trans('gallery.button.about') }}</a></li>
   </ul>
