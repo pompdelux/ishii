@@ -51,13 +51,15 @@
     {% endblock %}
   </nav>
   {% block flash %}
-    {% if flash is defined %}
-    <div class="alert alert-{{ flash.type }} sixteen columns alpha omega">
-      <div class="container">
-        <p><strong>{{ flash.short }}</strong> {{ flash.ext }}</p>
+    <div id="alerts" class="sixteen columns alpha omega">
+      {% if flash is defined %}
+      <div class="alert alert-{{ flash.type }}">
+        <div class="container">
+          <p><strong>{{ flash.short }}</strong> {{ flash.ext }}</p>
+        </div>
       </div>
+      {% endif %}
     </div>
-    {% endif %}
   {% endblock flash %}
   <div id="main" class="sixteen columns alpha omega">
     {% block content %}{% endblock %}
