@@ -4,7 +4,7 @@
   <h2>{{ page.picture.title }}</h2>
   <div class="picture">
     <img src="{{ path('image', {'file' : page.picture.url, 'width' : 500}) }}" alt="{{ page.picture.title }}">
-    <span class="caption">{{ page.picture.description }}</span>
+    <div class="caption"><span>{{ page.picture.description }}</span></div>
   </div>
   <div class="user">
     <img src="https://graph.facebook.com/{{ page.picture.uid }}/picture?type=small">
