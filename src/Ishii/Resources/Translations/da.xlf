@@ -65,13 +65,13 @@
                 <source>gallery.upload.description.label</source>
                 <target>En kort beskrivelse</target>
             </trans-unit>
-            <trans-unit id="gallery.button.upload.picture">
-                <source>gallery.button.upload.picture</source>
+            <trans-unit id="gallery.upload.picture.submit">
+                <source>gallery.upload.picture.submit</source>
                 <target>Indsend billede</target>
             </trans-unit>
             <trans-unit id="gallery.upload.preview.h4">
                 <source>gallery.upload.preview.h4</source>
-                <target>Preview</target>
+                <target>Forhåndsvisning</target>
             </trans-unit>
         </body>
     </file>

@@ -236,7 +236,8 @@ legend span {
 
 #preview {
     padding: 10px;
-    border:#ccc 1px dashed;}
+    border:#ccc 1px dashed;
+    min-height: 400px}
 #preview h4 {
     text-transform: uppercase;
     font-size: 12px;

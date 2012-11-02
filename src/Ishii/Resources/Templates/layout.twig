@@ -12,7 +12,11 @@
 <meta name="robots" content="all">
 
 <meta property="og:url" content="{{ app.request.uri }}">
-
+<meta property="og:site_name" content="{{ app.translator.trans('default.browser.title') }}"/>
+{% block og %}
+<meta property="og:title" content="{{ page.browser_title|default('') }} {{ app.translator.trans('default.browser.title') }}"/>
+<meta property="og:image" content="{{ base_url }}fx/img/POMPdeLUX_logo_SS12.png"/>
+{% endblock %}
 <meta property="fb:app_id" content="{{ facebook_apps.default.app_id }}"/>
 
 <link rel="dns-prefetch" href="{{ cdn_url|replace({'http:':''}) }}">
@@ -39,7 +43,9 @@
     {% block navigation %}
       <ul>
         <li><a href="{{ url('gallery_homepage', {'galleryId' : page.gallery.id }) }}">{{ app.translator.trans('gallery.button.homepage') }}</a></li>
+        {% if page.gallery.is_open %}
         <li><a href="{{ url('gallery_add', {'galleryId' : page.gallery.id }) }}">{{ app.translator.trans('gallery.button.add.picture') }}</a></li>
+        {% endif %}
         <li><a href="{{ url('gallery_about') }}">{{ app.translator.trans('gallery.button.about') }}</a></li>
       </ul>
     {% endblock %}

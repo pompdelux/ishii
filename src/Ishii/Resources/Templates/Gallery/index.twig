@@ -3,18 +3,20 @@
 {% block content %}
   <h2>{{ app.translator.trans('gallery.latest.pictures') }}</h2>
 
-  <div id="gallery">
   {% if page.images %}
-    {% for image in page.images %}
-      <div class="picture three columns">
-        <a href="{{ url('gallery_picture', {'galleryId' : page.gallery.id, 'pictureId' : image.id}) }}" title="{{ image.title }}">
-          <img src="{{ path('image', {'file' : image.url, 'width' : 200}) }}" alt="" class="scale-with-grid">
-          <span class="caption">{{ app.translator.trans('gallery.picture.caption', {'%user_name%':image.first_name, '%date%':image.created_date}) }}</span>
-        </a>
-        <div class="fb-like" data-href="{{ url('gallery_picture', {'galleryId' : page.gallery.id, 'pictureId' : image.id}) }}" data-send="false" data-layout="button_count" data-width="450" data-show-faces="true" data-ref="POMPdeLUX"></div>
-      </div>
-    {% endfor %}
-    <div id="pagination">
+  <div id="gallery">
+    <div id="pictures" class="clearfix">
+      {% for image in page.images %}
+        <div class="picture three columns">
+          <a href="{{ url('gallery_picture', {'galleryId' : page.gallery.id, 'pictureId' : image.id}) }}" title="{{ image.title }}">
+            <img src="{{ path('thumb', {'file' : image.url, 'dimension' : 200}) }}" alt="" class="scale-with-grid">
+            <span class="caption">{{ app.translator.trans('gallery.picture.caption', {'%user_name%':image.first_name, '%date%':image.created_date}) }}</span>
+          </a>
+          <fb:like send="false" layout="button_count" width="450" show_faces="false" href="{{ url('gallery_picture', {'galleryId' : page.gallery.id, 'pictureId' : image.id}) }}" ref="POMPdeLUX"></fb:like>
+        </div>
+      {% endfor %}
+    </div>
+    <div id="pagination"x>
       {% if page.prev and page.prev.active %}
       <div class="prev">
         <a href="{{ url('gallery_homepage', {'galleryId' : page.gallery.id , 'offset' : page.prev.offset }) }}">{{ app.translator.trans('prev') }}</a>
@@ -26,10 +28,10 @@
       </div>
       {% endif %}
     </div>
+  </div>
   {% else %}
     <p>{{ app.translator.trans('gallery.no.pictures') }}</p>
   {% endif %}
-  </div>
 
 {% endblock %}
 

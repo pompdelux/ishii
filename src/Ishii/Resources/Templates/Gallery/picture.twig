@@ -27,10 +27,15 @@
     {% endif %}
   </div>
   <div class="share">
-    <div class="fb-like" data-send="false" data-layout="button_count" data-width="450" data-show-faces="true" data-ref="POMPdeLUX"></div>
+    <fb:like send="false" layout="button_count" width="450" show_faces="false" href="{{ app.request.uri }}" ref="POMPdeLUX"></fb:like>
     <a href="#" class="facebook-share like-button" data-link="{{ app.request.uri }}" data-picture="{{ base_url ~ path('image', {'file' : page.picture.url, 'width' : 180}) }}" data-name="{{ page.picture.title }}" data-caption="{{ app.translator.trans('gallery.share.caption') }}" data-description="{{ page.picture.description }}">
       {{ app.translator.trans('gallery.share.button') }}
     </a>
   </div>
   <fb:comments href="{{ app.request.uri }}" num_posts="2" width="470"></fb:comments>
+{% endblock %}
+
+{% block og %}
+<meta property="og:title" content="{{ page.picture.title }} - {{ app.translator.trans('default.browser.title') }}"/>
+<meta property="og:image" content="{{ base_url ~ path('image', {'file' : page.picture.url, 'width' : 180}) }}"/>
 {% endblock %}

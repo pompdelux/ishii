@@ -36,7 +36,6 @@ class Gallery
 
         $gallery_pictures = $this->app['db']->fetchAssoc("SELECT * FROM gallery_pictures p LEFT JOIN gallery_users u ON (u.uid = p.uid) WHERE gallery_id = ? ", array((int) $galleryId));
 
-        $this->app['page']->setGallery($this->app['gallery']);
         $this->app['page']->setImages(array($gallery_pictures));
 
         return $this->app->render("Gallery/index.twig");
@@ -57,7 +56,6 @@ class Gallery
         $gallery_pictures = $this->app['db']->fetchAll("SELECT * FROM gallery_pictures p LEFT JOIN gallery_users u ON (u.uid = p.uid) WHERE p.gallery_id = ? AND active = TRUE ORDER BY p.created_date DESC LIMIT {$offset},10", array((int) $galleryId));
         $total_pictures = $this->app['db']->fetchColumn("SELECT COUNT(id) FROM gallery_pictures WHERE gallery_id = ? AND active = TRUE", array((int)$galleryId));
 
-        $this->app['page']->setGallery($this->app['gallery']);
         $this->app['page']->setImages($gallery_pictures);
         
         if($offset > 0){
@@ -192,7 +190,6 @@ class Gallery
             $this->app->abort(404, $this->app['translator']->trans('404.title'));
         }
 
-        $this->app['page']->setGallery($this->app['gallery']);
         $this->app['page']->setPicture($picture);
         $this->app['page']->setNext($next_picture);
         $this->app['page']->setPrev($prev_picture);

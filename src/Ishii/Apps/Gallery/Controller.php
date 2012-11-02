@@ -30,6 +30,7 @@ class Controller implements ControllerProviderInterface
             if(empty($this->app['gallery'])){
                 $this->app->abort(404, $this->app['translator']->trans('404.title'));
             }
+            $this->app['page']->setGallery($this->app['gallery']);
 
             $this->app['facebook']->setAppId($this->app['gallery']['app_id']);
             $this->app['facebook']->setApiSecret($this->app['gallery']['secret']);
