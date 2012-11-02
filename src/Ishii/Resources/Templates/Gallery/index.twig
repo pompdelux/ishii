@@ -10,7 +10,9 @@
         <div class="picture three columns">
           <a href="{{ url('gallery_picture', {'galleryId' : page.gallery.id, 'pictureId' : image.id}) }}" title="{{ image.title }}">
             <img src="{{ path('thumb', {'file' : image.url, 'dimension' : 200}) }}" alt="" class="scale-with-grid">
-            <span class="caption">{{ app.translator.trans('gallery.picture.caption', {'%user_name%':image.first_name, '%date%':image.created_date}) }}</span>
+          </a>
+          <a href="{{ url('gallery_picture', {'galleryId' : page.gallery.id, 'pictureId' : image.id}) }}" title="{{ image.title }}">
+            {{ app.translator.trans('gallery.comment.button') }} (<fb:comments-count href={{url('gallery_picture', {'galleryId' : page.gallery.id, 'pictureId' : image.id}) }}></fb:comments-count>)
           </a>
           <fb:like send="false" layout="button_count" width="450" show_faces="false" href="{{ url('gallery_picture', {'galleryId' : page.gallery.id, 'pictureId' : image.id}) }}" ref="POMPdeLUX"></fb:like>
         </div>

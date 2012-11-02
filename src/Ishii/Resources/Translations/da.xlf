@@ -65,6 +65,10 @@
                 <source>gallery.picture.caption</source>
                 <target>d. %date% af %user_name%</target>
             </trans-unit>
+            <trans-unit id="gallery.comment.button">
+                <source>gallery.comment.button</source>
+                <target>Kommentér</target>
+            </trans-unit>
             <trans-unit id="new.picture.is.uploaded.short">
                 <source>new.picture.is.uploaded.short</source>
                 <target>Tillykke!</target>

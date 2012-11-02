@@ -56,6 +56,20 @@ class Gallery
         $gallery_pictures = $this->app['db']->fetchAll("SELECT * FROM gallery_pictures p LEFT JOIN gallery_users u ON (u.uid = p.uid) WHERE p.gallery_id = ? AND active = TRUE ORDER BY p.created_date DESC LIMIT {$offset},10", array((int) $galleryId));
         $total_pictures = $this->app['db']->fetchColumn("SELECT COUNT(id) FROM gallery_pictures WHERE gallery_id = ? AND active = TRUE", array((int)$galleryId));
 
+        // /* 
+        //  * Method to return all stats for a given url from facebook
+        //  * Very slow if it iterates through many urls. use with caution!
+        //  */
+        // foreach ($gallery_pictures as &$picture) {
+        //         $param  =   array(
+        //             'method'    => 'fql.query',
+        //             'query'     => "SELECT url, share_count, like_count, comment_count, total_count, click_count FROM link_stat WHERE url = '".$request->getUri()."'",
+        //             'callback'  => ''
+        //         );
+        //     $link_stat = $this->app['facebook']->api($param);
+        //     //print_r($link_stat);
+        // }
+
         $this->app['page']->setImages($gallery_pictures);
         
         if($offset > 0){
