@@ -12,7 +12,7 @@
             </trans-unit>
             <trans-unit id="404.picture.not.found.title">
                 <source>404.picture.not.found.title</source>
-                <target>Konkurrencen du søger findes ikke mere.</target>
+                <target>Billedet du søger findes ikke mere.</target>
             </trans-unit>
             <trans-unit id="404.description">
                 <source>404.description</source>
