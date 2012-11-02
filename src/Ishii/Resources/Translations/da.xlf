@@ -25,6 +25,30 @@
                 <source>default.browser.title</source>
                 <target>POMPdeLUX - Vild med børnetøj » Facebook galleri</target>
             </trans-unit>
+            <trans-unit id="gallery.fangate.h2">
+                <source>gallery.fangate.h2</source>
+                <target>"Synes godt om" POMPdeLUX, så kan du se gallerierne</target>
+            </trans-unit>
+            <trans-unit id="gallery.button.homepage">
+                <source>gallery.button.homepage</source>
+                <target>Forside</target>
+            </trans-unit>
+            <trans-unit id="gallery.button.add.picture">
+                <source>gallery.button.add.picture</source>
+                <target>Indsend billede</target>
+            </trans-unit>
+            <trans-unit id="gallery.button.about">
+                <source>gallery.button.about</source>
+                <target>Om denne konkurrence</target>
+            </trans-unit>
+            <trans-unit id="gallery.latest.pictures">
+                <source>gallery.latest.pictures</source>
+                <target>Seneste billeder</target>
+            </trans-unit>
+            <trans-unit id="gallery.no.pictures">
+                <source>gallery.no.pictures</source>
+                <target>Der er endnu ingen billeder indsendt til denne konkurrence. Vær den første til at indsende dit personlige billede.</target>
+            </trans-unit>
             <trans-unit id="gallery.uploaded.by">
                 <source>gallery.uploaded.by</source>
                 <target>Indsendt af %username%</target>
