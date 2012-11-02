@@ -2,15 +2,15 @@
 
 {% block content %}
   <h2>{{ page.picture.title }}</h2>
-  <div class="picture">
+  <div class="picture center">
     <img src="{{ path('image', {'file' : page.picture.url, 'width' : 500}) }}" alt="{{ page.picture.title }}">
     <div class="caption"><span>{{ page.picture.description }}</span></div>
   </div>
-  <div class="user">
+  <div class="user center">
     <img src="https://graph.facebook.com/{{ page.picture.uid }}/picture?type=small">
     <a href="{{ page.picture.link }}">{{ app.translator.trans('gallery.uploaded.by', {'%username%' : page.picture.first_name ~ ' ' ~ page.picture.last_name}) }}</a>
   </div>
-  <div id="pagination">
+  <div id="pagination" class="center">
     {% if page.prev %}
     <div class="prev">
       <a href="{{ url('gallery_picture', {'galleryId' : page.gallery.id , 'pictureId' : page.prev.id }) }}" title="{{ page.prev.title }}">
@@ -26,7 +26,7 @@
     </div>
     {% endif %}
   </div>
-  <div class="share">
+  <div class="share center">
     <fb:like send="false" layout="button_count" width="450" show_faces="false" href="{{ app.request.uri }}" ref="POMPdeLUX"></fb:like>
     <a href="#" class="facebook-share like-button" data-link="{{ app.request.uri }}" data-picture="{{ base_url ~ path('image', {'file' : page.picture.url, 'width' : 180}) }}" data-name="{{ page.picture.title }}" data-caption="{{ app.translator.trans('gallery.share.caption') }}" data-description="{{ page.picture.description }}">
       {{ app.translator.trans('gallery.share.button') }}
