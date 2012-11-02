@@ -6,6 +6,14 @@
                 <source>404.title</source>
                 <target>Det søgte findes ikke.</target>
             </trans-unit>
+            <trans-unit id="404.gallery.not.found.title">
+                <source>404.gallery.not.found.title</source>
+                <target>Konkurrencen du søger findes ikke mere.</target>
+            </trans-unit>
+            <trans-unit id="404.picture.not.found.title">
+                <source>404.picture.not.found.title</source>
+                <target>Konkurrencen du søger findes ikke mere.</target>
+            </trans-unit>
             <trans-unit id="404.description">
                 <source>404.description</source>
                 <target><![CDATA[Du har forespurgt på noget indhold, som vi ikke har her på siden.<br><br>]]></target>

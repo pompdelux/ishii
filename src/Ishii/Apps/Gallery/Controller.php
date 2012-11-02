@@ -39,15 +39,15 @@ class Controller implements ControllerProviderInterface
             $signed_request = $this->app['facebook']->getSignedRequest();
 
             if(isset($signed_request['page'])){
+                if(!$signed_request['page']['liked']){
+                    return $this->app->render("Gallery/fangate.twig");
+                }
                 // Redirect to the right picture if app_data is set
                 if(isset($signed_request['app_data'])){
                     $pictureId = explode('|', $signed_request['app_data'])[1]; // galleryId|pictureId
                     die('<script>location.href=\''.$this->app['url_generator']->generate('gallery_picture', array('galleryId' => $galleryId, 'pictureId' => $pictureId)).'\'</script>');
                 }
 
-                if(!$signed_request['page']['liked']){
-                    return $this->app->render("Gallery/fangate.twig");
-                }
             }
 
             // If the user comes from a link, ousite of iframe, redirect to the appropiate url on page

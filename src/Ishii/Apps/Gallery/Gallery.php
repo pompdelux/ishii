@@ -187,7 +187,7 @@ class Gallery
         $next_picture = $this->app['db']->fetchAssoc("SELECT * FROM gallery_pictures WHERE id > ? AND gallery_id = ? AND active = TRUE ORDER BY id ASC", array((int) $pictureId, (int)$galleryId));
 
         if(!$picture){
-            $this->app->abort(404, $this->app['translator']->trans('404.title'));
+            $this->app->abort(404, $this->app['translator']->trans('404.picture.not.found.title'));
         }
 
         $this->app['page']->setPicture($picture);
