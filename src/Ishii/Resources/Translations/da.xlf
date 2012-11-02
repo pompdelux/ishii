@@ -57,6 +57,14 @@
                 <source>gallery.no.pictures</source>
                 <target>Der er endnu ingen billeder indsendt til denne konkurrence. Vær den første til at indsende dit personlige billede.</target>
             </trans-unit>
+            <trans-unit id="gallery.prev.button">
+                <source>gallery.prev.button</source>
+                <target>◄ Forrige</target>
+            </trans-unit>
+            <trans-unit id="gallery.next.button">
+                <source>gallery.next.button</source>
+                <target>Næste ►</target>
+            </trans-unit>
             <trans-unit id="gallery.uploaded.by">
                 <source>gallery.uploaded.by</source>
                 <target>Indsendt af %username%</target>

@@ -230,7 +230,20 @@ legend span {
 .center{
     margin: 0 auto;}
 
+#pagination .prev,
+#pagination .next{
+    display: inline-block;
+    opacity: 0.5;
+    filter:alpha(opacity=50);
+    filter: “alpha(opacity=50)”}
 
+#pagination .prev:hover,
+#pagination .next:hover{
+    display: inline-block;
+    opacity: 1;
+    filter:alpha(opacity=100);
+    filter: “alpha(opacity=100)”}
+#pagination .next{position: absolute;right: 0;}
 
 #add-picture input,
 #add-picture textarea{width: 100%}
