@@ -28,7 +28,7 @@
   </div>
   <div class="share nine columns center">
     <fb:like send="false" layout="button_count" width="450" show_faces="false" href="{{ app.request.uri }}" ref="POMPdeLUX"></fb:like>
-    <a href="#" class="facebook-share like-button" data-link="{{ app.request.uri }}" data-picture="{{ url('image', {'file' : page.picture.url, 'width' : 180}) }}" data-name="{{ page.picture.title }}" data-caption="{{ app.translator.trans('gallery.share.caption') }}" data-description="{{ page.picture.description }}">
+    <a href="#" class="facebook-share like-button" data-link="{{ app.request.uri }}" data-picture="http://{{ app.request.host ~ path('image', {'file' : page.picture.url, 'width' : 180}) }}" data-name="{{ page.picture.title }}" data-caption="{{ app.translator.trans('gallery.share.caption') }}" data-description="{{ page.picture.description }}">
       {{ app.translator.trans('gallery.share.button') }}
     </a>
   </div>
