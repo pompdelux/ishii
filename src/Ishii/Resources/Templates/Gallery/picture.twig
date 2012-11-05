@@ -37,5 +37,5 @@
 
 {% block og %}
 <meta property="og:title" content="{{ page.picture.title }} - {{ app.translator.trans('default.browser.title') }}"/>
-<meta property="og:image" content="{{ base_url ~ path('image', {'file' : page.picture.url, 'width' : 180}) }}"/>
+<meta property="og:image" content="{{ url('image', {'file' : page.picture.url, 'width' : 180}) }}"/>
 {% endblock %}
