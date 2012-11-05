@@ -16,6 +16,7 @@
 {% block og %}
 <meta property="og:title" content="{{ page.browser_title|default('') }} {{ app.translator.trans('default.browser.title') }}"/>
 <meta property="og:image" content="http://{{ app.request.host }}fx/img/POMPdeLUX_logo_SS12.png"/>
+<meta property="fb:type" content="website"/>
 {% endblock %}
 <meta property="fb:app_id" content="{{ facebook_apps.default.app_id }}"/>
 
