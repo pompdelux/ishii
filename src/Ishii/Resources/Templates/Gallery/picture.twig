@@ -35,8 +35,9 @@
   <fb:comments href="{{ app.request.uri }}" num_posts="2" width="470"></fb:comments>
 {% endblock %}
 
-{% block og %}
+{% block meta %}
 <meta property="og:title" content="{{ page.picture.title }} - {{ app.translator.trans('default.browser.title') }}"/>
 <meta property="og:type" content="website"/>
 <meta property="og:image" content="http://{{ app.request.host ~ path('thumb', {'file' : page.picture.url, 'dimension' : 200}) }}"/>
+<meta property="og:description" content="{{ page.picture.description }}"/>
 {% endblock %}

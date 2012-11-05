@@ -33,6 +33,10 @@
                 <source>default.browser.title</source>
                 <target>POMPdeLUX - Vild med børnetøj » Facebook galleri</target>
             </trans-unit>
+            <trans-unit id="default.browser.description">
+                <source>default.browser.description</source>
+                <target>POMPdeLUX Facebook gallerier. Deltag i vores løbende konkurrencer ved at indesende et godt billede.</target>
+            </trans-unit>
             <trans-unit id="gallery.fangate.h2">
                 <source>gallery.fangate.h2</source>
                 <target>"Synes godt om" POMPdeLUX, så kan du se gallerierne</target>

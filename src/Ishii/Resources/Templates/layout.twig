@@ -11,13 +11,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="robots" content="all">
 
-<meta property="og:url" content="{{ app.request.uri }}">
-<meta property="og:site_name" content="{{ app.translator.trans('default.browser.title') }}"/>
-{% block og %}
+{% block meta %}
 <meta property="og:title" content="{{ page.browser_title|default('') }} {{ app.translator.trans('default.browser.title') }}"/>
 <meta property="og:image" content="http://{{ app.request.host }}fx/img/POMPdeLUX_logo_SS12.png"/>
 <meta property="fb:type" content="website"/>
+<meta property="fb:description" content="{{ page.gallery.description|default(app.translator.trans('default.browser.description')) }}"/>
 {% endblock %}
+<meta property="og:url" content="{{ app.request.uri }}">
+<meta property="og:site_name" content="{{ app.translator.trans('default.browser.title') }}"/>
 <meta property="fb:app_id" content="{{ facebook_apps.default.app_id }}"/>
 
 <link rel="dns-prefetch" href="{{ cdn_url|replace({'http:':''}) }}">
