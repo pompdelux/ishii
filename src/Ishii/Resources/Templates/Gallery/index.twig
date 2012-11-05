@@ -16,7 +16,7 @@
           </a>
           <div class="share">
             <fb:like send="false" layout="button_count" width="450" show_faces="false" href="{{ url('gallery_picture', {'galleryId' : page.gallery.id, 'pictureId' : image.id}) }}" ref="POMPdeLUX"></fb:like>
-            <a href="#" class="facebook-share like-button" data-link="{{ url('gallery_picture', {'galleryId' : page.gallery.id, 'pictureId' : image.id}) }}" data-picture="{{ url('image', {'file' : image.url, 'width' : 180}) }}" data-name="{{ image.title }}" data-caption="{{ app.translator.trans('gallery.share.caption') }}" data-description="{{ image.description }}">
+            <a href="#" class="facebook-share like-button" data-link="{{ url('gallery_picture', {'galleryId' : page.gallery.id, 'pictureId' : image.id}) }}" data-picture="http://{{ app.request.host ~ path('image', {'file' : image.url, 'width' : 180}) }}" data-name="{{ image.title }}" data-caption="{{ app.translator.trans('gallery.share.caption') }}" data-description="{{ image.description }}">
               {{ app.translator.trans('gallery.share.button.short') }}
             </a>
           </div>
