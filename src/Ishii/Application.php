@@ -10,6 +10,7 @@ use Silex\Provider\DoctrineServiceProvider;
 use Silex\Provider\SessionServiceProvider;
 use Silex\Provider\MonologServiceProvider;
 use Silex\Provider\FormServiceProvider;
+use Silex\Provider\SecurityServiceProvider;
 
 use Tobiassjosten\Silex\Provider\FacebookServiceProvider;
 use Grom\Silex\ImagineServiceProvider;
@@ -26,11 +27,22 @@ class Application extends SilexApplication
     public function __construct()
     {
         parent::__construct();
-
         $this['config'] = $this->share(function() {
             return Yaml::parse(__DIR__.'/Resources/Config/app.yaml');
         });
 
+        $this['security.firewalls'] = array(
+            'admin' => array(
+                'pattern' => '^/admin',
+                'http' => true,
+                'users' => array(
+                    // raw password is foo
+                    'admin' => array('ROLE_ADMIN', '5FZ2Z8QIkA7UTZ4BYkoC+GsReLf569mSKDsfods6LYQ8t+a8EW9oaircfMpmaLbPBh4FOBiiFyLfuZmTSUwzZg=='),
+                )
+            ),
+        );
+        $this->register(new SecurityServiceProvider());
+            
         $this['page'] = $this->share(function () {
             return new \Ishii\Page();
         });
@@ -39,6 +51,7 @@ class Application extends SilexApplication
             'facebook.app_id' => $this['config']['facebook_apps']['default']['app_id'],
             'facebook.secret' => $this['config']['facebook_apps']['default']['secret']
         ));
+
         $this->register(new SessionServiceProvider());
 
         $this->register(new UrlGeneratorServiceProvider());

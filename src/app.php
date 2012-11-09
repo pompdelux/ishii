@@ -25,6 +25,8 @@ $app->before( function() use ( $app ) {
 
 $app->mount('/gallery', new Ishii\Apps\Gallery\Controller());
 
+$app->mount('/admin', new Ishii\Apps\Admin\Controller());
+
 /**
  * Image getter. Returns an resized image. Image keeps ratio aspects
  *
