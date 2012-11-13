@@ -4,7 +4,7 @@
   
   {% if page.gallery.top_image is defined %}
   <img src="{{ page.top_image|raw }}">
-  {% endif %}
+  {% else %}
   <h2>{{ page.gallery.title }}</h2>
   <p>{{ page.gallery.description }}</p>
   {% endif %}
@@ -50,7 +50,7 @@
 
   {% if page.gallery.bottom_image is defined %}
   <img src="{{ page.bottom_image|raw }}">
-  {% endif %}
+  {% else %}
   <p>{{ app.translator.trans('gallery.default.disclaimer') }}</p>
   {% endif %}
 {% endblock %}
