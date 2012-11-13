@@ -1,8 +1,8 @@
 {% extends 'layout.twig' %}
 
 {% block content %}
-	{% if page.fangate_image is defined %}
-	<img src="{{ page.fangate_image|raw }}">
+	{% if page.gallery.fangate_image is defined %}
+	<img src="{{ page.gallery.fangate_image|raw }}">
 	{% else %}
   	<h2>{{ app.translator.trans('gallery.fangate.h2') }}</h2>
   	<fb:like href="{{ facebook_apps.default.page_url }}" send="false" width="450" show_faces="true"></fb:like>

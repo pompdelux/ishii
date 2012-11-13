@@ -1,6 +1,14 @@
 {% extends 'layout.twig' %}
 
 {% block content %}
+  
+  {% if page.gallery.top_image is defined %}
+  <img src="{{ page.top_image|raw }}">
+  {% endif %}
+  <h2>{{ page.gallery.title }}</h2>
+  <p>{{ page.gallery.description }}</p>
+  {% endif %}
+
   <h2>{{ app.translator.trans('gallery.latest.pictures') }}</h2>
 
   {% if page.images %}
@@ -40,5 +48,10 @@
     <p>{{ app.translator.trans('gallery.no.pictures') }}</p>
   {% endif %}
 
+  {% if page.gallery.bottom_image is defined %}
+  <img src="{{ page.bottom_image|raw }}">
+  {% endif %}
+  <p>{{ app.translator.trans('gallery.default.disclaimer') }}</p>
+  {% endif %}
 {% endblock %}
 

@@ -1,7 +1,12 @@
 {% extends 'layout.twig' %}
 
 {% block content %}
+
+  {% if page.gallery.uploadform_image is defined %}
+  <img src="{{ page.uploadform_image|raw }}">
+  {% endif %}
   <h2>{{ app.translator.trans('gallery.upload.picture.h2') }}</h2>
+  {% endif %}
 
   <form action="#" method="post" id="add-picture" class="eight columns alpha" {{ form_enctype(form) }}>
     {{ form_widget(form) }}
