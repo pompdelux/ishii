@@ -1,0 +1,28 @@
+{% extends 'admin.twig' %}
+
+
+{% block content %}
+{% if page.gallery_pictures|length > 0 %}
+<table>
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>Titel</th>
+			<th>Beskrivelse</th>
+			<th>Aktiv</th>
+			<th>&Aring;ben</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for picture in page.gallery_pictures %}
+		<tr>
+			<td>{{ picture.id }}</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+{% else %}
+Du har ikke oprettet nogle konkurrencer endnu.
+{% endif %}
+{% endblock %}

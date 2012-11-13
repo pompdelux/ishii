@@ -1,1 +1,37 @@
 {% extends 'admin.twig' %}
+
+
+{% block content %}
+{% if page.galleries|length > 0 %}
+<table>
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>Titel</th>
+			<th>Beskrivelse</th>
+			<th>Aktiv</th>
+			<th>&Aring;ben</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for gallery in page.galleries %}
+		<tr>
+			<td>{{ gallery.id }}</td>
+			<td>{{ gallery.title }}</td>
+			<td>{{ gallery.description }}</td>
+			<td>{{ gallery.active }}</td>
+			<td>{{ gallery.is_open }}</td>
+			<td>
+			 	<a href="{{ url('admin_gallery_pictures', {'id' : gallery.id}) }}" class="btn">Vis billeder</a>
+			 	<a href="{{ url('admin_gallery_edit', {'id' : gallery.id}) }}" class="btn">Rediger</a>
+			 	<a href="{{ url('admin_gallery_delete', {'id' : gallery.id}) }}" class="btn btn-delete delete">Slet</a>
+			</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+{% else %}
+Du har ikke oprettet nogle konkurrencer endnu.
+{% endif %}
+{% endblock %}

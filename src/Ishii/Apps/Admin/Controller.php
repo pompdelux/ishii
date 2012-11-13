@@ -31,6 +31,12 @@ class Controller implements ControllerProviderInterface
             return $admin->index($request);
         })->bind('admin_galleries');
 
+        $controller->get('/pictures/{id}/{offset}', function (Application $app, Request $request, $id, $offset) use ($admin) {
+            return $admin->index($request, $id, $offset);
+        })
+        ->bind('admin_gallery_pictures')
+        ->value('offset', 0);
+
         $controller->get('/add', function (Application $app, Request $request) use ($admin) {
             return $admin->edit($request);
         })->bind('admin_gallery_add');
@@ -38,6 +44,10 @@ class Controller implements ControllerProviderInterface
         $controller->get('/edit/{id}', function (Application $app, Request $request, $id) use ($admin) {
             return $admin->edit($request, $id);
         })->bind('admin_gallery_edit');
+
+        // $controller->get('/delete/{id}', function (Application $app, Request $request, $id) use ($admin) {
+        //     return $admin->edit($request, $id);
+        // })->bind('admin_gallery_delete');
 
         return $controller;
     }
