@@ -17,6 +17,7 @@ CREATE TABLE IF NOT EXISTS `gallery_galleries` (
   `top_image` VARCHAR( 255 ) NULL DEFAULT NULL,
   `bottom_image` VARCHAR( 255 ) NULL DEFAULT NULL,
   `fangate_image` VARCHAR( 255 ) NULL DEFAULT NULL,
+  `uploadform_image` VARCHAR( 255 ) NULL DEFAULT NULL,
   `active` tinyint(1) NOT NULL DEFAULT '1',
   `is_open` tinyint(1) NOT NULL DEFAULT '1',
   `app_id` bigint(20) DEFAULT NULL,
