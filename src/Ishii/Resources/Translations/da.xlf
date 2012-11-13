@@ -91,7 +91,7 @@
             </trans-unit>
             <trans-unit id="new.picture.is.uploaded.description">
                 <source>new.picture.is.uploaded.description</source>
-                <target>Dit billede er nu blevet indsendt. Du kan allerede nu begynde at dele dit billede med dine venner. Bryg Del knappen under billedet.</target>
+                <target>Dit billede er nu blevet indsendt. Du kan allerede nu begynde at dele dit billede med dine venner. Brug Del knappen under billedet.</target>
             </trans-unit>
             <trans-unit id="gallery.share.button.short">
                 <source>gallery.share.button.short</source>
