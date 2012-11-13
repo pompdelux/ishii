@@ -53,7 +53,7 @@ class Gallery
         $this->app['page']['title'] = 'POMPdeLUX Facebook galleri';
         $this->app['page']['browser_title'] = ' » Seneste';
 
-        $gallery_pictures = $this->app['db']->fetchAll("SELECT * FROM gallery_pictures p LEFT JOIN gallery_users u ON (u.uid = p.uid) WHERE p.gallery_id = ? AND active = TRUE ORDER BY p.created_date DESC LIMIT {$offset},10", array((int) $galleryId));
+        $gallery_pictures = $this->app['db']->fetchAll("SELECT * FROM gallery_pictures p LEFT JOIN gallery_users u ON (u.uid = p.uid) WHERE p.gallery_id = ? AND active = TRUE ORDER BY p.created_date DESC LIMIT {$offset},5", array((int) $galleryId));
         $total_pictures = $this->app['db']->fetchColumn("SELECT COUNT(id) FROM gallery_pictures WHERE gallery_id = ? AND active = TRUE", array((int)$galleryId));
 
         // /* 
@@ -116,7 +116,8 @@ class Gallery
                 'label' => $this->app['translator']->trans('gallery.upload.description.label')
             ))
             ->add('accept_conditions', 'checkbox', array(
-                'required' => true
+                'required' => true,
+                'label' => $this->app['translator']->trans('gallery.upload.accept.conditions.label')
             ))
             ->add('uuid', 'hidden')
             ->getForm();

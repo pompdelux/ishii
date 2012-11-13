@@ -230,6 +230,7 @@ legend span {
 .center{
     margin: 0 auto;}
 
+/***** PAGNIATION *****/
 #pagination .prev,
 #pagination .next{
     display: inline-block;
@@ -243,10 +244,35 @@ legend span {
     opacity: 1;
     filter:alpha(opacity=100);
     filter: “alpha(opacity=100)”}
-#pagination .next{position: absolute;right: 0;}
+#picture #pagination .next{position: absolute;right: 0;}
 
-#add-picture input,
+#gallery #pagination{
+  border-top: 1px solid black;
+  padding-top: 10px;}
+#gallery #pagination .next{float: right}
+  
+/***** LIST OF PICTURES *****/
+.picture{
+  border-top: 1px solid black;
+  padding-top: 10px;}
+.picture .picture-meta{padding-bottom: 10px;}
+.picture .picture-meta .profile-picture{}
+.picture .picture-meta .profile-name{ font-size: 15px; font-weight: bold;}
+.picture .picture-meta .date{ font-size: 12px; color:#CCC;}
+.picture img.user-picture{
+    padding: 15px;
+    border:2px solid #CCC;
+    background: #F5F5F5;
+    float: left;}
+.picture .description{float: left; font-size: 12px;}
+.picture .share{text-align: right;}
+
+
+/***** UPLOAD PICTURE *****/
+#add-picture input[type=text],
+#add-picture input[type=file],
 #add-picture textarea{width: 100%}
+#add-picture label { display: inline-block;}
 
 #preview {
     padding: 10px;
@@ -259,6 +285,12 @@ legend span {
     margin:0 0 10px;
     line-height: normal;}
 
+/***** HACKS *****/
+
+/**
+ * Make facebook comments be responsive, 
+ * when mobile, facebook will return a mobile friendly solution
+ **/
 .fb-comments, .fb-comments span[style], .fb-comments iframe[style] {
     width: 100% !important;
 }
@@ -277,9 +309,10 @@ legend span {
 
     /* All Mobile Sizes (devices and browser) */
     @media only screen and (max-width: 767px) {
-        .picture img {
+        .picture img.user-picture {
             width:100%;
-            height:auto;}
+            height:auto;
+            padding:0;}
         .fb-comments iframe {
             width: 100%}
     }
@@ -293,6 +326,9 @@ legend span {
 /* ==========================================================================
    Helper classes
    ========================================================================== */
+
+.pull-right{float:right;}
+.pull-left{float:left;}
 
 /* #Alerts Stolen from Twitter Bootstrap
 ================================================== */

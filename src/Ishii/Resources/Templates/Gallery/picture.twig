@@ -2,37 +2,40 @@
 
 {% block content %}
   <h2>{{ page.picture.title }}</h2>
-  <div class="picture nine columns center">
-    <img src="{{ path('image', {'file' : page.picture.url, 'width' : 500}) }}" alt="{{ page.picture.title }}">
-    <div class="caption"><span>{{ page.picture.description }}</span></div>
-  </div>
-  <div class="user nine columns center">
-    <img src="https://graph.facebook.com/{{ page.picture.uid }}/picture?type=small">
-    <a href="{{ page.picture.link }}">{{ app.translator.trans('gallery.uploaded.by', {'%username%' : page.picture.first_name ~ ' ' ~ page.picture.last_name}) }}</a>
-  </div>
-  <div id="pagination" class="nine columns center">
-    {% if page.prev %}
-    <div class="prev">
-      <a href="{{ url('gallery_picture', {'galleryId' : page.gallery.id , 'pictureId' : page.prev.id }) }}" title="{{ app.translator.trans('gallery.prev.button') }}">
-        <img src="{{ path('image', {'file' : page.prev.url, 'width' : 50}) }}" alt>
+  <div id="picture">
+    <div class="picture nine columns center">
+      <img src="{{ path('image', {'file' : page.picture.url, 'width' : 500}) }}" alt="{{ page.picture.title }}">
+      <div class="caption"><span>{{ page.picture.description }}</span></div>
+    </div>
+    <div class="user nine columns center">
+      <img src="https://graph.facebook.com/{{ page.picture.uid }}/picture?type=small">
+      <a href="{{ page.picture.link }}">{{ app.translator.trans('gallery.uploaded.by', {'%username%' : page.picture.first_name ~ ' ' ~ page.picture.last_name}) }}</a>
+    </div>
+    <div id="pagination" class="nine columns center">
+      {% if page.prev %}
+      <div class="prev">
+        <a href="{{ url('gallery_picture', {'galleryId' : page.gallery.id , 'pictureId' : page.prev.id }) }}" title="{{ app.translator.trans('gallery.prev.button') }}">
+          <img src="{{ path('image', {'file' : page.prev.url, 'width' : 50}) }}" alt>
+        </a>
+      </div>
+      {% endif %}
+      {% if page.next %}
+      <div class="next">
+        <a href="{{ url('gallery_picture', {'galleryId' : page.gallery.id , 'pictureId' : page.next.id }) }}" title="{{ app.translator.trans('gallery.next.button') }}">
+          <img src="{{ path('image', {'file' : page.next.url, 'width' : 50}) }}" alt>
+        </a>
+      </div>
+      {% endif %}
+    </div>
+    <div class="share nine columns center">
+      <fb:like send="false" layout="button_count" width="450" show_faces="false" href="{{ app.request.uri }}" ref="POMPdeLUX"></fb:like>
+      <a href="#" class="facebook-share like-button" data-link="{{ app.request.uri }}" data-picture="http://{{ app.request.host ~ path('image', {'file' : page.picture.url, 'width' : 180}) }}" data-name="{{ page.picture.title }}" data-caption="{{ app.translator.trans('gallery.share.caption') }}" data-description="{{ page.picture.description }}">
+        {{ app.translator.trans('gallery.share.button') }}
       </a>
     </div>
-    {% endif %}
-    {% if page.next %}
-    <div class="next">
-      <a href="{{ url('gallery_picture', {'galleryId' : page.gallery.id , 'pictureId' : page.next.id }) }}" title="{{ app.translator.trans('gallery.next.button') }}">
-        <img src="{{ path('image', {'file' : page.next.url, 'width' : 50}) }}" alt>
-      </a>
-    </div>
-    {% endif %}
+    <fb:comments href="{{ app.request.uri }}" num_posts="2" width="768"></fb:comments>
+
   </div>
-  <div class="share nine columns center">
-    <fb:like send="false" layout="button_count" width="450" show_faces="false" href="{{ app.request.uri }}" ref="POMPdeLUX"></fb:like>
-    <a href="#" class="facebook-share like-button" data-link="{{ app.request.uri }}" data-picture="http://{{ app.request.host ~ path('image', {'file' : page.picture.url, 'width' : 180}) }}" data-name="{{ page.picture.title }}" data-caption="{{ app.translator.trans('gallery.share.caption') }}" data-description="{{ page.picture.description }}">
-      {{ app.translator.trans('gallery.share.button') }}
-    </a>
-  </div>
-  <fb:comments href="{{ app.request.uri }}" num_posts="2" width="768"></fb:comments>
 {% endblock %}
 
 {% block meta %}

@@ -2,36 +2,47 @@
 
 {% block content %}
   
-  {% if page.gallery.top_image is defined %}
-  <img src="{{ page.top_image|raw }}">
+  {% if page.gallery.top_image is not none %}
+    <a href="{{ url('gallery_add', {'galleryId' : page.gallery.id }) }}" title="{{ app.translator.trans('gallery.button.add.picture') }}"><img src="{{ page.top_image|raw }}" alt="{{ app.translator.trans('gallery.button.add.picture') }}"></a>
   {% else %}
-  <h2>{{ page.gallery.title }}</h2>
-  <p>{{ page.gallery.description }}</p>
+    <h2>{{ page.gallery.title }}</h2>
+    <p>{{ page.gallery.description }}</p>
+    <a href="{{ url('gallery_add', {'galleryId' : page.gallery.id }) }}" class="button">{{ app.translator.trans('gallery.button.add.picture') }}</a>
   {% endif %}
-
-  <h2>{{ app.translator.trans('gallery.latest.pictures') }}</h2>
 
   {% if page.images %}
   <div id="gallery">
     <div id="pictures" class="clearfix">
       {% for image in page.images %}
-        <div class="picture three columns">
-          <a href="{{ url('gallery_picture', {'galleryId' : page.gallery.id, 'pictureId' : image.id}) }}" title="{{ image.title }}">
-            <img src="{{ path('thumb', {'file' : image.url, 'dimension' : 200}) }}" alt="" class="scale-with-grid">
-          </a>
-          <a href="{{ url('gallery_picture', {'galleryId' : page.gallery.id, 'pictureId' : image.id}) }}" title="{{ image.title }}">
-            {{ app.translator.trans('gallery.comment.button') }} (<fb:comments-count href={{url('gallery_picture', {'galleryId' : page.gallery.id, 'pictureId' : image.id}) }}></fb:comments-count>)
-          </a>
-          <div class="share">
-            <fb:like send="false" layout="button_count" width="450" show_faces="false" href="{{ url('gallery_picture', {'galleryId' : page.gallery.id, 'pictureId' : image.id}) }}" ref="POMPdeLUX"></fb:like>
-            <a href="#" class="facebook-share like-button" data-link="{{ url('gallery_picture', {'galleryId' : page.gallery.id, 'pictureId' : image.id}) }}" data-picture="http://{{ app.request.host ~ path('image', {'file' : image.url, 'width' : 180}) }}" data-name="{{ image.title }}" data-caption="{{ app.translator.trans('gallery.share.caption') }}" data-description="{{ image.description }}">
-              {{ app.translator.trans('gallery.share.button.short') }}
-            </a>
+        <div class="picture row">
+          <div class="picture-meta">
+            <img src="https://graph.facebook.com/{{ image.uid }}/picture" class="profile-picture">
+            <span class="profile-name">{{ image.first_name ~ ' ' ~ image.last_name }}</span>
+            <span class="date">{{ image.created_date|date("m. F Y h:i") }}</span>
+          </div>
+          <div class="row">
+            <div class="ten columns offset-by-one alpha">
+              <a href="{{ url('gallery_picture', {'galleryId' : page.gallery.id, 'pictureId' : image.id}) }}" title="{{ image.title }}">
+                <img src="{{ path('image', {'file' : image.url, 'width' : 550}) }}" alt="{{ image.title }}" class="scale-with-grid user-picture">
+              </a>
+              <a href="{{ url('gallery_picture', {'galleryId' : page.gallery.id, 'pictureId' : image.id}) }}" title="{{ image.title }}">
+                {{ app.translator.trans('gallery.comment.button') }} (<fb:comments-count href={{url('gallery_picture', {'galleryId' : page.gallery.id, 'pictureId' : image.id}) }}></fb:comments-count>)
+              </a>
+              <div class="share">
+                <fb:like send="false" layout="button_count" width="450" show_faces="false" href="{{ url('gallery_picture', {'galleryId' : page.gallery.id, 'pictureId' : image.id}) }}" ref="POMPdeLUX"></fb:like>
+                <a href="#" class="facebook-share like-button" data-link="{{ url('gallery_picture', {'galleryId' : page.gallery.id, 'pictureId' : image.id}) }}" data-picture="http://{{ app.request.host ~ path('image', {'file' : image.url, 'width' : 180}) }}" data-name="{{ image.title }}" data-caption="{{ app.translator.trans('gallery.share.caption') }}" data-description="{{ image.description }}">
+                  {{ app.translator.trans('gallery.share.button.short') }}
+                </a>
+              </div>
+            </div>
+            <div class="five columns omega">
+              <span class="description">{{ image.description }}</span>
+            </div>
           </div>
         </div>
       {% endfor %}
     </div>
-    <div id="pagination"x>
+    <div id="pagination" class="row">
       {% if page.prev and page.prev.active %}
       <div class="prev">
         <a href="{{ url('gallery_homepage', {'galleryId' : page.gallery.id , 'offset' : page.prev.offset }) }}">{{ app.translator.trans('prev') }}</a>

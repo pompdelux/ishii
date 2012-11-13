@@ -87,7 +87,7 @@
             </trans-unit>
             <trans-unit id="new.picture.is.uploaded.description">
                 <source>new.picture.is.uploaded.description</source>
-                <target>Dit billede er nu blevet indsendt.</target>
+                <target>Dit billede er nu blevet indsendt. Du kan allerede nu begynde at dele dit billede med dine venner. Bryg Del knappen under billedet.</target>
             </trans-unit>
             <trans-unit id="gallery.share.button.short">
                 <source>gallery.share.button.short</source>
@@ -117,9 +117,17 @@
                 <source>gallery.upload.description.label</source>
                 <target>En kort beskrivelse</target>
             </trans-unit>
+            <trans-unit id="gallery.upload.accept.conditions.label">
+                <source>gallery.upload.accept.conditions.label</source>
+                <target>Jeg acceptere POMPdeLUX' konkurrencebetingelser</target>
+            </trans-unit>
             <trans-unit id="gallery.upload.picture.submit">
                 <source>gallery.upload.picture.submit</source>
                 <target>Indsend billede</target>
+            </trans-unit>
+            <trans-unit id="gallery.upload.cancel">
+                <source>gallery.upload.cancel</source>
+                <target>Tilbage til galleri</target>
             </trans-unit>
             <trans-unit id="gallery.upload.preview.h4">
                 <source>gallery.upload.preview.h4</source>
