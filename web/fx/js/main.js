@@ -5,7 +5,7 @@ $(document).ready(function () {
         e.preventDefault();
         $form = $('#add-picture');
         $this = $(this);
-        if($('#form_picture').val() && $('#form_title').val() && $('#form_description').val()){
+        if($('#form_picture').val() && $('#form_title').val() && $('#form_description').val() && $('#form_accept_conditions').is(':checked')){
             FB.login(function(response) {
                 if (response.authResponse) {
                     console.log('Welcome!  Fetching your information.... ');

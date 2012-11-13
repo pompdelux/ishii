@@ -115,6 +115,9 @@ class Gallery
                 'max_length' => 255,
                 'label' => $this->app['translator']->trans('gallery.upload.description.label')
             ))
+            ->add('accept_conditions', 'checkbox', array(
+                'required' => true
+            ))
             ->add('uuid', 'hidden')
             ->getForm();
 
