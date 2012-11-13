@@ -41,13 +41,13 @@ class Controller implements ControllerProviderInterface
             return $admin->edit($request);
         })->bind('admin_gallery_add');
 
-        $controller->get('/edit/{id}', function (Application $app, Request $request, $id) use ($admin) {
+        $controller->match('/edit/{id}', function (Application $app, Request $request, $id) use ($admin) {
             return $admin->edit($request, $id);
         })->bind('admin_gallery_edit');
 
-        // $controller->get('/delete/{id}', function (Application $app, Request $request, $id) use ($admin) {
-        //     return $admin->edit($request, $id);
-        // })->bind('admin_gallery_delete');
+        $controller->get('/delete/{id}', function (Application $app, Request $request, $id) use ($admin) {
+            return $admin->delete_gallery($request, $id);
+        })->bind('admin_gallery_delete');
 
         return $controller;
     }

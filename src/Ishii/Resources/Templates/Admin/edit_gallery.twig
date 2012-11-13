@@ -1,0 +1,10 @@
+{% extends 'admin.twig' %}
+
+{% block content %}
+
+  <form action="#" method="post" id="edit-gallery" class="eight columns alpha" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+    <input type="submit" class="button pull-right" value="{{ app.translator.trans('admin.gallery.edit.gallery.submit') }}">
+  </form>
+
+{% endblock %}

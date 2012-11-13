@@ -3,7 +3,9 @@
 {% block content %}
   
   {% if page.gallery.top_image is not none %}
-    <a href="{{ url('gallery_add', {'galleryId' : page.gallery.id }) }}" title="{{ app.translator.trans('gallery.button.add.picture') }}"><img src="{{ page.top_image|raw }}" alt="{{ app.translator.trans('gallery.button.add.picture') }}"></a>
+    <a href="{{ url('gallery_add', {'galleryId' : page.gallery.id }) }}" title="{{ app.translator.trans('gallery.button.add.picture') }}">
+      <img src="{{ '/gallery_images/' ~ page.gallery.top_image|raw }}" alt="{{ app.translator.trans('gallery.button.add.picture') }}">
+    </a>
   {% else %}
     <h2>{{ page.gallery.title }}</h2>
     <p>{{ page.gallery.description }}</p>
@@ -60,7 +62,7 @@
   {% endif %}
 
   {% if page.gallery.bottom_image is defined %}
-  <img src="{{ page.bottom_image|raw }}">
+  <img src="{{ '/gallery_images/' ~ page.gallery.bottom_image|raw }}">
   {% else %}
   <p>{{ app.translator.trans('gallery.default.disclaimer') }}</p>
   {% endif %}

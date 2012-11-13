@@ -19,7 +19,7 @@ $app->before( function() use ( $app ) {
 
     if ( !empty( $flash ) )
     {
-        $app[ 'twig' ]->addGlobal( 'flash', $flash );
+        $app[ 'twig' ]->addGlobal( 'flash', (array)$flash );
     }
 });
 

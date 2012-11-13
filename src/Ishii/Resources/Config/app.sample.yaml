@@ -1,6 +1,7 @@
 locale: "da"
 cdn: "http://cdn.pdl.bc/"
 upload_path: "/web/uploads"
+upload_path_gallery: "/web/gallery_images"
 redis:
     dsn:
         schema:   "tcp"

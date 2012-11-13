@@ -78,6 +78,8 @@ class Application extends SilexApplication
             $twig->addGlobal('cdn_url', $app['config']['cdn']);
             $twig->addGlobal('page', $app['page']);
             $twig->addGlobal('facebook_apps', $app['config']['facebook_apps']);
+            $twig->addGlobal('upload_path', $app['config']['upload_path']);
+            $twig->addGlobal('upload_path_gallery', $app['config']['upload_path_gallery']);
 
             return $twig;
         }));

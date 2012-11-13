@@ -3,7 +3,7 @@
 {% block content %}
 
   {% if page.gallery.uploadform_image is not none %}
-  <img src="{{ page.uploadform_image|raw }}">
+  <img src="{{ '/gallery_images/' ~ page.gallery.uploadform_image|raw }}">
   {% else %}
   <h2>{{ app.translator.trans('gallery.upload.picture.h2') }}</h2>
   {% endif %}
