@@ -331,6 +331,8 @@ a.like-button:hover {
     text-align: center;}
 
 /***** PAGNIATION *****/
+#pagination .prev a,
+#pagination .next a{text-decoration: none;}
 #pagination .prev,
 #pagination .next{
     display: inline-block;
