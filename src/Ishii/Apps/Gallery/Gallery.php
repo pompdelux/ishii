@@ -50,8 +50,8 @@ class Gallery
     public function gallery(Request $request, $galleryId, $offset)
     {
 
-        $this->app['page']['title'] = 'POMPdeLUX Facebook galleri';
-        $this->app['page']['browser_title'] = ' » Seneste';
+        $this->app['page']['title'] = $this->app['page']['gallery']['title'];
+        $this->app['page']['browser_title'] = $this->app['page']['gallery']['title'];
 
         $gallery_pictures = $this->app['db']->fetchAll("SELECT * FROM gallery_pictures p LEFT JOIN gallery_users u ON (u.uid = p.uid) WHERE p.gallery_id = ? AND active = TRUE ORDER BY p.created_date DESC LIMIT {$offset},5", array((int) $galleryId));
         $total_pictures = $this->app['db']->fetchColumn("SELECT COUNT(id) FROM gallery_pictures WHERE gallery_id = ? AND active = TRUE", array((int)$galleryId));
@@ -197,6 +197,7 @@ class Gallery
      */
     public function view(Request $request, $galleryId, $pictureId)
     {
+        
         $picture = $this->app['db']->fetchAssoc("SELECT * FROM gallery_pictures p LEFT JOIN gallery_users u ON (u.uid = p.uid) WHERE p.id = ? AND p.gallery_id = ? AND active = TRUE ", array((int) $pictureId, (int)$galleryId));
         //$all_pictures = $this->app['db']->fetchAssoc("SELECT * FROM gallery_pictures WHERE gallery_id = ? AND active = TRUE ", array((int)$galleryId));
 
@@ -211,6 +212,10 @@ class Gallery
         $this->app['page']->setPicture($picture);
         $this->app['page']->setNext($next_picture);
         $this->app['page']->setPrev($prev_picture);
+
+        $this->app['page']['title'] = $this->app['page']['picture']['title'] . ' ' . $this->app['page']['gallery']['title'];
+        $this->app['page']['browser_title'] = $this->app['page']['picture']['title'] . ' ' . $this->app['page']['gallery']['title'];
+        
         //$this->app['page']->setAllPictures($all_pictures);
         return $this->app->render("Gallery/picture.twig");
     }

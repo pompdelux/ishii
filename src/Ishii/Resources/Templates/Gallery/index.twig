@@ -22,8 +22,8 @@
           </div>
           <div class="row">
             <div class="ten columns offset-by-one alpha">
-              <a href="{{ url('gallery_picture', {'galleryId' : page.gallery.id, 'pictureId' : image.id}) }}" title="{{ image.title }}">
-                <img src="{{ path('image', {'file' : image.url, 'width' : 550}) }}" alt="{{ image.title }}" class="scale-with-grid user-picture">
+              <a href="{{ url('gallery_picture', {'galleryId' : page.gallery.id, 'pictureId' : image.id}) }}" title="{{ image.title }}" class="user-picture">
+                <img src="{{ path('image', {'file' : image.url, 'width' : 550}) }}" alt="{{ image.title }}" class="scale-with-grid">
               </a>
               <a href="{{ url('gallery_picture', {'galleryId' : page.gallery.id, 'pictureId' : image.id}) }}" title="{{ image.title }}">
                 {{ app.translator.trans('gallery.comment.button') }} (<fb:comments-count href={{url('gallery_picture', {'galleryId' : page.gallery.id, 'pictureId' : image.id}) }}></fb:comments-count>)
@@ -66,3 +66,6 @@
   {% endif %}
 {% endblock %}
 
+
+{% block navigation %}
+{% endblock %}

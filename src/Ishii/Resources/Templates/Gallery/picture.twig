@@ -1,39 +1,50 @@
 {% extends 'layout.twig' %}
 
+
+{% block navigation %}
+  <a href="{{ url('gallery_homepage', {'galleryId' : page.gallery.id }) }}" class="button">{{ app.translator.trans('gallery.button.back.to.homepage') }}</a>
+{% endblock %}
+
 {% block content %}
-  <h2>{{ page.picture.title }}</h2>
-  <div id="picture">
-    <div class="picture nine columns center">
-      <img src="{{ path('image', {'file' : page.picture.url, 'width' : 500}) }}" alt="{{ page.picture.title }}">
+  <div id="picture" class="picture">
+    <h2>
+      {{ page.picture.title }}
+    </h2>
+    <div class="picture-meta">
+      <img src="https://graph.facebook.com/{{ page.picture.uid }}/picture" class="profile-picture">
+      <span class="profile-name">{{ page.picture.first_name ~ ' ' ~ page.picture.last_name }}</span>
+      <span class="date">{{ page.picture.created_date|date("m. F Y h:i") }}</span>
+    </div>
+    <div class="row center">
+      <img src="{{ path('image', {'file' : page.picture.url, 'width' : 610}) }}" alt="{{ page.picture.title }}" class="scale-with-grid">
+
+      <div id="pagination">
+        {% if page.prev %}
+        <div class="prev">
+          <a href="{{ url('gallery_picture', {'galleryId' : page.gallery.id , 'pictureId' : page.prev.id }) }}" title="{{ app.translator.trans('gallery.prev.button') }}">
+          </a>
+        </div>
+        {% endif %}
+        {% if page.next %}
+        <div class="next">
+          <a href="{{ url('gallery_picture', {'galleryId' : page.gallery.id , 'pictureId' : page.next.id }) }}" title="{{ app.translator.trans('gallery.next.button') }}">
+          </a>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+    <div class="row">
       <div class="caption"><span>{{ page.picture.description }}</span></div>
     </div>
-    <div class="user nine columns center">
-      <img src="https://graph.facebook.com/{{ page.picture.uid }}/picture?type=small">
-      <a href="{{ page.picture.link }}">{{ app.translator.trans('gallery.uploaded.by', {'%username%' : page.picture.first_name ~ ' ' ~ page.picture.last_name}) }}</a>
-    </div>
-    <div id="pagination" class="nine columns center">
-      {% if page.prev %}
-      <div class="prev">
-        <a href="{{ url('gallery_picture', {'galleryId' : page.gallery.id , 'pictureId' : page.prev.id }) }}" title="{{ app.translator.trans('gallery.prev.button') }}">
-          <img src="{{ path('image', {'file' : page.prev.url, 'width' : 50}) }}" alt>
-        </a>
-      </div>
-      {% endif %}
-      {% if page.next %}
-      <div class="next">
-        <a href="{{ url('gallery_picture', {'galleryId' : page.gallery.id , 'pictureId' : page.next.id }) }}" title="{{ app.translator.trans('gallery.next.button') }}">
-          <img src="{{ path('image', {'file' : page.next.url, 'width' : 50}) }}" alt>
-        </a>
-      </div>
-      {% endif %}
-    </div>
-    <div class="share nine columns center">
-      <fb:like send="false" layout="button_count" width="450" show_faces="false" href="{{ app.request.uri }}" ref="POMPdeLUX"></fb:like>
+    <div class="share row">
+      <fb:like send="false" layout="box_count" width="450" show_faces="false" href="{{ app.request.uri }}" ref="POMPdeLUX"></fb:like>
       <a href="#" class="facebook-share like-button" data-link="{{ app.request.uri }}" data-picture="http://{{ app.request.host ~ path('image', {'file' : page.picture.url, 'width' : 180}) }}" data-name="{{ page.picture.title }}" data-caption="{{ app.translator.trans('gallery.share.caption') }}" data-description="{{ page.picture.description }}">
         {{ app.translator.trans('gallery.share.button') }}
       </a>
     </div>
-    <fb:comments href="{{ app.request.uri }}" num_posts="2" width="768"></fb:comments>
+    <div class="row center">
+      <fb:comments href="{{ app.request.uri }}" num_posts="2" width="768"></fb:comments>
+    </div>
 
   </div>
 {% endblock %}

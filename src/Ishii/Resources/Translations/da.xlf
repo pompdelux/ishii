@@ -45,6 +45,10 @@
                 <source>gallery.button.homepage</source>
                 <target>Forside</target>
             </trans-unit>
+            <trans-unit id="gallery.button.back.to.homepage">
+                <source>gallery.button.back.to.homepage</source>
+                <target>Se alle billeder</target>
+            </trans-unit>
             <trans-unit id="gallery.button.add.picture">
                 <source>gallery.button.add.picture</source>
                 <target>Indsend billede</target>
