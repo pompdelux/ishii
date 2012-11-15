@@ -19,7 +19,7 @@
 {% endblock %}
 <meta property="og:url" content="{{ app.request.uri }}">
 <meta property="og:site_name" content="{{ app.translator.trans('default.browser.title') }}"/>
-<meta property="fb:app_id" content="{{ facebook_apps.default.app_id }}"/>
+<meta property="fb:app_id" content="{{ page.facebook.app_id }}"/>
 
 <link rel="dns-prefetch" href="{{ cdn_url|replace({'http:':''}) }}">
 <link rel="dns-prefetch" href="//cdn.jquerytools.org">
@@ -72,7 +72,7 @@
   window.fbAsyncInit = function() {
     // init the FB JS SDK
     FB.init({
-      appId      : '{{ facebook_apps.default.app_id }}', // App ID from the App Dashboard
+      appId      : '{{ page.facebook.app_id }}', // App ID from the App Dashboard
       channelUrl : '{{ base_url }}channel.html', // Channel File for x-domain communication
       status     : true, // check the login status upon init?
       cookie     : true, // set sessions cookies to allow your server to access the session?
@@ -88,7 +88,7 @@
      var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
      if (d.getElementById(id)) {return;}
      js = d.createElement('script'); js.id = id; js.async = true;
-     js.src = "//connect.facebook.net/da_DK/all.js#xfbml=1&appId={{ facebook_apps.default.app_id }}";
+     js.src = "//connect.facebook.net/da_DK/all.js#xfbml=1&appId={{ page.facebook.app_id }}";
      ref.parentNode.insertBefore(js, ref);
    }(document));
 </script>

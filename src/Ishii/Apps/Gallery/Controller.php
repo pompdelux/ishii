@@ -33,6 +33,17 @@ class Controller implements ControllerProviderInterface
             }
             $this->app['page']->setGallery($this->app['gallery']);
 
+            if(!empty($this->app['gallery']['app_id']) && !empty($this->app['gallery']['secret']) && !empty($this->app['gallery']['page_url'])){
+                $facebook_app['app_id'] = $this->app['gallery']['app_id'];
+                $facebook_app['secret'] = $this->app['gallery']['secret'];
+                $facebook_app['page_url'] = $this->app['gallery']['page_url'];
+            }else{
+                $facebook_app['app_id'] = $this->app['config']['facebook_apps']['default']['app_id'];
+                $facebook_app['secret'] = $this->app['config']['facebook_apps']['default']['secret'];
+                $facebook_app['page_url'] = $this->app['config']['facebook_apps']['default']['page_url'];
+            }
+            $this->app['page']->setFacebook($facebook_app); // Used in twig
+
             $this->app['facebook']->setAppId($this->app['gallery']['app_id']);
             $this->app['facebook']->setApiSecret($this->app['gallery']['secret']);
 
@@ -54,14 +65,14 @@ class Controller implements ControllerProviderInterface
             // Detect which device the user are using.
             $detect = new Mobile_Detect();
 
-            // If the user comes from a link, ousite of iframe, redirect to the appropiate url on page
+            // If the user comes from a link, ousite of iframe, redirect to the appropiate url on page. But only if not mobile!
             $referer = $request->server->get('HTTP_REFERER');
             if(strpos($referer, 'facebook.com') AND !isset($signed_request['page']) AND (!$detect->isMobile() AND !$detect->isTablet())){
                 $fb_app_data = $galleryId;
                 if(isset($path[4])){ // Ugly method to find pictureId
                     $fb_app_data .= '|'.$path[4];
                 }
-                return $this->app->redirect($this->app['config']['facebook_apps']['default']['page_url'].'?sk=app_'.$this->app['gallery']['app_id'].'&app_data='.$fb_app_data);
+                return $this->app->redirect($this->app['page']['facebook_apps']['page_url'].'?sk=app_'.$this->app['gallery']['app_id'].'&app_data='.$fb_app_data);
             }
         });
 
