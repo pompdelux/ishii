@@ -302,6 +302,27 @@ input[type="button"].full-width {
     padding-right: 0 !important;
     text-align: center; }
 
+.button.orange,
+button.orange,
+input[type="submit"].orange,
+input[type="reset"].orange,
+input[type="button"].orange {
+    background: #ef7c5f;
+    border: none;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    color: white;
+    text-shadow: none;
+    font-size: 21px;
+    font-weight: bold;}
+.button.orange:hover,
+button.orange:hover,
+input[type="submit"].orange:hover,
+input[type="reset"].orange:hover,
+input[type="button"].orange:hover {
+    background: #EC6341;}
+
 /* Fix for odd Mozilla border & padding issues */
 button::-moz-focus-inner,
 input::-moz-focus-inner {
