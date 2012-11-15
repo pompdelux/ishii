@@ -69,6 +69,7 @@ class Admin
             ->add('is_open', 'checkbox', array('required' => false))
             ->add('app_id', 'text', array('required' => false))
             ->add('secret', 'text', array('required' => false))
+            ->add('page_url', 'text', array('required' => false))
             ->getForm()
         ;
         if ('POST' == $request->getMethod()) {
@@ -149,6 +150,7 @@ class Admin
                     'is_open' => $data['is_open'],
                     'app_id' => $data['app_id'],
                     'secret' => $data['secret'],
+                    'page_url' => $data['page_url'],
                 );
                 $data_to_save = array_merge($data_to_save, $uploaded_files);
 
