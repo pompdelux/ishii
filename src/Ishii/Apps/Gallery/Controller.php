@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\ParameterBag;
 
 use Tobiassjosten\Silex\Provider\FacebookServiceProvider;
+use Mobile_Detect;
 
 class Controller implements ControllerProviderInterface
 {
@@ -50,9 +51,12 @@ class Controller implements ControllerProviderInterface
 
             }
 
+            // Detect which device the user are using.
+            $detect = new Mobile_Detect();
+
             // If the user comes from a link, ousite of iframe, redirect to the appropiate url on page
             $referer = $request->server->get('HTTP_REFERER');
-            if(strpos($referer, 'facebook.com') AND !isset($signed_request['page'])){
+            if(strpos($referer, 'facebook.com') AND !isset($signed_request['page']) AND (!$detect->isMobile() AND !$detect->isTablet())){
                 $fb_app_data = $galleryId;
                 if(isset($path[4])){ // Ugly method to find pictureId
                     $fb_app_data .= '|'.$path[4];

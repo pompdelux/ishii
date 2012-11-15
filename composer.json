@@ -12,7 +12,8 @@
         "twig/twig": ">=1.8,<2.0-dev",
     	"doctrine/dbal": "2.2.*",
 	    "tobiassjosten/facebook-service-provider": "dev-master",
-        "grom/silex-service-provider": "dev-master"
+        "grom/silex-service-provider": "dev-master",
+        "suncat/php-mobile-detect": "2.0.9"
     },
     "minimum-stability": "dev"
 }

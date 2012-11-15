@@ -115,7 +115,7 @@
             </trans-unit>
             <trans-unit id="gallery.upload.title.label">
                 <source>gallery.upload.title.label</source>
-                <target>Billede titel</target>
+                <target>Billedets titel</target>
             </trans-unit>
             <trans-unit id="gallery.upload.description.label">
                 <source>gallery.upload.description.label</source>
@@ -136,6 +136,22 @@
             <trans-unit id="gallery.upload.preview.h4">
                 <source>gallery.upload.preview.h4</source>
                 <target>Forhåndsvisning</target>
+            </trans-unit>
+            <trans-unit id="admin.gallery.updated.short">
+                <source>admin.gallery.updated.short</source>
+                <target>Yipee!</target>
+            </trans-unit>
+            <trans-unit id="admin.gallery.updated.description">
+                <source>admin.gallery.updated.description</source>
+                <target>Galleriet er blevet gemt.</target>
+            </trans-unit>
+            <trans-unit id="admin.new.picture.uploaded.failed.short">
+                <source>admin.new.picture.uploaded.failed.short</source>
+                <target>Uploadfejl!</target>
+            </trans-unit>
+            <trans-unit id="admin.new.picture.uploaded.failed.description">
+                <source>admin.new.picture.uploaded.failed.description</source>
+                <target>Der skete en fejl med at uploade et billede. Prøv igen.</target>
             </trans-unit>
         </body>
     </file>

@@ -158,8 +158,8 @@ class Admin
                 );
                 $messages[] = array(
                     'type' => 'info',
-                    'short' => $this->app['translator']->trans('admin.new.picture.uploaded.failed.short'),
-                    'ext' => $this->app['translator']->trans('admin.new.picture.uploaded.failed.description')
+                    'short' => $this->app['translator']->trans('admin.gallery.updated.short'),
+                    'ext' => $this->app['translator']->trans('admin.gallery.updated.description')
                 );
             }
         }
