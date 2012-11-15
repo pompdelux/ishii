@@ -1,12 +1,14 @@
 {% extends 'layout.twig' %}
 
 {% block content %}
+<div class="row">
 	{% if page.gallery.fangate_image is not none %}
-	<img src="{{ '/gallery_images/' ~ page.gallery.fangate_image|raw }}">
+	<img src="{{ '/gallery_images/' ~ page.gallery.fangate_image|raw }}" class="fangateimage scale-with-grid">
 	{% else %}
   	<h2>{{ app.translator.trans('gallery.fangate.h2') }}</h2>
   	<fb:like href="{{ facebook_apps.default.page_url }}" send="false" width="450" show_faces="true"></fb:like>
   	{% endif %}
+</div>
 
 {% endblock %}
 

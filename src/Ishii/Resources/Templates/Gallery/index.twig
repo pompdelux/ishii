@@ -2,15 +2,17 @@
 
 {% block content %}
   
-  {% if page.gallery.top_image is not none %}
-    <a href="{{ url('gallery_add', {'galleryId' : page.gallery.id }) }}" title="{{ app.translator.trans('gallery.button.add.picture') }}">
-      <img src="{{ '/gallery_images/' ~ page.gallery.top_image|raw }}" alt="{{ app.translator.trans('gallery.button.add.picture') }}">
-    </a>
-  {% else %}
-    <h2>{{ page.gallery.title }}</h2>
-    <p>{{ page.gallery.description }}</p>
-    <a href="{{ url('gallery_add', {'galleryId' : page.gallery.id }) }}" class="button">{{ app.translator.trans('gallery.button.add.picture') }}</a>
-  {% endif %}
+  <div class="row">
+    {% if page.gallery.top_image is not none %}
+      <a href="{{ url('gallery_add', {'galleryId' : page.gallery.id }) }}" title="{{ app.translator.trans('gallery.button.add.picture') }}">
+        <img src="{{ '/gallery_images/' ~ page.gallery.top_image|raw }}" alt="{{ app.translator.trans('gallery.button.add.picture') }}" class="topimage scale-with-grid">
+      </a>
+    {% else %}
+      <h2>{{ page.gallery.title }}</h2>
+      <p>{{ page.gallery.description }}</p>
+      <a href="{{ url('gallery_add', {'galleryId' : page.gallery.id }) }}" class="button">{{ app.translator.trans('gallery.button.add.picture') }}</a>
+    {% endif %}
+  </div>
 
   {% if page.images %}
   <div id="gallery">
@@ -61,11 +63,13 @@
     <p>{{ app.translator.trans('gallery.no.pictures') }}</p>
   {% endif %}
 
-  {% if page.gallery.bottom_image is defined %}
-  <img src="{{ '/gallery_images/' ~ page.gallery.bottom_image|raw }}">
-  {% else %}
-  <p>{{ app.translator.trans('gallery.default.disclaimer') }}</p>
-  {% endif %}
+  <div class="row">
+    {% if page.gallery.bottom_image is not none %}
+    <img src="{{ '/gallery_images/' ~ page.gallery.bottom_image|raw }}" class="bottomimage scale-with-grid">
+    {% else %}
+    <p>{{ app.translator.trans('gallery.default.disclaimer') }}</p>
+    {% endif %}
+  </div>
 {% endblock %}
 
 

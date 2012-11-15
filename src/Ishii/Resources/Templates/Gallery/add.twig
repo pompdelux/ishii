@@ -2,11 +2,13 @@
 
 {% block content %}
 
-  {% if page.gallery.uploadform_image is not none %}
-  <img src="{{ '/gallery_images/' ~ page.gallery.uploadform_image|raw }}">
-  {% else %}
-  <h2>{{ app.translator.trans('gallery.upload.picture.h2') }}</h2>
-  {% endif %}
+  <div class="row">
+    {% if page.gallery.uploadform_image is not none %}
+    <img src="{{ '/gallery_images/' ~ page.gallery.uploadform_image|raw }}" class="uploadformimage scale-with-grid">
+    {% else %}
+    <h2>{{ app.translator.trans('gallery.upload.picture.h2') }}</h2>
+    {% endif %}
+  </div>
 
   <form action="#" method="post" id="add-picture" class="eight columns alpha" {{ form_enctype(form) }}>
     {{ form_widget(form) }}
@@ -26,6 +28,13 @@
     </div>
   </div>
 
+  <div class="row">
+    {% if page.gallery.bottom_image is not none %}
+    <img src="{{ '/gallery_images/' ~ page.gallery.bottom_image|raw }}" class="bottomimage scale-with-grid">
+    {% else %}
+    <p>{{ app.translator.trans('gallery.default.disclaimer') }}</p>
+    {% endif %}
+  </div>
 
 {% endblock %}
 {% block navigation %}
