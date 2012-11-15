@@ -26,7 +26,7 @@ class Controller implements ControllerProviderInterface
             $galleryId = $path[2];
 
             //do the gallery exists?
-            $this->app['gallery'] = $this->app['db']->fetchAssoc("SELECT * FROM gallery_galleries WHERE id = ? LIMIT 1", array((int) $galleryId));
+            $this->app['gallery'] = $this->app['db']->fetchAssoc("SELECT * FROM gallery_galleries WHERE id = ? AND active = TRUE LIMIT 1", array((int) $galleryId));
             if(empty($this->app['gallery'])){
                 $this->app->abort(404, $this->app['translator']->trans('404.gallery.not.found.title'));
             }
