@@ -373,18 +373,20 @@ a.like-button:hover {
 /***** PICTURE VIEW *****/
 #picture h2{display: inline-block;margin: 0; vertical-align: middle;}
 #picture .picture-meta{
-  display: inline-block;
+  line-height: 25px;
   vertical-align: middle;
   padding: 0;}
+#picture .picture-meta .profile-picture{
+  height: 25px;}
 #picture .like-button{vertical-align: text-bottom;}
 /***** Global picture styles *****/
 .picture{
   border-top: 1px solid black;
   padding-top: 10px;}
-.picture .picture-meta{padding-bottom: 10px;}
-.picture .picture-meta .profile-picture{}
-.picture .picture-meta .profile-name{ font-size: 15px; font-weight: bold;}
-.picture .picture-meta .date{ font-size: 12px; color:#CCC;}
+.picture .picture-meta{padding-bottom: 10px; }
+.picture .picture-meta .profile-picture{vertical-align: middle;}
+.picture .picture-meta .profile-name{ font-size: 15px; font-weight: bold;vertical-align: middle;}
+.picture .picture-meta .date{ font-size: 12px; color:#CCC;vertical-align: middle;}
 .picture .user-picture {
     padding: 15px;
     border:2px solid #CCC;
