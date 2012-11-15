@@ -35,7 +35,7 @@ $app->error(function (\Exception $e, $code) use ($app) {
     }*/
 
     if ($code == 404) {
-        return new Symfony\Component\HttpFoundation\Response( $app['twig']->render('404.twig', array()), 404);
+        return new Symfony\Component\HttpFoundation\Response( $app['twig']->render('404.twig', array('message' => $e->getMessage())), 404);
     }
 
     return new Symfony\Component\HttpFoundation\Response('We are sorry, but something went terribly wrong.', $code);
