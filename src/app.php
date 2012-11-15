@@ -27,6 +27,21 @@ $app->mount('/gallery', new Ishii\Apps\Gallery\Controller());
 
 $app->mount('/admin', new Ishii\Apps\Admin\Controller());
 
+$app->error(function (\Exception $e, $code) use ($app) {
+
+    // commented for testing purposes
+    /*if ($app['debug']) {
+        return;
+    }*/
+
+    if ($code == 404) {
+        return new Symfony\Component\HttpFoundation\Response( $app['twig']->render('404.twig', array()), 404);
+    }
+
+    return new Symfony\Component\HttpFoundation\Response('We are sorry, but something went terribly wrong.', $code);
+
+});
+
 /**
  * Image getter. Returns an resized image. Image keeps ratio aspects
  *
