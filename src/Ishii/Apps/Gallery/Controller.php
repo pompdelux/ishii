@@ -54,6 +54,7 @@ class Controller implements ControllerProviderInterface
 
             if(isset($signed_request['page'])){
                 if($signed_request['page']['id'] != $this->app['page']['page_id']){
+                    $app['monolog']->addError('Wrong Setup for iframe: db['.json_encode($this->app['page']).'], page_id['.$signed_request['page']['id'].']');
                     $this->app->abort(404, 'Din FB opsæting er desværre forkert. Kontakt en administrator!');
                 }
                 if(!$signed_request['page']['liked']){
