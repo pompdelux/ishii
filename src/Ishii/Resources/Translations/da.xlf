@@ -141,6 +141,14 @@
                 <source>gallery.upload.preview.h4</source>
                 <target>Forhåndsvisning</target>
             </trans-unit>
+            <trans-unit id="admin.gallery.button.galleries">
+                <source>admin.gallery.button.galleries</source>
+                <target>Konkurrence Oversigt</target>
+            </trans-unit>
+            <trans-unit id="admin.gallery.button.add.gallery">
+                <source>admin.gallery.button.add.gallery</source>
+                <target>Opret Konkurrence</target>
+            </trans-unit>
             <trans-unit id="admin.gallery.updated.short">
                 <source>admin.gallery.updated.short</source>
                 <target>Yipee!</target>

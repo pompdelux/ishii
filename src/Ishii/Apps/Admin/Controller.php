@@ -49,6 +49,16 @@ class Controller implements ControllerProviderInterface
             return $admin->delete_gallery($request, $id);
         })->bind('admin_gallery_delete');
 
+        $controller->get('/picture/toggle-active/{id}', function (Application $app, Request $request, $id) use ($admin) {
+            return $admin->picture_toggle_active($request, $id);
+        })->bind('admin_gallery_picture_toggle_active');
+
+        $controller->get('/winners/{id}/{count}', function (Application $app, Request $request, $id, $count) use ($admin) {
+            return $admin->pull_winners($request, $id, $count);
+        })
+        ->bind('admin_gallery_pull_winners')
+        ->value('count', 3);
+
         return $controller;
     }
 }

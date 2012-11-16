@@ -176,6 +176,28 @@ class Admin
     }
 
     /**
+     * set inactive method, picture ajax style
+     *
+     * @param  Request  $request    Request object
+     * @param  integer  $id         The picture ID
+     * @return Response             Response object
+     */
+    public function picture_toggle_active(Request $request, $id)
+    {
+        $picture = $this->app['db']->fetchAssoc("SELECT active FROM gallery_pictures WHERE id = ?", array((int)$id));
+        
+        if($image = $this->app['db']->update('gallery_pictures', 
+            array('active' => !$picture['active']),
+            array('id' => $id)
+        )){
+            return $this->app->json(array(
+                'status' => true,
+                'message' => 'Billede er blevet toggled'
+            ));
+        }
+    }
+
+    /**
      * delete method, delete gallery ajax style
      *
      * @param  Request  $request    Request object
@@ -210,8 +232,9 @@ class Admin
 
         $gallery_pictures = $this->app['db']->fetchAll("SELECT * FROM gallery_pictures p LEFT JOIN gallery_users u ON (u.uid = p.uid) WHERE p.gallery_id = ? ORDER BY p.created_date DESC LIMIT {$offset},50", array((int) $id));
         $total_pictures = $this->app['db']->fetchColumn("SELECT COUNT(id) FROM gallery_pictures WHERE gallery_id = ?", array((int)$id));
-        print_r($gallery_pictures);
+
         $this->app['page']->setPictures($gallery_pictures);
+        $this->app['page']->setGalleryId($id);
         
         if($offset > 0){
             $this->app['page']->setPrev(array('active' => true, 'offset' => $offset - 10));
@@ -221,6 +244,28 @@ class Admin
             $this->app['page']->setNext(array('active' => true, 'offset' => $offset + 10));
         }
         
+
+        return $this->app->render("Admin/pictures.twig");
+    }
+
+    /**
+     * See all pictures uploaded to a gallery
+     *
+     * @param  Request  $request    Request object
+     * @param  Int      $id         the gallery id
+     * @return Response             Response object
+     */
+    public function pull_winners(Request $request, $id, $count)
+    {
+        if($request->query->get('count'))
+            $count = $request->query->get('count');
+        $this->app['page']['title'] = 'POMPdeLUX Facebook galleri';
+        $this->app['page']['browser_title'] = ' » Vindere';
+
+        $gallery_pictures = $this->app['db']->fetchAll("SELECT * FROM gallery_pictures p LEFT JOIN gallery_users u ON (u.uid = p.uid) WHERE p.gallery_id = ? ORDER BY RAND() LIMIT {$count}", array((int) $id));
+        
+        $this->app['page']->setGalleryId($id);
+        $this->app['page']->setPictures($gallery_pictures);
 
         return $this->app->render("Admin/pictures.twig");
     }

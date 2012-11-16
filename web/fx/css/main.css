@@ -706,6 +706,11 @@ a.like-button:hover {
     margin:0 0 10px;
     line-height: normal;}
 
+/***** Pull winners *****/
+form.pull-winners{display: inline-block;}
+form.pull-winners input{display: inline-block;}
+form.pull-winners input[type=text]{width:20px;}
+
 /***** HACKS *****/
 
 /**
