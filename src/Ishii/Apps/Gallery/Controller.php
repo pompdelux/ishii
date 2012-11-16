@@ -31,6 +31,7 @@ class Controller implements ControllerProviderInterface
             if(empty($this->app['gallery'])){
                 $this->app->abort(404, $this->app['translator']->trans('404.gallery.not.found.title'));
             }
+            $this->app['monolog']->addInfo('Debug: gallery['.json_encode($this->app['gallery']).']');
             $this->app['page']->setGallery($this->app['gallery']);
 
             if(!empty($this->app['gallery']['app_id']) && !empty($this->app['gallery']['secret']) && !empty($this->app['gallery']['page_url'])){
@@ -45,7 +46,7 @@ class Controller implements ControllerProviderInterface
                 $facebook_app['page_id'] = $this->app['config']['facebook_apps']['default']['page_id'];
             }
             $this->app['page']->setFacebook($facebook_app); // Used in twig
-print_r($this->app['page']);
+
             $this->app['facebook']->setAppId($this->app['gallery']['app_id']);
             $this->app['facebook']->setApiSecret($this->app['gallery']['secret']);
 
