@@ -11,7 +11,9 @@
         {% endif %}
       </a>
     {% elseif page.gallery.top_submit_button is not none %}
-      {{ page.gallery.top_submit_button|raw }}
+      <a href="{{ url('gallery_add', {'galleryId' : page.gallery.id }) }}" title="{{ app.translator.trans('gallery.button.add.picture') }}">
+        {{ page.gallery.top_submit_button|raw }}
+      </a>
     {% else %}
       <h2>{{ page.gallery.title }}</h2>
       <p>{{ page.gallery.description }}</p>
