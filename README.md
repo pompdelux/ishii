@@ -24,6 +24,7 @@ CREATE TABLE IF NOT EXISTS `gallery_galleries` (
   `app_id` bigint(20) DEFAULT NULL,
   `secret` varchar(255) DEFAULT NULL,
   `page_url` varchar(255) DEFAULT NULL,
+  `page_id` varchar(255) DEFAULT NULL,
   `created_date` datetime NOT NULL,
   `updated_date` datetime NOT NULL,
   PRIMARY KEY (`id`)

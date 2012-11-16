@@ -71,6 +71,7 @@ class Admin
             ->add('app_id', 'text', array('required' => false))
             ->add('secret', 'text', array('required' => false))
             ->add('page_url', 'text', array('required' => false))
+            ->add('page_id', 'text', array('required' => false))
             ->getForm()
         ;
         if ('POST' == $request->getMethod()) {
@@ -153,6 +154,7 @@ class Admin
                     'app_id' => $data['app_id'],
                     'secret' => $data['secret'],
                     'page_url' => $data['page_url'],
+                    'page_id' => $data['page_id'],
                 );
                 $data_to_save = array_merge($data_to_save, $uploaded_files);
 

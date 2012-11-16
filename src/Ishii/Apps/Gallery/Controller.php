@@ -37,26 +37,30 @@ class Controller implements ControllerProviderInterface
                 $facebook_app['app_id'] = $this->app['gallery']['app_id'];
                 $facebook_app['secret'] = $this->app['gallery']['secret'];
                 $facebook_app['page_url'] = $this->app['gallery']['page_url'];
+                $facebook_app['page_id'] = $this->app['gallery']['page_id'];
             }else{
                 $facebook_app['app_id'] = $this->app['config']['facebook_apps']['default']['app_id'];
                 $facebook_app['secret'] = $this->app['config']['facebook_apps']['default']['secret'];
                 $facebook_app['page_url'] = $this->app['config']['facebook_apps']['default']['page_url'];
+                $facebook_app['page_id'] = $this->app['config']['facebook_apps']['default']['page_id'];
             }
             $this->app['page']->setFacebook($facebook_app); // Used in twig
 
             $this->app['facebook']->setAppId($this->app['gallery']['app_id']);
             $this->app['facebook']->setApiSecret($this->app['gallery']['secret']);
 
-            //Get the app_data field from signed request.
+            //Get the signed request from facebook.
             $signed_request = $this->app['facebook']->getSignedRequest();
 
             if(isset($signed_request['page'])){
+                if($signed_request['page']['id'] != $this->app['page']['page_id']){
+                    $this->app->abort(404, 'Din FB opsæting er desværre forkert. Kontakt en administrator!');
+                }
                 if(!$signed_request['page']['liked']){
                     return $this->app->render("Gallery/fangate.twig");
                 }
                 // Redirect to the right picture if app_data is set
                 if(isset($signed_request['app_data'])){
-                    $this->app['monolog']->addDebug('Redirect app_data['.json_encode($signed_request['app_data']).']');
                     $pictureId = explode('|', $signed_request['app_data'])[1]; // galleryId|pictureId
                     die('<script>location.href=\''.$this->app['url_generator']->generate('gallery_picture', array('galleryId' => $galleryId, 'pictureId' => $pictureId)).'\'</script>');
                 }
@@ -73,8 +77,6 @@ class Controller implements ControllerProviderInterface
                 if(isset($path[4])){ // Ugly method to find pictureId
                     $fb_app_data .= '|'.$path[4];
                 }
-                $this->app['monolog']->addDebug('Redirect referer['.$referer.']');
-                $this->app['monolog']->addDebug('Redirect to['.$this->app['page']['facebook']['page_url'].']');
                 return $this->app->redirect($this->app['page']['facebook']['page_url'].'?sk=app_'.$this->app['gallery']['app_id'].'&app_data='.$fb_app_data);
             }
         });
