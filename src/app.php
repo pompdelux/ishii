@@ -65,7 +65,7 @@ $app->get('/image/{file}/{width}', function($file, $width) use ($app){
                 ->save(__DIR__.'/..'.$app['config']['upload_path'].'/cache/'.$width.'-'.$file);
             _log('debug: file resized');
         }catch(Imagine\Exception\Exception $e){
-            _log($e->getMessage());
+            $app['monolog']->addError($e->getMessage());
             $app->abort(404);
         }
     }
