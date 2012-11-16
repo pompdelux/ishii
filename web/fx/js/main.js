@@ -1,5 +1,15 @@
 
 $(document).ready(function () {
+    $('textarea[maxlength]').live('keyup blur', function() {
+        // Store the maxlength and value of the field.
+        var maxlength = $(this).attr('maxlength');
+        var val = $(this).val();
+
+        // Trim the field if it has content over the maxlength.
+        if (val.length > maxlength) {
+            $(this).val(val.slice(0, maxlength));
+        }
+    });
     // Facebook Me... :-)
     $('#add-picture button.submit').click(function(e){
         e.preventDefault();
