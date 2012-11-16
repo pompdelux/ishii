@@ -54,8 +54,8 @@ class Controller implements ControllerProviderInterface
             $signed_request = $this->app['facebook']->getSignedRequest();
 
             if(isset($signed_request['page'])){
-                if($signed_request['page']['id'] != $this->app['page']['facebook']['page_id']){
-                    $this->app['monolog']->addError('Wrong Setup for iframe: db['.json_encode($this->app['page']).'], page_id['.$signed_request['page']['id'].']');
+                if($signed_request['page']['id'] != $this->app['gallery']['page_id']){
+                    $this->app['monolog']->addError('Wrong Setup for iframe: db['.json_encode($this->app['gallery']).'], page_id['.$signed_request['page']['id'].']');
                     $this->app->abort(404, 'Din FB opsæting er desværre forkert. Kontakt en administrator!');
                 }
                 if(!$signed_request['page']['liked']){
