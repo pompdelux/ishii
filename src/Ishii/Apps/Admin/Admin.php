@@ -31,9 +31,9 @@ class Admin
         $this->app['page']['title'] = 'POMPdeLUX Facebook galleri';
         $this->app['page']['browser_title'] = ' » Seneste';
 
-        $galleries = $this->app['db']->fetchAssoc("SELECT * FROM gallery_galleries", array());
+        $galleries = $this->app['db']->fetchAll("SELECT * FROM gallery_galleries", array());
 
-        $this->app['page']->setGalleries(array($galleries));
+        $this->app['page']->setGalleries($galleries);
 
         return $this->app->render("Admin/index.twig");
     }
