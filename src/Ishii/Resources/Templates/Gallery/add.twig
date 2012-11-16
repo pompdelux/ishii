@@ -11,13 +11,17 @@
   </div>
 
   <form action="#" method="post" id="add-picture" class="eight columns alpha" {{ form_enctype(form) }}>
+    <div class="row">
     {{ form_widget(form) }}
-    {% if page.user is null %}
-      <button class="submit button pull-right orange">{{ app.translator.trans('gallery.upload.picture.submit') }}</button>
-    {% else %}
-      <input type="submit" class="button pull-right orange" disabled value="{{ app.translator.trans('gallery.upload.picture.submit') }}">
-    {% endif %}
-    <a href="{{ url('gallery_homepage', {'galleryId' : page.gallery.id }) }}" class=" pull-left">{{ app.translator.trans('gallery.upload.cancel') }}</a>
+    </div>
+    <div class="row">
+      {% if page.user is null %}
+        <button class="submit button pull-right orange">{{ app.translator.trans('gallery.upload.picture.submit') }}</button>
+      {% else %}
+        <input type="submit" class="button pull-right orange" disabled value="{{ app.translator.trans('gallery.upload.picture.submit') }}">
+      {% endif %}
+      <a href="{{ url('gallery_homepage', {'galleryId' : page.gallery.id }) }}" class=" pull-left">{{ app.translator.trans('gallery.upload.cancel') }}</a>
+    </div>
   </form>
   <div class="eight columns omega">
     <div id="preview">
