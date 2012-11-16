@@ -56,6 +56,7 @@ class Controller implements ControllerProviderInterface
                 }
                 // Redirect to the right picture if app_data is set
                 if(isset($signed_request['app_data'])){
+                    $app['monolog']->addInfo('Redirect app_data['.json_encode($signed_request['app_data']).']');
                     $pictureId = explode('|', $signed_request['app_data'])[1]; // galleryId|pictureId
                     die('<script>location.href=\''.$this->app['url_generator']->generate('gallery_picture', array('galleryId' => $galleryId, 'pictureId' => $pictureId)).'\'</script>');
                 }
@@ -72,7 +73,8 @@ class Controller implements ControllerProviderInterface
                 if(isset($path[4])){ // Ugly method to find pictureId
                     $fb_app_data .= '|'.$path[4];
                 }
-                return $this->app->redirect($this->app['page']['facebook_apps']['page_url'].'?sk=app_'.$this->app['gallery']['app_id'].'&app_data='.$fb_app_data);
+                $app['monolog']->addInfo('Redirect referer['.$referer.']');
+                return $this->app->redirect($this->app['page']['facebook']['page_url'].'?sk=app_'.$this->app['gallery']['app_id'].'&app_data='.$fb_app_data);
             }
         });
 
