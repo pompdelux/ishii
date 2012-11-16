@@ -50,11 +50,23 @@ $app->error(function (\Exception $e, $code) use ($app) {
  * @return Response             Response object
  */
 $app->get('/image/{file}/{width}', function($file, $width) use ($app){
-	$image = $app['imagine']->open('uploads/'.$file);
-	$size = $image->getSize();
-    $transformation = new Filter\Transformation();
-    $transformation->thumbnail($size->widen($width));
-    $image = $transformation->apply($image);
+    try{
+       $image = $app['imagine']->open(__DIR__.'/..'.$app['config']['upload_path'].'/cache/'.$width.'-'.$file); 
+    }catch(Imagine\Exception\Exception $e){
+        _log($e->getMessage());
+        try{
+            $image = $app['imagine']->open(__DIR__.'/..'.$app['config']['upload_path'].'/'.$file); 
+            $size = $image->getSize();
+            $transformation = new Filter\Transformation();
+            $transformation->thumbnail($size->widen($width));
+            $image = $transformation->apply($image)
+                ->save(__DIR__.'/..'.$app['config']['upload_path'].'/cache/'.$width.'-'.$file);
+            _log('debug: file resized');
+        }catch(Imagine\Exception\Exception $e){
+            _log($e->getMessage());
+            $app->abort(404);
+        }
+    }
 
     $format = pathinfo($file, PATHINFO_EXTENSION);
 
