@@ -55,7 +55,8 @@ $app->get('/image/{file}/{width}', function($file, $width) use ($app){
     }catch(Imagine\Exception\Exception $e){
         _log($e->getMessage());
         try{
-            $image = $app['imagine']->open(__DIR__.'/..'.$app['config']['upload_path'].'/'.$file); 
+            $image = $app['imagine']->open(__DIR__.'/..'.$app['config']['upload_path'].'/'.$file)
+                ->save(__DIR__.'/..'.$app['config']['upload_path'].'/cache/'.$width.'-'.$file);
             $size = $image->getSize();
             $transformation = new Filter\Transformation();
             $transformation->thumbnail($size->widen($width));
