@@ -44,6 +44,7 @@ $app->error(function (\Exception $e, $code) use ($app) {
 
 /**
  * Image getter. Returns an resized image. Image keeps ratio aspects
+ * Uses a cached version if it exists, otherwise it creates one and returns that.
  *
  * @param  string      	$file  	the image name
  * @param  int      	$width  the width of the wanted image
@@ -81,6 +82,7 @@ $app->get('/image/{file}/{width}', function($file, $width) use ($app){
 
 /**
  * Image getter. Returns a cropped version of the image. The thumbnail has a fixed height/width of @param $dimension
+ * Uses a cached version if it exists, otherwise it creates one and returns that.
  *
  * @param  string       $file       the image name
  * @param  int          $dimnesion  the dimension of the wanted image
