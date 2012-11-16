@@ -20,7 +20,7 @@ $(document).ready(function () {
                 }
             }, {scope: 'email'});
         }else{ // Not all fields are filled
-            $('#alerts').append($('' +
+            $('.alerts:last').append($('' +
                         '  <div class="alert alert-error">' +
                         '    <div class="container">' +
                         '      <p><strong>Woops!</strong> Du skal udfylde alle felter. Har du husket at godkende vores betingelser?</p>' +

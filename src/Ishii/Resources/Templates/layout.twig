@@ -52,8 +52,8 @@
       </ul>
     {% endblock %}
   </nav>
-  {% block flash %}
-    <div id="alerts" class="sixteen columns alpha omega">
+  {% block errors %}
+    <div class="alerts sixteen columns alpha omega">
       {% if flash is defined %}
       <div class="alert alert-{{ flash.type }}">
         <div class="container">
@@ -62,7 +62,7 @@
       </div>
       {% endif %}
     </div>
-  {% endblock flash %}
+  {% endblock %}
   <div id="main" class="sixteen columns alpha omega">
     {% block content %}{% endblock %}
   </div>
