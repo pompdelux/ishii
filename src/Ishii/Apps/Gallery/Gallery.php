@@ -139,6 +139,7 @@ class Gallery
                         'uid' => $this->app->user['id'],
                         'first_name' => $this->app->user['first_name'],
                         'last_name' => $this->app->user['last_name'],
+                        'last_name' => $this->app->user['email'],
                         'gender' => $this->app->user['gender'],
                         'link' => $this->app->user['link'],
                         'ip' => $request->getClientIp(),

@@ -209,9 +209,9 @@ class Admin
         $this->app['page']['browser_title'] = ' » Seneste';
 
         $gallery_pictures = $this->app['db']->fetchAll("SELECT * FROM gallery_pictures p LEFT JOIN gallery_users u ON (u.uid = p.uid) WHERE p.gallery_id = ? ORDER BY p.created_date DESC LIMIT {$offset},50", array((int) $id));
-        $total_pictures = $this->app['db']->fetchColumn("SELECT COUNT(id) FROM gallery_pictures WHERE gallery_id = ?", array((int)$galleryId));
-
-        $this->app['page']->setPictures(array($gallery_pictures));
+        $total_pictures = $this->app['db']->fetchColumn("SELECT COUNT(id) FROM gallery_pictures WHERE gallery_id = ?", array((int)$id));
+        print_r($gallery_pictures);
+        $this->app['page']->setPictures($gallery_pictures);
         
         if($offset > 0){
             $this->app['page']->setPrev(array('active' => true, 'offset' => $offset - 10));
@@ -222,6 +222,6 @@ class Admin
         }
         
 
-        return $this->app->render("Admin/index.twig");
+        return $this->app->render("Admin/pictures.twig");
     }
 }

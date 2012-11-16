@@ -2,7 +2,7 @@
 
 
 {% block content %}
-{% if page.gallery_pictures|length > 0 %}
+{% if page.pictures|length > 0 %}
 <table>
 	<thead>
 		<tr>
@@ -10,19 +10,24 @@
 			<th>Titel</th>
 			<th>Beskrivelse</th>
 			<th>Aktiv</th>
-			<th>&Aring;ben</th>
-			<th></th>
+			<th>Bruger UID</th>
+			<th>Bruger Email</th>
 		</tr>
 	</thead>
 	<tbody>
-		{% for picture in page.gallery_pictures %}
+		{% for picture in page.pictures %}
 		<tr>
 			<td>{{ picture.id }}</td>
+			<td>{{ picture.title }}</td>
+			<td>{{ picture.description }}</td>
+			<td>{{ picture.active }}</td>
+			<td>{{ picture.uid }}</td>
+			<td>{{ picture.email }}</td>
 		</tr>
 		{% endfor %}
 	</tbody>
 </table>
 {% else %}
-Du har ikke oprettet nogle konkurrencer endnu.
+<p>Der er ingen billeder i denne konkurrence endnu.</p>
 {% endif %}
 {% endblock %}

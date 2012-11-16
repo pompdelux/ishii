@@ -32,7 +32,7 @@ class Controller implements ControllerProviderInterface
         })->bind('admin_galleries');
 
         $controller->get('/pictures/{id}/{offset}', function (Application $app, Request $request, $id, $offset) use ($admin) {
-            return $admin->index($request, $id, $offset);
+            return $admin->pictures($request, $id, $offset);
         })
         ->bind('admin_gallery_pictures')
         ->value('offset', 0);

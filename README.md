@@ -59,6 +59,7 @@ CREATE TABLE IF NOT EXISTS `gallery_users` (
   `uid` bigint(20) NOT NULL,
   `first_name` varchar(255) NOT NULL,
   `last_name` varchar(255) NOT NULL,
+  `email` varchar(255) DEFAULT NULL,
   `gender` varchar(10) DEFAULT NULL,
   `link` varchar(255) DEFAULT NULL,
   `ip` varchar(15) NOT NULL,
