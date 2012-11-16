@@ -37,7 +37,7 @@ class Controller implements ControllerProviderInterface
         ->bind('admin_gallery_pictures')
         ->value('offset', 0);
 
-        $controller->get('/add', function (Application $app, Request $request) use ($admin) {
+        $controller->match('/add', function (Application $app, Request $request) use ($admin) {
             return $admin->edit($request);
         })->bind('admin_gallery_add');
 
