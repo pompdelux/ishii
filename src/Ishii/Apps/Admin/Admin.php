@@ -50,13 +50,16 @@ class Admin
 
         $this->app['page']['title'] = 'POMPdeLUX Facebook galleri';
         $this->app['page']['browser_title'] = ' » Seneste';
-        $gallery = $this->app['db']->fetchAssoc("SELECT * FROM gallery_galleries WHERE id = ?", array((int)$id));
-        
-        $this->app['page']->setGallery(array($gallery));
+        if($id){
+            $gallery = $this->app['db']->fetchAssoc("SELECT * FROM gallery_galleries WHERE id = ?", array((int)$id));
 
-        // Ugly hack. Form couldn't see '1' as TRUE
-        $gallery['active'] = $gallery['active']?TRUE:FALSE;
-        $gallery['is_open'] = $gallery['is_open']?TRUE:FALSE;
+            // Ugly hack. Form couldn't see '1' as TRUE
+            $gallery['active'] = $gallery['active']?TRUE:FALSE;
+            $gallery['is_open'] = $gallery['is_open']?TRUE:FALSE;
+
+            $this->app['page']->setGallery(array($gallery));
+        }
+
 
         $form = $this->app['form.factory']->createBuilder('form', $gallery)
             ->add('title', 'text', array('required' => true))
@@ -158,10 +161,20 @@ class Admin
                 );
                 $data_to_save = array_merge($data_to_save, $uploaded_files);
 
-                $post = $this->app['db']->update('gallery_galleries', 
-                    $data_to_save,
-                    array('id' =>$gallery['id'])
-                );
+                if($id){
+                    $post = $this->app['db']->update('gallery_galleries', 
+                        $data_to_save,
+                        array('id' =>$gallery['id'])
+                    );
+                }else{
+                    $this->app['db']->insert('gallery_galleries', $data_to_save);
+                    $messages[] = array(
+                        'type' => 'success',
+                        'short' => $this->app['translator']->trans('admin.gallery.updated.short'),
+                        'ext' => $this->app['translator']->trans('admin.gallery.updated.description')
+                    );
+                    return $this->app->redirect($this->app->url('admin_gallery_edit', array('id' => $this->app['db']->lastInsertId())));
+                }
                 $messages[] = array(
                     'type' => 'info',
                     'short' => $this->app['translator']->trans('admin.gallery.updated.short'),
