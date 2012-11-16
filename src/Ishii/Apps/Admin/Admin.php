@@ -62,6 +62,7 @@ class Admin
             ->add('title', 'text', array('required' => true))
             ->add('description', 'textarea', array('required' => false))
             ->add('top_image', 'file', array('required' => false))
+            ->add('top_submit_button', 'text', array('required' => false))
             ->add('bottom_image', 'file', array('required' => false))
             ->add('fangate_image', 'file', array('required' => false))
             ->add('uploadform_image', 'file', array('required' => false))
@@ -146,6 +147,7 @@ class Admin
                 $data_to_save = array(
                     'title' => $data['title'],
                     'description' => $data['description'],
+                    'top_submit_button' => $data['top_submit_button'],
                     'active' => $data['active'],
                     'is_open' => $data['is_open'],
                     'app_id' => $data['app_id'],

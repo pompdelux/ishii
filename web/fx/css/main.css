@@ -357,6 +357,9 @@ a.like-button:hover {
 
 .center{
     text-align: center;}
+/***** Top *****/
+.top a{
+  text-decoration: none}
 
 /***** PAGNIATION *****/
 #pagination .prev a,

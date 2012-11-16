@@ -15,6 +15,7 @@ CREATE TABLE IF NOT EXISTS `gallery_galleries` (
   `title` varchar(255) NOT NULL,
   `description` text,
   `top_image` VARCHAR( 255 ) NULL DEFAULT NULL,
+  `top_submit_button` VARCHAR( 255 ) NULL DEFAULT NULL,
   `bottom_image` VARCHAR( 255 ) NULL DEFAULT NULL,
   `fangate_image` VARCHAR( 255 ) NULL DEFAULT NULL,
   `uploadform_image` VARCHAR( 255 ) NULL DEFAULT NULL,
@@ -22,6 +23,7 @@ CREATE TABLE IF NOT EXISTS `gallery_galleries` (
   `is_open` tinyint(1) NOT NULL DEFAULT '1',
   `app_id` bigint(20) DEFAULT NULL,
   `secret` varchar(255) DEFAULT NULL,
+  `page_url` varchar(255) DEFAULT NULL,
   `created_date` datetime NOT NULL,
   `updated_date` datetime NOT NULL,
   PRIMARY KEY (`id`)

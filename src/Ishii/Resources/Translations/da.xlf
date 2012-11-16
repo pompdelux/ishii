@@ -53,6 +53,10 @@
                 <source>gallery.button.add.picture</source>
                 <target>Indsend billede</target>
             </trans-unit>
+            <trans-unit id="gallery.button.participate">
+                <source>gallery.button.participate</source>
+                <target>Deltag</target>
+            </trans-unit>
             <trans-unit id="gallery.button.about">
                 <source>gallery.button.about</source>
                 <target>Om denne konkurrence</target>
