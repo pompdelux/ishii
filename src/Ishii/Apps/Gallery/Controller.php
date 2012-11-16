@@ -74,6 +74,7 @@ class Controller implements ControllerProviderInterface
                     $fb_app_data .= '|'.$path[4];
                 }
                 $app['monolog']->addInfo('Redirect referer['.$referer.']');
+                $app['monolog']->addInfo('Redirect to['.$this->app['page']['facebook']['page_url'].']');
                 return $this->app->redirect($this->app['page']['facebook']['page_url'].'?sk=app_'.$this->app['gallery']['app_id'].'&app_data='.$fb_app_data);
             }
         });
