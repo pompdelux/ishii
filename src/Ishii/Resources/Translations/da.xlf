@@ -127,7 +127,7 @@
             </trans-unit>
             <trans-unit id="gallery.upload.description.label">
                 <source>gallery.upload.description.label</source>
-                <target>En kort beskrivelse</target>
+                <target>En kort beskrivelse (maks 255 tegn)</target>
             </trans-unit>
             <trans-unit id="gallery.upload.accept.conditions.label">
                 <source>gallery.upload.accept.conditions.label</source>
