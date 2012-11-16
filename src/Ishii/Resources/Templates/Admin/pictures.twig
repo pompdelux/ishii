@@ -33,7 +33,7 @@
 			<td>{{ picture.uid }}</td>
 			<td>{{ picture.email }}</td>
 			<td>
-				<a href="{{ url('admin_gallery_picture_toggle_active', {'id' : picture.id }) }}" class="toggle-active picture">Skjul/Vis</a>
+				<a href="{{ url('admin_gallery_picture_toggle_active', {'id' : picture.id }) }}" class="toggle-active toggle-picture">Skjul/Vis</a>
 			</td>
 			<td>
 				{% if picture.url is defined %}

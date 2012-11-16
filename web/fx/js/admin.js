@@ -1,5 +1,5 @@
 
-  $('.picture.toggle-active').click(function(e){
+  $('.toggle-picture.toggle-active').click(function(e){
     e.preventDefault();
     var $a = $(this);
     $.ajax({

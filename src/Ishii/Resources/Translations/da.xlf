@@ -29,6 +29,10 @@
                     <p>Hvis problemet fortsætter eller genopstår kan du kontakte kundeservice på telefon: (+45) 8678 7871, eller skrive til os på <a href="mailto:mail@pompdelux.dk">mail@pompdelux.dk</a></p>
                 ]]></target>
             </trans-unit>
+            <trans-unit id="google.analytics.ua">
+                <source>google.analytics.ua</source>
+                <target>UA-XXXXX-X</target>
+            </trans-unit>
             <trans-unit id="default.browser.title">
                 <source>default.browser.title</source>
                 <target>POMPdeLUX - Vild med børnetøj » Facebook galleri</target>
@@ -148,6 +152,10 @@
             <trans-unit id="admin.gallery.button.add.gallery">
                 <source>admin.gallery.button.add.gallery</source>
                 <target>Opret Konkurrence</target>
+            </trans-unit>
+            <trans-unit id="admin.gallery.edit.gallery.submit">
+                <source>admin.gallery.edit.gallery.submit</source>
+                <target>Gem Konkurrence</target>
             </trans-unit>
             <trans-unit id="admin.gallery.updated.short">
                 <source>admin.gallery.updated.short</source>
