@@ -87,12 +87,23 @@ $app->get('/image/{file}/{width}', function($file, $width) use ($app){
  * @return Response                 Response object
  */
 $app->get('/thumb/{file}/{dimension}', function($file, $dimension) use ($app){
-    $image = $app['imagine']->open('uploads/'.$file);
-    $size = $image->getSize();
-    $transformation = new Filter\Transformation();
-    $transformation->thumbnail(new Imagine\Image\Box($dimension, $dimension), Imagine\Image\ImageInterface::THUMBNAIL_OUTBOUND);
-    $image = $transformation->apply($image);
-
+    try{
+        $image = $app['imagine']->open(__DIR__.'/..'.$app['config']['upload_path'].'/cache/thumb-'.$dimension.'-'.$file); 
+    }catch(Imagine\Exception\Exception $e){
+        try{
+            if(!is_dir(__DIR__.'/..'.$app['config']['upload_path'].'/cache/'))
+                mkdir(__DIR__.'/..'.$app['config']['upload_path'].'/cache/', 0777);
+            $image = $app['imagine']->open(__DIR__.'/..'.$app['config']['upload_path'].'/'.$file);
+            $size = $image->getSize();
+            $transformation = new Filter\Transformation();
+            $transformation->thumbnail(new Imagine\Image\Box($dimension, $dimension), Imagine\Image\ImageInterface::THUMBNAIL_OUTBOUND);
+            $image = $transformation->apply($image)
+                ->save(__DIR__.'/..'.$app['config']['upload_path'].'/cache/thumb-'.$width.'-'.$file);
+        }catch(Imagine\Exception\Exception $e){
+            $app['monolog']->addError($e->getMessage());
+            $app->abort(404);
+        }
+    }
     $format = pathinfo($file, PATHINFO_EXTENSION);
 
     $response = new Symfony\Component\HttpFoundation\Response();
