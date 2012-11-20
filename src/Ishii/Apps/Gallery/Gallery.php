@@ -126,8 +126,12 @@ class Gallery
             $form->bind($request);
 
             if ($form->isValid()) {
-
-                $this->app->user = $this->app['facebook']->api('/me');
+                try{
+                    $this->app->user = $this->app['facebook']->api('/me');
+                }catch(Exception $e){
+                    $this->app['monolog']->addError($e->getMessage());
+                    $this->app->abort(500);
+                }
                 $this->app['page']->setUser(array($this->app->user));
                 
                 $data = $form->getData();
@@ -180,8 +184,8 @@ class Gallery
                         return $this->app->redirect($this->app->url('gallery_picture', array('pictureId' => $this->app['db']->lastInsertId(), 'galleryId' => $this->app['gallery']['id'])));
                     }
                 }catch(Imagine\Exception\Exception $e){
-                    $app['monolog']->addError($e->getMessage());
-                    $app->abort(404);
+                    $this->app['monolog']->addError($e->getMessage());
+                    $this->app->abort(500);
                 }
             }
         }
