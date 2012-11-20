@@ -17,6 +17,7 @@ use Grom\Silex\ImagineServiceProvider;
 use Symfony\Component\Yaml\Yaml;
 use Symfony\Component\Translation\Loader\YamlFileLoader;
 //use Predis\Silex\PredisServiceProvider;
+use Symfony\Component\Security\Core\Encoder\MessageDigestPasswordEncoder;
 
 class Application extends SilexApplication
 {
@@ -27,22 +28,32 @@ class Application extends SilexApplication
     public function __construct()
     {
         parent::__construct();
+
+        /* Encode password with silex */
+        /*$encoder = new MessageDigestPasswordEncoder('sha512', true, 3);
+        print_r($encoder->encodePassword('12kanont'));
+        /* End Encode password with silex */
+
         $this['config'] = $this->share(function() {
             return Yaml::parse(__DIR__.'/Resources/Config/app.yaml');
         });
-
         $this['security.firewalls'] = array(
             'admin' => array(
                 'pattern' => '^/admin',
                 'http' => true,
                 'users' => array(
-                    // raw password is foo
-                    'admin' => array('ROLE_ADMIN', '5FZ2Z8QIkA7UTZ4BYkoC+GsReLf569mSKDsfods6LYQ8t+a8EW9oaircfMpmaLbPBh4FOBiiFyLfuZmTSUwzZg=='),
+                    //'admin' => array('ROLE_ADMIN', '5FZ2Z8QIkA7UTZ4BYkoC+GsReLf569mSKDsfods6LYQ8t+a8EW9oaircfMpmaLbPBh4FOBiiFyLfuZmTSUwzZg=='), //foo
+                    'admin' => array('ROLE_ADMIN', 'Hrguut2E0wTOtbQvVvVUOhpAHjIvXjss9G2mV7hPYcFbmSBqrtIWBeGwT2Cal4ErwKh7qtHcvSgfiOJewRW2/g=='),
                 )
             ),
         );
         $this->register(new SecurityServiceProvider());
-            
+
+        // Define in which grade to encode the password
+        $this['security.encoder.digest'] = $this->share(function ($app) {
+            return new MessageDigestPasswordEncoder('sha512', true, 3);
+        });
+
         $this['page'] = $this->share(function () {
             return new \Ishii\Page();
         });
