@@ -219,16 +219,17 @@ class Admin
      * @return Response             Response object
      */
     public function delete_gallery(Request $request, $id)
-    {
-
-        $this->app['page']['title'] = 'POMPdeLUX Facebook galleri';
-        $this->app['page']['browser_title'] = ' » Seneste';
-
-        $galleries = $this->app['db']->fetchAssoc("SELECT * FROM gallery_galleries", array());
-
-        $this->app['page']->setGalleries(array($galleries));
-
-        return $this->app->render("Admin/index.twig");
+    {        
+        if($image = $this->app['db']->delete('gallery_galleries', array('id' => $id))){
+            return $this->app->json(array(
+                'status' => true,
+                'message' => 'Billede er blevet toggled'
+            ));
+        }
+        return $this->app->json(array(
+            'status' => false,
+            'message' => 'Der skete en fejl'
+        ));
     }
 
 
