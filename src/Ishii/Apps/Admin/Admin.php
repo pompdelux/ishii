@@ -223,7 +223,7 @@ class Admin
         if($image = $this->app['db']->delete('gallery_galleries', array('id' => $id))){
             return $this->app->json(array(
                 'status' => true,
-                'message' => 'Billede er blevet toggled'
+                'message' => 'Galleriet er blevet slettet!'
             ));
         }
         return $this->app->json(array(
