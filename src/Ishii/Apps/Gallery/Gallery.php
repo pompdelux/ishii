@@ -74,11 +74,11 @@ class Gallery
         $this->app['page']->setImages($gallery_pictures);
         
         if($offset > 0){
-            $this->app['page']->setPrev(array('active' => true, 'offset' => $offset - 10));
+            $this->app['page']->setPrev(array('active' => true, 'offset' => $offset - 5));
         }
 
-        if(($total_pictures - 10) > $offset){
-            $this->app['page']->setNext(array('active' => true, 'offset' => $offset + 10));
+        if(($total_pictures - 5) > $offset){
+            $this->app['page']->setNext(array('active' => true, 'offset' => $offset + 5));
         }
             
 
