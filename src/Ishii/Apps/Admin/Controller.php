@@ -24,7 +24,7 @@ class Controller implements ControllerProviderInterface
         if (!$this->admin) {
             $this->admin = new Admin($app);
         }
-
+        
         $admin = $this->admin;
 
         $controller->get('/', function (Application $app, Request $request) use ($admin) {

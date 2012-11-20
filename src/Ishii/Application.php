@@ -10,6 +10,7 @@ use Silex\Provider\DoctrineServiceProvider;
 use Silex\Provider\SessionServiceProvider;
 use Silex\Provider\MonologServiceProvider;
 use Silex\Provider\FormServiceProvider;
+use Silex\Provider\ValidatorServiceProvider;
 use Silex\Provider\SecurityServiceProvider;
 
 use Tobiassjosten\Silex\Provider\FacebookServiceProvider;
@@ -72,7 +73,7 @@ class Application extends SilexApplication
         ));
 
         $this->register(new FormServiceProvider());
-
+        $this->register(new ValidatorServiceProvider());
         $this->register(new DoctrineServiceProvider(), array(
             'db.options' => array(
                 'driver'    => $this['config']['db']['driver'],

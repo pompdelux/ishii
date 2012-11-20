@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Silex\Application\UrlGeneratorTrait;
 use Imagine\Filter\Transformation;
 use Imagine\Image\Box;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class Gallery
 {
@@ -98,14 +99,10 @@ class Gallery
             $this->app->abort(404, $this->app['translator']->trans('404.title'));
         }
 
-        if(!$this->app->user AND !$this->app['debug']){
-            $this->app->abort(404, $this->app['translator']->trans('facebook.user.login.error'));
-            //return $this->app->redirect('/');
-        }
-
         $form = $this->app['form.factory']->createBuilder('form')
             ->add('picture', 'file', array(
-                'label' => $this->app['translator']->trans('gallery.upload.picture.label')
+                'label' => $this->app['translator']->trans('gallery.upload.picture.label'),
+                'constraints' => new Assert\Image()
             ))
             ->add('title', 'text', array(
                 'label' => $this->app['translator']->trans('gallery.upload.title.label')
@@ -132,6 +129,12 @@ class Gallery
                     $this->app['monolog']->addError($e->getMessage());
                     $this->app->abort(500);
                 }
+
+                if(!$this->app->user AND !$this->app['debug']){
+                    $this->app->abort(404, $this->app['translator']->trans('facebook.user.login.error'));
+                    //return $this->app->redirect('/');
+                }
+
                 $this->app['page']->setUser(array($this->app->user));
                 
                 $data = $form->getData();
@@ -159,7 +162,6 @@ class Gallery
                     $new_filename .= ($file->guessExtension())?'.'.$file->guessExtension():'.bin';
                 
                     if($file->move(__DIR__.'/../../../..'.$this->app['config']['upload_path'], $new_filename)){
-                        // TODO. Make resized images here or does they have there own controller?
                         $image = $this->app['imagine']->open(__DIR__.'/../../../..'.$this->app['config']['upload_path'].'/'.$new_filename);
                         $size = $image->getSize();
                         $transformation = new Transformation();
