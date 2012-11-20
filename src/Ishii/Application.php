@@ -31,7 +31,7 @@ class Application extends SilexApplication
 
         /* Encode password with silex */
         /*$encoder = new MessageDigestPasswordEncoder('sha512', true, 3);
-        print_r($encoder->encodePassword('12kanont'));
+        print_r($encoder->encodePassword('dit-password'));
         /* End Encode password with silex */
 
         $this['config'] = $this->share(function() {
