@@ -78,7 +78,7 @@ class Controller implements ControllerProviderInterface
                 if(isset($path[4])){ // Ugly method to find pictureId
                     $fb_app_data .= '|'.$path[4];
                 }
-                return $this->app->redirect($this->app['page']['facebook']['page_url'].'?sk=app_'.$this->app['gallery']['app_id'].'&app_data='.$fb_app_data);
+                return $this->app->redirect($this->app['page']['facebook']['page_url'].'&app_data='.$fb_app_data);
             }
         });
 
