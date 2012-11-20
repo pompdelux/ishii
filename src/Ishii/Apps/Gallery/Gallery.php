@@ -147,37 +147,41 @@ class Gallery
                         'last_seen_date' => date("Y-m-d H:i:s")
                     ));
                 }
-
-                $file = $form['picture']->getData();
+                try{
+                    $file = $form['picture']->getData();
+                    
+                    $new_filename = $this->app->user['id'];
+                    $new_filename .= '-'.time();
+                    $new_filename .= ($file->guessExtension())?'.'.$file->guessExtension():'.bin';
                 
-                $new_filename = $this->app->user['id'];
-                $new_filename .= '-'.time();
-                $new_filename .= ($file->guessExtension())?'.'.$file->guessExtension():'.bin';
-                
-                if($file->move(__DIR__.'/../../../..'.$this->app['config']['upload_path'], $new_filename)){
-                    // TODO. Make resized images here or does they have there own controller?
-                    $image = $this->app['imagine']->open(__DIR__.'/../../../..'.$this->app['config']['upload_path'].'/'.$new_filename);
-                    $size = $image->getSize();
-                    $transformation = new Transformation();
-                    $transformation->resize($size->widen(600));
-                    $image = $transformation->apply($image)->save(__DIR__.'/../../../..'.$this->app['config']['upload_path'].'/'.$new_filename);
+                    if($file->move(__DIR__.'/../../../..'.$this->app['config']['upload_path'], $new_filename)){
+                        // TODO. Make resized images here or does they have there own controller?
+                        $image = $this->app['imagine']->open(__DIR__.'/../../../..'.$this->app['config']['upload_path'].'/'.$new_filename);
+                        $size = $image->getSize();
+                        $transformation = new Transformation();
+                        $transformation->resize($size->widen(600));
+                        $image = $transformation->apply($image)->save(__DIR__.'/../../../..'.$this->app['config']['upload_path'].'/'.$new_filename);
 
-                    $post = $this->app['db']->insert('gallery_pictures', array(
-                        'gallery_id' => $this->app['gallery']['id'],
-                        'uid' => $this->app->user['id'],
-                        'url' => $new_filename,
-                        'description' => $data['description'],
-                        'title' => $data['title'],
-                        'created_date' => date("Y-m-d H:i:s")
-                    ));
+                        $post = $this->app['db']->insert('gallery_pictures', array(
+                            'gallery_id' => $this->app['gallery']['id'],
+                            'uid' => $this->app->user['id'],
+                            'url' => $new_filename,
+                            'description' => $data['description'],
+                            'title' => $data['title'],
+                            'created_date' => date("Y-m-d H:i:s")
+                        ));
 
-                    $this->app['session']->set('flash', array(
-                        'type' => 'success',
-                        'short' => $this->app['translator']->trans('new.picture.is.uploaded.short'),
-                        'ext' => $this->app['translator']->trans('new.picture.is.uploaded.description')
-                    ));
+                        $this->app['session']->set('flash', array(
+                            'type' => 'success',
+                            'short' => $this->app['translator']->trans('new.picture.is.uploaded.short'),
+                            'ext' => $this->app['translator']->trans('new.picture.is.uploaded.description')
+                        ));
 
-                    return $this->app->redirect($this->app->url('gallery_picture', array('pictureId' => $this->app['db']->lastInsertId(), 'galleryId' => $this->app['gallery']['id'])));
+                        return $this->app->redirect($this->app->url('gallery_picture', array('pictureId' => $this->app['db']->lastInsertId(), 'galleryId' => $this->app['gallery']['id'])));
+                    }
+                }catch(Imagine\Exception\Exception $e){
+                    $app['monolog']->addError($e->getMessage());
+                    $app->abort(404);
                 }
             }
         }
