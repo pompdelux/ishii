@@ -684,7 +684,7 @@ a.like-button:hover {
     padding: 15px;
     border:2px solid #CCC;
     background: #F5F5F5;
-    float: left;}
+    display: block;}
 .picture .description{float: left; font-size: 12px;}
 .picture .share{text-align: right;}
 
