@@ -62,19 +62,58 @@ class Admin
 
 
         $form = $this->app['form.factory']->createBuilder('form', $gallery)
-            ->add('title', 'text', array('required' => true))
-            ->add('description', 'textarea', array('required' => false))
-            ->add('top_image', 'file', array('required' => false))
-            ->add('top_submit_button', 'text', array('required' => false))
-            ->add('bottom_image', 'file', array('required' => false))
-            ->add('fangate_image', 'file', array('required' => false))
-            ->add('uploadform_image', 'file', array('required' => false))
-            ->add('active', 'checkbox', array('required' => false))
-            ->add('is_open', 'checkbox', array('required' => false))
-            ->add('app_id', 'text', array('required' => false))
-            ->add('secret', 'text', array('required' => false))
-            ->add('page_url', 'text', array('required' => false))
-            ->add('page_id', 'text', array('required' => false))
+            ->add('title', 'text', array(
+                'required' => true,
+                'label' => $this->app['translator']->trans('admin.add.gallery.label.title')
+            ))
+            ->add('description', 'textarea', array(
+                'required' => true,
+                'label' => $this->app['translator']->trans('admin.add.gallery.label.description')
+            ))
+            ->add('top_image', 'file', array(
+                'required' => false,
+                'label' => $this->app['translator']->trans('admin.add.gallery.label.top_image')
+            ))
+            ->add('top_submit_button', 'text', array(
+                'required' => false,
+                'label' => $this->app['translator']->trans('admin.add.gallery.label.top_submit_button')
+            ))
+            ->add('bottom_image', 'file', array(
+                'required' => false,
+                'label' => $this->app['translator']->trans('admin.add.gallery.label.bottom_image')
+            ))
+            ->add('fangate_image', 'file', array(
+                'required' => false,
+                'label' => $this->app['translator']->trans('admin.add.gallery.label.fangate_image')
+            ))
+            ->add('uploadform_image', 'file', array(
+                'required' => false,
+                'label' => $this->app['translator']->trans('admin.add.gallery.label.uploadform_image')
+            ))
+            ->add('active', 'checkbox', array(
+                'required' => false,
+                'label' => $this->app['translator']->trans('admin.add.gallery.label.active')
+            ))
+            ->add('is_open', 'checkbox', array(
+                'required' => false,
+                'label' => $this->app['translator']->trans('admin.add.gallery.label.is_open')
+            ))
+            ->add('app_id', 'text', array(
+                'required' => true,
+                'label' => $this->app['translator']->trans('admin.add.gallery.label.app_id')
+            ))
+            ->add('secret', 'text', array(
+                'required' => true,
+                'label' => $this->app['translator']->trans('admin.add.gallery.label.secret')
+            ))
+            ->add('page_url', 'text', array(
+                'required' => true,
+                'label' => $this->app['translator']->trans('admin.add.gallery.label.page_url')
+            ))
+            ->add('page_id', 'text', array(
+                'required' => true,
+                'label' => $this->app['translator']->trans('admin.add.gallery.label.page_id')
+            ))
             ->getForm()
         ;
         if ('POST' == $request->getMethod()) {

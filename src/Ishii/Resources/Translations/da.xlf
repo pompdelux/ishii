@@ -173,6 +173,112 @@
                 <source>admin.new.picture.uploaded.failed.description</source>
                 <target>Der skete en fejl med at uploade et billede. Prøv igen.</target>
             </trans-unit>
+            <trans-unit id="admin.add.gallery.label.title">
+                <source>admin.add.gallery.label.title</source>
+                <target>Konkurrencens titel. (*)</target>
+            </trans-unit>
+            <trans-unit id="admin.add.gallery.description.title">
+                <source>admin.add.gallery.description.title</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="admin.add.gallery.label.description">
+                <source>admin.add.gallery.label.description</source>
+                <target>En kort beskrivelse af konkurrencen. (*)</target>
+            </trans-unit>
+            <trans-unit id="admin.add.gallery.description.description">
+                <source>admin.add.gallery.description.description</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="admin.add.gallery.label.top_image">
+                <source>admin.add.gallery.label.top_image</source>
+                <target>Top Billede</target>
+            </trans-unit>
+            <trans-unit id="admin.add.gallery.description.top_image">
+                <source>admin.add.gallery.description.top_image</source>
+                <target>Et eventuelt billede som vises over billede-oversigten. Bruges som link til deltag siden</target>
+            </trans-unit>
+            <trans-unit id="admin.add.gallery.label.top_submit_button">
+                <source>admin.add.gallery.label.top_submit_button</source>
+                <target>Deltag Knap</target>
+            </trans-unit>
+            <trans-unit id="admin.add.gallery.description.top_submit_button">
+                <source>admin.add.gallery.description.top_submit_button</source>
+                <target>Der kan tilføjes en knap(html/css) her som bruges som alternativ "Deltag" knap</target>
+            </trans-unit>
+            <trans-unit id="admin.add.gallery.label.bottom_image">
+                <source>admin.add.gallery.label.bottom_image</source>
+                <target>Bund Billede</target>
+            </trans-unit>
+            <trans-unit id="admin.add.gallery.description.bottom_image">
+                <source>admin.add.gallery.description.bottom_image</source>
+                <target>Et eventuelt billede som vises i bunden af alle sider. Kan være konkurrencebetingelser</target>
+            </trans-unit>
+            <trans-unit id="admin.add.gallery.label.fangate_image">
+                <source>admin.add.gallery.label.fangate_image</source>
+                <target>FanGate</target>
+            </trans-unit>
+            <trans-unit id="admin.add.gallery.description.fangate_image">
+                <source>admin.add.gallery.description.fangate_image</source>
+                <target>Billede til FanGate. Virker bedst som stor billede med 810px bred</target>
+            </trans-unit>
+            <trans-unit id="admin.add.gallery.label.uploadform_image">
+                <source>admin.add.gallery.label.uploadform_image</source>
+                <target>Top Billede(Deltag)</target>
+            </trans-unit>
+            <trans-unit id="admin.add.gallery.description.uploadform_image">
+                <source>admin.add.gallery.description.uploadform_image</source>
+                <target>Et eventuelt billede som vises øverst på Deltag siden</target>
+            </trans-unit>
+            <trans-unit id="admin.add.gallery.label.active">
+                <source>admin.add.gallery.label.active</source>
+                <target>Aktiv?</target>
+            </trans-unit>
+            <trans-unit id="admin.add.gallery.description.active">
+                <source>admin.add.gallery.description.active</source>
+                <target>Skal konkurrencen være synlig for omverdenen</target>
+            </trans-unit>
+            <trans-unit id="admin.add.gallery.label.is_open">
+                <source>admin.add.gallery.label.is_open</source>
+                <target>Åben?</target>
+            </trans-unit>
+            <trans-unit id="admin.add.gallery.description.is_open">
+                <source>admin.add.gallery.description.is_open</source>
+                <target>Skal det være muligt at deltage i konkurrencen</target>
+            </trans-unit>
+            <trans-unit id="admin.add.gallery.label.app_id">
+                <source>admin.add.gallery.label.app_id</source>
+                <target>Facebook Applikations ID (*)</target>
+            </trans-unit>
+            <trans-unit id="admin.add.gallery.description.app_id">
+                <source>admin.add.gallery.description.app_id</source>
+                <target>ID for den aktive iframe, kan findes i iframe url på FB eks.: 369414099809404</target>
+            </trans-unit>
+            <trans-unit id="admin.add.gallery.label.secret">
+                <source>admin.add.gallery.label.secret</source>
+                <target>Facebook Applikations Secret (*)</target>
+            </trans-unit>
+            <trans-unit id="admin.add.gallery.description.secret">
+                <source>admin.add.gallery.description.secret</source>
+                <target><![CDATA[
+                Denne kan findes i administrationen for den pågældende applikation på <a href="http://dev.facebook.com/apps" target="_blank">dev.facebook.com</a>
+                ]]></target>
+            </trans-unit>
+            <trans-unit id="admin.add.gallery.label.page_url">
+                <source>admin.add.gallery.label.page_url</source>
+                <target>Facebook Tab URL (*)</target>
+            </trans-unit>
+            <trans-unit id="admin.add.gallery.description.page_url">
+                <source>admin.add.gallery.description.page_url</source>
+                <target>URL for den pågældende applikation på siden</target>
+            </trans-unit>
+            <trans-unit id="admin.add.gallery.label.page_id">
+                <source>admin.add.gallery.label.page_id</source>
+                <target>Facebook Side ID (*)</target>
+            </trans-unit>
+            <trans-unit id="admin.add.gallery.description.page_id">
+                <source>admin.add.gallery.description.page_id</source>
+                <target>Denne kan findes under indstillinger af siden, derefter er den gemt i URL. Eks.:268059699909582</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
