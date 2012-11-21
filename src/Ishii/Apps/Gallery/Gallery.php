@@ -125,7 +125,6 @@ class Gallery
             if ($form->isValid()) {
                 try{
                     $this->app->user = $this->app['facebook']->api('/me');
-                    die(print_r($this->app->user));
                 }catch(FacebookApiException $e){
                     $this->app['monolog']->addError($e->getMessage());
                     $this->app['monolog']->addError(debug_backtrace($e));
