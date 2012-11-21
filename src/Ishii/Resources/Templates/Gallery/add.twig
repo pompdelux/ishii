@@ -13,7 +13,7 @@
   <div class="row">
     <form action="#" method="post" id="add-picture" class="eight columns alpha" {{ form_enctype(form) }}>
       <div class="row">
-      {{ form_widget(form) }}
+      {{ form_rest(form) }}
       </div>
       <div class="row">
         {% if page.user is null %}
