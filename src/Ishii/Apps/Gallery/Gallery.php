@@ -125,6 +125,7 @@ class Gallery
             if ($form->isValid()) {
                 try{
                     $this->app->user = $this->app['facebook']->api('/me');
+                    die(print_r($this->app->user));
                 }catch(FacebookApiException $e){
                     $this->app['monolog']->addError($e->getMessage());
                     $this->app['monolog']->addError(debug_backtrace($e));
@@ -196,7 +197,7 @@ class Gallery
         return $this->app->render("Gallery/add.twig", array(
             'form' => $form->createView(),
             'galleryId' => $galleryId
-        ));
+        ), new Response('',200,array('P3P: CP' => 'NOI ADM DEV COM NAV OUR STP'))); // Old browser fuckbug. Ie in a nutshell!
     }
 
 
