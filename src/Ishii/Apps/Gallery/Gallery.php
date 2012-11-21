@@ -138,7 +138,7 @@ class Gallery
                 $this->app['page']->setUser(array($this->app->user));
                 
                 $data = $form->getData();
-                if($data['uuid'] !== $this->app->user)
+                if($this->app['debug'] && $data['uuid'] !== $this->app->user['id'])
                     _log('Error: two different uuids form_uuid='.$data['uuid'].' uid='.$this->app->user['id']);
                 $db_user = $this->app['db']->fetchAssoc("SELECT * FROM gallery_users WHERE uid = ? ", array((int) $this->app->user['id']));
                 if(!$db_user){
