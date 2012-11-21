@@ -44,7 +44,7 @@ class Application extends SilexApplication
                 'http' => true,
                 'users' => array(
                     //'admin' => array('ROLE_ADMIN', '5FZ2Z8QIkA7UTZ4BYkoC+GsReLf569mSKDsfods6LYQ8t+a8EW9oaircfMpmaLbPBh4FOBiiFyLfuZmTSUwzZg=='), //foo
-                    'admin' => array('ROLE_ADMIN', 'Hrguut2E0wTOtbQvVvVUOhpAHjIvXjss9G2mV7hPYcFbmSBqrtIWBeGwT2Cal4ErwKh7qtHcvSgfiOJewRW2/g=='),
+                    'admin' => array('ROLE_ADMIN', 'bVIS8V2EpwUfMoPcULfMn9n41X4i8ycyjiOL3h+FvSPJTkJBvvVdBV1RvMwv/loqGK3JjQ6TUVtWGScbK0pcMA=='),
                 )
             ),
         );
