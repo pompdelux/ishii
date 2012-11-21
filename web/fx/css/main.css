@@ -690,7 +690,7 @@ a.like-button:hover {
     height: auto;
 }
 .picture .description{float: left; font-size: 12px;}
-.picture .share{text-align: right;}
+.picture .share{}
 
 
 /***** UPLOAD PICTURE *****/
