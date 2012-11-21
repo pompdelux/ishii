@@ -49,8 +49,13 @@ class Controller implements ControllerProviderInterface
             $this->app['facebook']->setAppId($this->app['gallery']['app_id']);
             $this->app['facebook']->setApiSecret($this->app['gallery']['secret']);
 
-            //Get the signed request from facebook.
-            $signed_request = $this->app['facebook']->getSignedRequest();
+            try{
+                //Get the signed request from facebook.
+                $signed_request = $this->app['facebook']->getSignedRequest();
+            }catch(Exception $e){
+                $this->app['monolog']->addError($e->getMessage());
+                $this->app->abort(500);
+            }
 
             if(isset($signed_request['page'])){
                 if($signed_request['page']['id'] != $this->app['gallery']['page_id']){
