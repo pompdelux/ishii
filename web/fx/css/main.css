@@ -606,7 +606,10 @@ a.like-button {
     line-height: normal;
     display: inline-block;
     margin-top: 1px;
-    vertical-align: top;}
+    vertical-align: top;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;}
 .like-button:hover,
 a.like-button:hover {
     border-color: #9DACCE;}
