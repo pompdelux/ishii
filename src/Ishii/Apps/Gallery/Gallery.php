@@ -127,6 +127,7 @@ class Gallery
                     $this->app->user = $this->app['facebook']->api('/me');
                 }catch(Exception $e){
                     $this->app['monolog']->addError($e->getMessage());
+                    $this->app['monolog']->addError(debug_backtrace($e));
                     $this->app->abort(500);
                 }
 
