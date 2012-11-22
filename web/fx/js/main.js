@@ -51,26 +51,42 @@ $(document).ready(function () {
     $('#add-picture #form_description').keyup(function(e){
         $('#preview p').text($(this).val());
     });
-    $('#add-picture #form_picture').fileReader({
-        id : 'fileReaderSWFObject',
-        filereader : '/fx/js/vendor/filereader/filereader.swf',
-        expressInstall : '/fx/js/vendor/swfobject/expressInstall.swf',
-        debugMode : true,
-        callback : function(){}
-    });
-    $('#add-picture #form_picture').on('change',function(e){
-        //if (this.files && this.files[0]) {
-        if (e.target.files[0]) {
-            var reader = new FileReader();
 
-            reader.onload = function (e) {
-                $('#preview img')
-                    .attr('src', e.target.result).show();
-            };
+    if(FileAPI != 'undefined'){
+        var input = document.getElementById('form_picture');
+        var preview = document.getElementById('preview');
+        FileAPI.event.on(input, 'change', function (evt){
+            var files = FileAPI.getFiles(evt.target); // or FileAPI.getFiles(evt)
+            // do preview
+            var imageList = FileAPI.filter(files, function (file){ return /image/.test(file.type); });
+            FileAPI.each(imageList, function (imageFile){
+                FileAPI.Image(imageFile)
+                    .preview(350)
+                    .get(function (err, image){
+                        if( err ){
+                            // ...
+                        }
+                        else {
+                            preview.appendChild(image);
+                        }
+                    })
+                ;
+            });
+        });
+    }
+    // $('#add-picture #form_picture').on('change',function(e){
+    //     //if (this.files && this.files[0]) {
+    //     if (e.target.files[0]) {
+    //         var reader = new FileReader();
 
-            reader.readAsDataURL(e.target.files[0]);
-        }
-    });
+    //         reader.onload = function (e) {
+    //             $('#preview img')
+    //                 .attr('src', e.target.result).show();
+    //         };
+
+    //         reader.readAsDataURL(e.target.files[0]);
+    //     }
+    // });
 
     $('.facebook-share').click(function(e){
         e.preventDefault();
