@@ -51,7 +51,7 @@ $(document).ready(function () {
     $('#add-picture #form_description').keyup(function(e){
         $('#preview p').text($(this).val());
     });
-    if(!window.FileReader){
+    if(jQuery.isFunction(jQuery.fn.filereader)){
         $('#add-picture #form_picture').fileReader({
             id : 'fileReaderSWFObject',
             filereader : '/fx/js/vendor/filereader/filereader.swf',
