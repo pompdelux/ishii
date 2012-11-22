@@ -18,15 +18,15 @@ $(document).ready(function () {
         if($('#form_picture').val() && $('#form_accept_conditions').is(':checked')){
             FB.login(function(response) {
                 if (response.authResponse) {
-                    console.log('Welcome!  Fetching your information.... ');
+                    //console.log('Welcome!  Fetching your information.... ');
                     FB.api('/me', function(response) {
-                        console.log('Good to see you, ' + response.name + '.');
+                        //console.log('Good to see you, ' + response.name + '.');
                         $('#form_uuid').val(response.id);
                         $this.attr("disabled", "disabled");
                         $('#add-picture').submit();
                     });
                 } else {
-                    console.log('User cancelled login or did not fully authorize.');
+                    //console.log('User cancelled login or did not fully authorize.');
                 }
             }, {scope: 'email'});
         }else{ // Not all fields are filled
@@ -51,7 +51,14 @@ $(document).ready(function () {
     $('#add-picture #form_description').keyup(function(e){
         $('#preview p').text($(this).val());
     });
-    $('#add-picture #form_picture').change(function(e){
+    $('#add-picture #form_picture').fileReader({
+        id : 'fileReaderSWFObject',
+        filereader : 'vendor/filereader/filereader.swf',
+        expressInstall : 'vendor/swfobject/expressInstall.swf',
+        debugMode : true,
+        callback : function(){}
+    });
+    $('#add-picture #form_picture').on('change',function(e){
         if (this.files && this.files[0]) {
             var reader = new FileReader();
 
