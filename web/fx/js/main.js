@@ -59,7 +59,8 @@ $(document).ready(function () {
         callback : function(){}
     });
     $('#add-picture #form_picture').on('change',function(e){
-        if (this.files && this.files[0]) {
+        //if (this.files && this.files[0]) {
+        if (e.target.files[0]) {
             var reader = new FileReader();
 
             reader.onload = function (e) {
@@ -67,7 +68,7 @@ $(document).ready(function () {
                     .attr('src', e.target.result).show();
             };
 
-            reader.readAsDataURL(this.files[0]);
+            reader.readAsDataURL(e.target.files[0]);
         }
     });
 
