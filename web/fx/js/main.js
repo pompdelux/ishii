@@ -56,7 +56,7 @@ $(document).ready(function () {
         var input = document.getElementById('form_picture');
         var preview = document.getElementById('preview');
         FileAPI.event.on(input, 'change', function (evt){
-            FileAPI.readAsImage(FileAPI.getFiles(evt.target)[0], function(evt){
+            FileAPI.readAsDataURL(FileAPI.getFiles(evt.target)[0], function(evt){
                 $('#preview').append(evt.result);
             });
             // var files = FileAPI.getFiles(evt.target); // or FileAPI.getFiles(evt)
