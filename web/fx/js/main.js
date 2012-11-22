@@ -56,24 +56,21 @@ $(document).ready(function () {
         var input = document.getElementById('form_picture');
         var preview = document.getElementById('preview');
         FileAPI.event.on(input, 'change', function (evt){
-            FileAPI.readAsImage(FileAPI.getFiles(evt.target)[0], function(evt){
-                preview.appendChild(evt.result);
+            var files = FileAPI.getFiles(evt.target); // or FileAPI.getFiles(evt)
+            // do preview
+            var imageList = FileAPI.filter(files, function (file){ return /image/.test(file.type); });
+            FileAPI.each(imageList, function (imageFile){
+                FileAPI.Image(imageFile)
+                    .get(function (err, image){
+                        if( err ){
+                            // ...
+                        }
+                        else {
+                            preview.appendChild(image);
+                        }
+                    })
+                ;
             });
-            // var files = FileAPI.getFiles(evt.target); // or FileAPI.getFiles(evt)
-            // // do preview
-            // var imageList = FileAPI.filter(files, function (file){ return /image/.test(file.type); });
-            // FileAPI.each(imageList, function (imageFile){
-            //     FileAPI.Image(imageFile)
-            //         .get(function (err, image){
-            //             if( err ){
-            //                 // ...
-            //             }
-            //             else {
-            //                 preview.appendChild(image);
-            //             }
-            //         })
-            //     ;
-            // });
         });
     }
     // $('#add-picture #form_picture').on('change',function(e){
