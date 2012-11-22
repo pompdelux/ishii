@@ -53,8 +53,8 @@ $(document).ready(function () {
     });
     $('#add-picture #form_picture').fileReader({
         id : 'fileReaderSWFObject',
-        filereader : 'vendor/filereader/filereader.swf',
-        expressInstall : 'vendor/swfobject/expressInstall.swf',
+        filereader : 'fx/js/vendor/filereader/filereader.swf',
+        expressInstall : 'fx/js/vendor/swfobject/expressInstall.swf',
         debugMode : true,
         callback : function(){}
     });
