@@ -51,13 +51,15 @@ $(document).ready(function () {
     $('#add-picture #form_description').keyup(function(e){
         $('#preview p').text($(this).val());
     });
-    $('#add-picture #form_picture').fileReader({
-        id : 'fileReaderSWFObject',
-        filereader : '/fx/js/vendor/filereader/filereader.swf',
-        expressInstall : '/fx/js/vendor/swfobject/expressInstall.swf',
-        debugMode : true,
-        callback : function(){}
-    });
+    if(!window.FileReader){
+        $('#add-picture #form_picture').fileReader({
+            id : 'fileReaderSWFObject',
+            filereader : '/fx/js/vendor/filereader/filereader.swf',
+            expressInstall : '/fx/js/vendor/swfobject/expressInstall.swf',
+            debugMode : true,
+            callback : function(){}
+        });
+    }
     $('#add-picture #form_picture').on('change',function(e){
         //if (this.files && this.files[0]) {
         if (e.target.files[0]) {
