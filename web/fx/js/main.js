@@ -61,7 +61,6 @@ $(document).ready(function () {
             var imageList = FileAPI.filter(files, function (file){ return /image/.test(file.type); });
             FileAPI.each(imageList, function (imageFile){
                 FileAPI.Image(imageFile)
-                    .preview(350)
                     .get(function (err, image){
                         if( err ){
                             // ...
