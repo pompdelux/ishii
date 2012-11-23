@@ -62,26 +62,12 @@ $(document).ready(function () {
             },
             'onUploadSuccess' : function(file, data, response) {
                 if(response){
-                    $('#preview img')
-                        .attr('src', '/uploads/tmp/'+data).show();
+                    $('#preview img').attr('src', '/uploads/tmp/'+data).show();
                     $('#form_tmp_file').val(data);
                 }
             }
         });
     }
-    // $('#form_picture').on('change',function(e){
-    //     //if (this.files && this.files[0]) {
-    //     if (e.target.files[0]) {
-    //         var reader = new FileReader();
-
-    //         reader.onload = function (e) {
-    //             $('#preview img')
-    //                 .attr('src', e.target.result).show();
-    //         };
-
-    //         reader.readAsDataURL(e.target.files[0]);
-    //     }
-    // });
 
     $('.facebook-share').click(function(e){
         e.preventDefault();
