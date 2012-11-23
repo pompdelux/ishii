@@ -2,6 +2,7 @@
 
 use Ishii\Application;
 use Imagine\Filter;
+use Symfony\Component\HttpFoundation\Request;
 
 function _log($data, $back = 0) {
     $bt = debug_backtrace();
@@ -114,5 +115,17 @@ $app->get('/thumb/{file}/{dimension}', function($file, $dimension) use ($app){
 
     return $response;
 })->bind('thumb')->value('dimension', 200);
+
+/**
+ * Image uploader
+ *
+ * @return JSON                 json object
+ */
+$app->get('/upload', function(Request $resuest) use ($app){
+    return $this->app->json(array(
+        'status' => true,
+        'message' => 'Billede er blevet uploaded'
+    ));
+})->bind('upload');
 
 return $app;

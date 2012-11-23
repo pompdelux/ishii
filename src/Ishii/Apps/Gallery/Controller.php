@@ -92,10 +92,6 @@ class Controller implements ControllerProviderInterface
         }
 
         $gallery = $this->gallery;
-        
-        $controller->match('/upload-picture', function (Application $app, Request $request) use ($gallery) {
-            return $gallery->upload_picture($request);
-        })->bind('gallery_upload');
 
         $controller->match('/{galleryId}/{offset}', function (Application $app, Request $request, $galleryId, $offset) use ($gallery) {
             return $gallery->gallery($request, $galleryId, $offset);
