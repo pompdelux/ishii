@@ -203,7 +203,7 @@
             </trans-unit>
             <trans-unit id="admin.add.gallery.description.top_submit_button">
                 <source>admin.add.gallery.description.top_submit_button</source>
-                <target>Der kan tilføjes en knap(html/css) her som bruges som alternativ "Deltag" knap</target>
+                <target>Der kan tilføjes en knap(html/css) her som bruges som alternativ "Deltag" knap. Denne kan positioneres over dit Top billede hvis dette øsnkes.</target>
             </trans-unit>
             <trans-unit id="admin.add.gallery.label.bottom_image">
                 <source>admin.add.gallery.label.bottom_image</source>

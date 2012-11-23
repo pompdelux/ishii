@@ -57,6 +57,7 @@ $(document).ready(function () {
             'swf'       : '/fx/js/vendor/uploadify/uploadify.swf',
             'uploader'  : base_url+'index.php/upload',
             'multi'     : false,
+            'buttonText': 'Find billede',
             'onFallback' : function() {
                 alert('Flash was not detected.');
             },
