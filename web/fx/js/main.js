@@ -58,6 +58,7 @@ $(document).ready(function () {
             'uploader'  : base_url+'index.php/upload',
             'multi'     : false,
             'buttonText': 'Find billede',
+            'fileSizeLimit' : '2MB',
             'onFallback' : function() {
                 alert('Flash was not detected.');
             },
