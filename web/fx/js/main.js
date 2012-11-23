@@ -57,7 +57,6 @@ $(document).ready(function () {
             'swf'       : '/fx/js/vendor/uploadify/uploadify.swf',
             'uploader'  : base_url+'index.php/upload',
             'multi'     : false,
-            'debug'     : true,
             'onFallback' : function() {
                 alert('Flash was not detected.');
             },
