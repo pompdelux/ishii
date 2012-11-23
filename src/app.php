@@ -121,11 +121,32 @@ $app->get('/thumb/{file}/{dimension}', function($file, $dimension) use ($app){
  *
  * @return JSON                 json object
  */
-$app->match('/upload', function(Request $resuest) use ($app){
-    return $app->json(array(
-        'status' => true,
-        'message' => 'Billede er blevet uploaded'
-    ));
+$app->match('/upload', function(Request $request) use ($app){
+    $file = $request->files->get('Filedata');
+                    
+    $new_filename = $file['name'];
+    $new_filename .= '-'.time();
+    $new_filename .= ($file->guessExtension())?'.'.$file->guessExtension():'.bin';
+
+    if(!is_dir(__DIR__.'/..'.$app['config']['upload_path'].'/tmp/'))
+        mkdir(__DIR__.'/..'.$app['config']['upload_path'].'/tmp/', 0777);
+    if($file->move(__DIR__.'/..'.$this->app['config']['upload_path'].'/tmp/', $new_filename)){
+        $image = $this->app['imagine']->open(__DIR__.'/..'.$this->app['config']['upload_path'].'/tmp/'.$new_filename);
+        $size = $image->getSize();
+        $transformation = new Transformation();
+        $transformation->resize($size->widen(600));
+        $image = $transformation->apply($image)->save(__DIR__.'/..'.$this->app['config']['upload_path'].'/tmp/'.$new_filename);
+
+        return $app->json(array(
+            'status' => true,
+            'message' => 'Billede er blevet uploaded'
+        ));
+    }else{
+        return $app->json(array(
+            'status' => false,
+            'message' => 'Der skete en fejl'
+        ));
+    }
 })->bind('upload');
 
 return $app;
