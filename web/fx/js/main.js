@@ -54,7 +54,7 @@ $(document).ready(function () {
 
     $('#form_picture').uploadify({
         'swf'       : '/fx/js/vendor/uploadify/uploadify.swf',
-        'uploader'  : base_url+'/gallery/upload-picture',
+        'uploader'  : base_url+'index.php/gallery/upload-picture',
         'multi'     : false,
         'debug'     : true,
         'onFallback' : function() {
