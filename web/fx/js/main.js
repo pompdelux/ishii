@@ -52,22 +52,24 @@ $(document).ready(function () {
         $('#preview p').text($(this).val());
     });
 
-    $('#form_picture').uploadify({
-        'swf'       : '/fx/js/vendor/uploadify/uploadify.swf',
-        'uploader'  : base_url+'index.php/upload',
-        'multi'     : false,
-        'debug'     : true,
-        'onFallback' : function() {
-            alert('Flash was not detected.');
-        },
-        'onUploadSuccess' : function(file, data, response) {
-            if(response){
-                $('#preview img')
-                    .attr('src', '/uploads/tmp/'+data).show();
-                $('#form_tmp_file').val(data);
+    if(jQuery.isFunction(jQuery.fn.uploadify)){
+        $('#form_picture').uploadify({
+            'swf'       : '/fx/js/vendor/uploadify/uploadify.swf',
+            'uploader'  : base_url+'index.php/upload',
+            'multi'     : false,
+            'debug'     : true,
+            'onFallback' : function() {
+                alert('Flash was not detected.');
+            },
+            'onUploadSuccess' : function(file, data, response) {
+                if(response){
+                    $('#preview img')
+                        .attr('src', '/uploads/tmp/'+data).show();
+                    $('#form_tmp_file').val(data);
+                }
             }
-        }
-    });
+        });
+    }
     // $('#form_picture').on('change',function(e){
     //     //if (this.files && this.files[0]) {
     //     if (e.target.files[0]) {
