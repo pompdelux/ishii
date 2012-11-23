@@ -10,6 +10,7 @@ use Silex\Application\UrlGeneratorTrait;
 use Imagine\Filter\Transformation;
 use Imagine\Image\Box;
 use Symfony\Component\Validator\Constraints as Assert;
+use Tobiassjosten\Silex\Provider\FacebookServiceProvider;
 
 class Gallery
 {
