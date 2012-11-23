@@ -59,8 +59,14 @@ $(document).ready(function () {
         'debug'     : true,
         'onFallback' : function() {
             alert('Flash was not detected.');
+        },
+        'onUploadSuccess' : function(file, data, response) {
+            if(response.status){
+                alert('The file ' + file.name + ' was successfully uploaded with a response of ' + response.data + ':' + data);
+                $('#preview img')
+                    .attr('src', response.data).show();
+            }
         }
-        // Put your options here
     });
     // $('#form_picture').on('change',function(e){
     //     //if (this.files && this.files[0]) {
