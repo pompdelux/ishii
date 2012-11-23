@@ -4,7 +4,7 @@
 <!--[if IE 8]>    <html class="no-js ie8 oldie" lang="{{ app.locale }}" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://ogp.me/ns/fb#"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="{{ app.locale }}" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://ogp.me/ns/fb#"> <!--<![endif]-->
 <head>
-<title>{{ page.browser_title|default('') }} {{ app.translator.trans('default.browser.title') }}</title>
+<title>{{ page.browser_title|default(app.translator.trans('default.browser.title')) }}</title>
 
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
