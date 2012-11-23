@@ -190,6 +190,8 @@ class Gallery
                         ));
 
                         return $this->app->redirect($this->app->url('gallery_picture', array('pictureId' => $this->app['db']->lastInsertId(), 'galleryId' => $this->app['gallery']['id'])));
+                    }else{
+                        $this->app['monolog']->addInfo('ab: File could not be moved?');
                     }
                 }catch(Imagine\Exception\Exception $e){
                     $this->app['monolog']->addError($e->getMessage());
