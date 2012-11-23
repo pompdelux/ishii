@@ -11,7 +11,7 @@ $(document).ready(function () {
         }
     });
     // Facebook Me... :-)
-    $('#add-picture button.submit').click(function(e){
+    $('#submit-picture').click(function(e){
         e.preventDefault();
         $form = $('#add-picture');
         $this = $(this);
