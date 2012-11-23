@@ -51,30 +51,30 @@ $(document).ready(function () {
     $('#add-picture #form_description').keyup(function(e){
         $('#preview p').text($(this).val());
     });
-    if(jQuery.isFunction(jQuery.fn.fileReader)){
-        $('#form_picture').fileReader({
-            id : 'fileReaderSWFObject',
-            filereader : '/fx/js/vendor/filereader/filereader.swf',
-            expressInstall : '/fx/js/vendor/swfobject/expressInstall.swf',
-            debugMode : true,
-            callback : function(e){
-                console.log(e);
-            }
-        });
-    }
-    $('#form_picture').on('change',function(e){
-        //if (this.files && this.files[0]) {
-        if (e.target.files[0]) {
-            var reader = new FileReader();
 
-            reader.onload = function (e) {
-                $('#preview img')
-                    .attr('src', e.target.result).show();
-            };
-
-            reader.readAsDataURL(e.target.files[0]);
+    $('#form_picture').uploadify({
+        'swf'       : '/fx/js/vendor/uploadify/uploadify.swf',
+        'uploader'  : base_url+'/gallery/upload-picture',
+        'multi'     : false,
+        'debug'     : true,
+        'onFallback' : function() {
+            alert('Flash was not detected.');
         }
+        // Put your options here
     });
+    // $('#form_picture').on('change',function(e){
+    //     //if (this.files && this.files[0]) {
+    //     if (e.target.files[0]) {
+    //         var reader = new FileReader();
+
+    //         reader.onload = function (e) {
+    //             $('#preview img')
+    //                 .attr('src', e.target.result).show();
+    //         };
+
+    //         reader.readAsDataURL(e.target.files[0]);
+    //     }
+    // });
 
     $('.facebook-share').click(function(e){
         e.preventDefault();

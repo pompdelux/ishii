@@ -29,14 +29,14 @@
 
 <link href="//fonts.googleapis.com/css?family=Merriweather:400,700,900" rel="stylesheet" type="text/css">
 
+{% block stylesheets %}
+{% endblock %}
 <link rel="stylesheet" href="{{ base_url }}fx/css/normalize.css">
 <link rel="stylesheet" href="{{ base_url }}fx/css/main.css">
 <link rel="stylesheet" href="{{ base_url }}fx/css/skeleton-810.css">
 
 <script type="text/javascript" src="{{ base_url }}fx/js/vendor/modernizr-2.6.2.min.js"></script>
 
-{% block javascript %}
-{% endblock %}
 </head>
 {% if page.gallery.id is defined %}
 <body class="gallery-{{ page.gallery.id }}">
@@ -102,6 +102,8 @@
 <script>window.jQuery || document.write('<script src="{{ base_url }}fx/js/vendor/jquery-1.8.2.min.js"><\/script>')</script>
 <script type="text/javascript" src="http://code.jquery.com/ui/1.9.1/jquery-ui.min.js"></script>
 
+{% block javascript %}
+{% endblock %}
 
 <script>
 var base_url = '{{ base_url }}';

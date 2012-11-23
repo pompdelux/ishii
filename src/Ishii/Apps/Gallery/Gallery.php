@@ -201,6 +201,21 @@ class Gallery
 
 
     /**
+     * Uploads a picture and returns json response
+     *
+     * @param  Request  $request    Request object
+     * @return Response             Response object
+     */
+    public function upload_picture(Request $request)
+    {
+        return $this->app->json(array(
+            'status' => true,
+            'message' => 'Billede er blevet uploaded'
+        ));
+    }
+
+
+    /**
      * view of a picture in a gallery
      *
      * @param  Request  $request    Request object

@@ -111,6 +111,10 @@ class Controller implements ControllerProviderInterface
             return $gallery->index($request);
         })->bind('gallery_random');
 
+        $controller->post('/upload-picture', function (Application $app, Request $request) use ($gallery) {
+            return $gallery->upload_picture($request);
+        })->bind('gallery_upload');
+
         $controller->get('/about', function (Application $app, Request $request) use ($gallery) {
             return $gallery->index($request);
         })->bind('gallery_about');
