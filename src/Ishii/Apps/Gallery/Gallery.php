@@ -131,7 +131,7 @@ class Gallery
                 }catch(FacebookApiException $e){
                     $this->app['monolog']->addError($e->getMessage());
                     $this->app['monolog']->addError(debug_backtrace($e));
-                    $this->app->abort(500 , 'Facebook');
+                    return $this->app->redirect($this->app['facebook']->getLoginUrl());
                 }
 
                 if(!$this->app->user AND !$this->app['debug']){
