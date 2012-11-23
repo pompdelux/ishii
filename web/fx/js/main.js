@@ -57,12 +57,14 @@ $(document).ready(function () {
             filereader : '/fx/js/vendor/filereader/filereader.swf',
             expressInstall : '/fx/js/vendor/swfobject/expressInstall.swf',
             debugMode : true,
-            callback : function(){}
+            callback : function(e){
+                console.log(e);
+            }
         });
     }
     $('#form_picture').on('change',function(e){
         //if (this.files && this.files[0]) {
-        if (e.target.files[0]) {
+        if (e.e.target.files[0]) {
             var reader = new FileReader();
 
             reader.onload = function (e) {
