@@ -130,12 +130,12 @@ $app->match('/upload', function(Request $request) use ($app){
 
     if(!is_dir(__DIR__.'/..'.$app['config']['upload_path'].'/tmp/'))
         mkdir(__DIR__.'/..'.$app['config']['upload_path'].'/tmp/', 0777);
-    if($file->move(__DIR__.'/..'.$this->app['config']['upload_path'].'/tmp/', $new_filename)){
-        $image = $this->app['imagine']->open(__DIR__.'/..'.$this->app['config']['upload_path'].'/tmp/'.$new_filename);
+    if($file->move(__DIR__.'/..'.$app['config']['upload_path'].'/tmp/', $new_filename)){
+        $image = $app['imagine']->open(__DIR__.'/..'.$app['config']['upload_path'].'/tmp/'.$new_filename);
         $size = $image->getSize();
-        $transformation = new Transformation();
+        $transformation = new Filter\Transformation();
         $transformation->resize($size->widen(600));
-        $image = $transformation->apply($image)->save(__DIR__.'/..'.$this->app['config']['upload_path'].'/tmp/'.$new_filename);
+        $image = $transformation->apply($image)->save(__DIR__.'/..'.$app['config']['upload_path'].'/tmp/'.$new_filename);
 
         return $app->json(array(
             'status' => true,
