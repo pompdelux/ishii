@@ -505,23 +505,21 @@ input[type="button"] {
     background: #eee -o-linear-gradient(top, rgba(255,255,255,.2) 0%,rgba(0,0,0,.2) 100%); /* Opera11.10+ */
     background: #eee -ms-linear-gradient(top, rgba(255,255,255,.2) 0%,rgba(0,0,0,.2) 100%); /* IE10+ */
     background: #eee linear-gradient(top, rgba(255,255,255,.2) 0%,rgba(0,0,0,.2) 100%); /* W3C */
-  border: 1px solid #aaa;
-  border-top: 1px solid #ccc;
-  border-left: 1px solid #ccc;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
-  color: #444;
   display: inline-block;
-  font-size: 11px;
-  font-weight: bold;
   text-decoration: none;
-  text-shadow: 0 1px rgba(255, 255, 255, .75);
   cursor: pointer;
   margin-bottom: 20px;
   line-height: normal;
   padding: 8px 10px;
-  font-family: "Georgia", "Times New Roman", serif; }
+  font-family: "Georgia", "Times New Roman", serif; 
+  border: none;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  color: white;
+  text-shadow: none;
+  font-size: 21px;
+  font-weight: bold;}
 
 .button:hover,
 button:hover,
@@ -569,15 +567,7 @@ button.orange,
 input[type="submit"].orange,
 input[type="reset"].orange,
 input[type="button"].orange {
-    background: #ef7c5f;
-    border: none;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
-    color: white;
-    text-shadow: none;
-    font-size: 21px;
-    font-weight: bold;}
+    background: #ef7c5f;}
 .button.orange:hover,
 button.orange:hover,
 input[type="submit"].orange:hover,

@@ -279,6 +279,22 @@
                 <source>admin.add.gallery.description.page_id</source>
                 <target>Denne kan findes under indstillinger af siden, derefter er den gemt i URL. Eks.:268059699909582</target>
             </trans-unit>
+            <trans-unit id="admin.add.gallery.label.button_color">
+                <source>admin.add.gallery.label.button_color</source>
+                <target>Baggrundsfarve til knapper</target>
+            </trans-unit>
+            <trans-unit id="admin.add.gallery.description.button_color">
+                <source>admin.add.gallery.description.button_color</source>
+                <target>Ex. black, white, #CCC osv.</target>
+            </trans-unit>
+            <trans-unit id="admin.add.gallery.label.button_color_hover">
+                <source>admin.add.gallery.label.button_color_hover</source>
+                <target>Baggrundsfarvetil knapper ved hover effekt</target>
+            </trans-unit>
+            <trans-unit id="admin.add.gallery.description.button_color_hover">
+                <source>admin.add.gallery.description.button_color_hover</source>
+                <target>Ex. black, white, #CCC osv.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

@@ -31,9 +31,29 @@
 
 {% block stylesheets %}
 {% endblock %}
+
 <link rel="stylesheet" href="{{ base_url }}fx/css/normalize.css">
 <link rel="stylesheet" href="{{ base_url }}fx/css/main.css">
 <link rel="stylesheet" href="{{ base_url }}fx/css/skeleton-810.css">
+
+{% if page.gallery.button_color is defined and page.gallery.button_color_hover is defined %}
+<style>
+  .button,
+  button,
+  input[type="submit"],
+  input[type="reset"],
+  input[type="button"] {
+    background: {{ page.gallery.button_color }}
+  }
+  .button:hover,
+  button:hover,
+  input[type="submit"]:hover,
+  input[type="reset"]:hover,
+  input[type="button"]:hover {
+    background: {{ page.gallery.button_color_hover }}
+  }
+</style>
+{% endif %}
 
 <script type="text/javascript" src="{{ base_url }}fx/js/vendor/modernizr-2.6.2.min.js"></script>
 

@@ -90,6 +90,14 @@ class Admin
                 'required' => false,
                 'label' => $this->app['translator']->trans('admin.add.gallery.label.uploadform_image')
             ))
+            ->add('button_color', 'text', array(
+                'required' => false,
+                'label' => $this->app['translator']->trans('admin.add.gallery.label.button_color')
+            ))
+            ->add('button_color_hover', 'text', array(
+                'required' => false,
+                'label' => $this->app['translator']->trans('admin.add.gallery.label.button_color_hover')
+            ))
             ->add('active', 'checkbox', array(
                 'required' => false,
                 'label' => $this->app['translator']->trans('admin.add.gallery.label.active')
@@ -191,6 +199,8 @@ class Admin
                     'title' => $data['title'],
                     'description' => $data['description'],
                     'top_submit_button' => $data['top_submit_button'],
+                    'button_color' => $data['button_color'],
+                    'button_color_hover' => $data['button_color_hover'],
                     'active' => $data['active'],
                     'is_open' => $data['is_open'],
                     'app_id' => $data['app_id'],
