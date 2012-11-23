@@ -5,7 +5,7 @@ namespace Ishii\Apps\Gallery;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\File;
+use Symfony\Component\HttpFoundation\File\File;
 use Silex\Application\UrlGeneratorTrait;
 use Imagine\Filter\Transformation;
 use Imagine\Image\Box;
