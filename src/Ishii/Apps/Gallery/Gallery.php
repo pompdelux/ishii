@@ -128,11 +128,16 @@ class Gallery
             $form->bind($request);
 
             if ($form->isValid()) {
-                try{
-                    $this->app->user = $this->app['facebook']->api('/me');
-                }catch(Exception $e){
-                    $this->app['monolog']->addError($e->getMessage());
-                    $this->app['monolog']->addError(debug_backtrace($e));
+                if($this->app['facebook']->getUser()){
+                    try{
+                        $this->app->user = $this->app['facebook']->api('/me');
+                    }catch(Exception $e){
+                        $this->app['monolog']->addError($e->getMessage());
+                        $this->app['monolog']->addError(debug_backtrace($e));
+                        $this->app->user = null;
+                        return $this->app->redirect($this->app['facebook']->getLoginUrl());
+                    }
+                }else{
                     return $this->app->redirect($this->app['facebook']->getLoginUrl());
                 }
 
