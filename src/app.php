@@ -139,7 +139,8 @@ $app->match('/upload', function(Request $request) use ($app){
 
         return $app->json(array(
             'status' => true,
-            'message' => 'Billede er blevet uploaded'
+            'message' => 'Billede er blevet uploaded',
+            'data' => $app['config']['upload_path'].'/tmp/'.$new_filename
         ));
     }else{
         return $app->json(array(
