@@ -61,9 +61,9 @@ $(document).ready(function () {
             alert('Flash was not detected.');
         },
         'onUploadSuccess' : function(file, data, response) {
-            if(data.status){
+            if(response){
                 $('#preview img')
-                    .attr('src', data.data).show();
+                    .attr('src', data).show();
             }
         }
     });
