@@ -123,8 +123,8 @@ $app->get('/thumb/{file}/{dimension}', function($file, $dimension) use ($app){
  */
 $app->match('/upload', function(Request $request) use ($app){
     $file = $request->files->get('Filedata');
-                    
-    $new_filename = $file['name'];
+
+    $new_filename = $file->getClientOriginalName();
     $new_filename .= '-'.time();
     $new_filename .= ($file->guessExtension())?'.'.$file->guessExtension():'.bin';
 
