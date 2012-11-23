@@ -136,12 +136,11 @@ $app->match('/upload', function(Request $request) use ($app){
         $transformation = new Filter\Transformation();
         $transformation->resize($size->widen(600));
         $image = $transformation->apply($image)->save(__DIR__.'/..'.$app['config']['upload_path'].'/tmp/'.$new_filename);
+        
+        $response = new Symfony\Component\HttpFoundation\Response();
+        $response->setContent($new_filename);
 
-        return $app->json(array(
-            'status' => true,
-            'message' => 'Billede er blevet uploaded',
-            'data' => $app['config']['upload_path'].'/tmp/'.$new_filename
-        ));
+        return $response;
     }else{
         return $app->json(array(
             'status' => false,
