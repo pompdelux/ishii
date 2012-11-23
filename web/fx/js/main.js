@@ -52,7 +52,7 @@ $(document).ready(function () {
         $('#preview p').text($(this).val());
     });
     if(jQuery.isFunction(jQuery.fn.filereader)){
-        $('#add-picture #form_picture').fileReader({
+        $('#form_picture').fileReader({
             id : 'fileReaderSWFObject',
             filereader : '/fx/js/vendor/filereader/filereader.swf',
             expressInstall : '/fx/js/vendor/swfobject/expressInstall.swf',
@@ -60,7 +60,7 @@ $(document).ready(function () {
             callback : function(){}
         });
     }
-    $('#add-picture #form_picture').on('change',function(e){
+    $('#form_picture').on('change',function(e){
         //if (this.files && this.files[0]) {
         if (e.target.files[0]) {
             var reader = new FileReader();
