@@ -130,7 +130,7 @@ class Gallery
             if ($form->isValid()) {
                 try{
                     $this->app->user = $this->app['facebook']->api('/me');
-                }catch(FacebookApiException $e){
+                }catch(Exception $e){
                     $this->app['monolog']->addError($e->getMessage());
                     $this->app['monolog']->addError(debug_backtrace($e));
                     return $this->app->redirect($this->app['facebook']->getLoginUrl());
