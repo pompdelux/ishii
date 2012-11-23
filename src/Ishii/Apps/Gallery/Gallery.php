@@ -229,7 +229,7 @@ class Gallery
         $this->app['page']->setNext($next_picture);
         $this->app['page']->setPrev($prev_picture);
 
-        $this->app['page']['title'] = $this->app['page']['picture']['title'] . ' ' . $this->app['page']['gallery']['title'];
+        $this->app['page']['title'] = $this->app['page']['picture']['title'] . ' - ' . $this->app['page']['gallery']['title'];
         $this->app['page']['browser_title'] = $this->app['page']['picture']['title'] . ' ' . $this->app['page']['gallery']['title'];
         
         //$this->app['page']->setAllPictures($all_pictures);
