@@ -117,6 +117,7 @@ class Gallery
                 'label' => $this->app['translator']->trans('gallery.upload.accept.conditions.label')
             ))
             ->add('uuid', 'hidden')
+            ->add('tmp_file', 'hidden')
             ->getForm();
 
         if ('POST' == $request->getMethod()) {
@@ -156,7 +157,10 @@ class Gallery
                     ));
                 }
                 try{
-                    $file = $form['picture']->getData();
+                    if(!empty($data['tmp_file']))
+                        $file = new File(__DIR__.'/../../../..'.$this->app['config']['upload_path'].'/tmp/'.$data['tmp_file']);
+                    else
+                        $file = $form['picture']->getData();
                     
                     $new_filename = $this->app->user['id'];
                     $new_filename .= '-'.time();

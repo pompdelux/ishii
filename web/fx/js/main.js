@@ -63,7 +63,7 @@ $(document).ready(function () {
         'onUploadSuccess' : function(file, data, response) {
             if(response){
                 $('#preview img')
-                    .attr('src', data).show();
+                    .attr('src', '/uploads/tmp/'+data).show();
             }
         }
     });
