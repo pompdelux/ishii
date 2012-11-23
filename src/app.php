@@ -122,7 +122,7 @@ $app->get('/thumb/{file}/{dimension}', function($file, $dimension) use ($app){
  * @return JSON                 json object
  */
 $app->match('/upload', function(Request $resuest) use ($app){
-    return $this->app->json(array(
+    return $app->json(array(
         'status' => true,
         'message' => 'Billede er blevet uploaded'
     ));
