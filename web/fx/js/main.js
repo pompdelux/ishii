@@ -64,7 +64,7 @@ $(document).ready(function () {
     }
     $('#form_picture').on('change',function(e){
         //if (this.files && this.files[0]) {
-        if (e.e.target.files[0]) {
+        if (e.target.files[0]) {
             var reader = new FileReader();
 
             reader.onload = function (e) {
