@@ -493,6 +493,7 @@ table th[class*="span"],
 /* #Buttons Stolen from base.css@skeleton
 ================================================== */
 
+a.button,
 .button,
 button,
 input[type="submit"],
@@ -521,6 +522,7 @@ input[type="button"] {
   font-size: 21px;
   font-weight: bold;}
 
+a.button:hover,
 .button:hover,
 button:hover,
 input[type="submit"]:hover,
@@ -535,6 +537,7 @@ input[type="button"]:hover {
     background: #ddd -ms-linear-gradient(top, rgba(255,255,255,.3) 0%,rgba(0,0,0,.3) 100%); /* IE10+ */
     background: #ddd linear-gradient(top, rgba(255,255,255,.3) 0%,rgba(0,0,0,.3) 100%); /* W3C */ }
 
+a.button:active,
 .button:active,
 button:active,
 input[type="submit"]:active,
@@ -549,6 +552,7 @@ input[type="button"]:active {
     background: #ccc -ms-linear-gradient(top, rgba(255,255,255,.35) 0%,rgba(10,10,10,.4) 100%); /* IE10+ */
     background: #ccc linear-gradient(top, rgba(255,255,255,.35) 0%,rgba(10,10,10,.4) 100%); /* W3C */ }
 
+a.button.full-width,
 .button.full-width,
 button.full-width,
 input[type="submit"].full-width,
@@ -559,12 +563,14 @@ input[type="button"].full-width {
     padding-right: 0 !important;
     text-align: center; }
 
+a.button.orange,
 .button.orange,
 button.orange,
 input[type="submit"].orange,
 input[type="reset"].orange,
 input[type="button"].orange {
     background: #ef7c5f;}
+a.button.orange:hover,
 .button.orange:hover,
 button.orange:hover,
 input[type="submit"].orange:hover,
