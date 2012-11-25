@@ -24,13 +24,13 @@
       <div id="pagination">
         {% if page.next %}
         <div class="prev">
-          <a href="{{ url('gallery_picture', {'galleryId' : page.gallery.id , 'pictureId' : page.next.id }) }}" title="{{ app.translator.trans('gallery.next.button') }}">
+          <a href="{{ url('gallery_picture', {'galleryId' : page.gallery.id , 'pictureId' : page.next.id }) }}" title="{{ app.translator.trans('gallery.prev.button') }}">
           </a>
         </div>
         {% endif %}
         {% if page.prev %}
         <div class="next">
-          <a href="{{ url('gallery_picture', {'galleryId' : page.gallery.id , 'pictureId' : page.prev.id }) }}" title="{{ app.translator.trans('gallery.prev.button') }}">
+          <a href="{{ url('gallery_picture', {'galleryId' : page.gallery.id , 'pictureId' : page.prev.id }) }}" title="{{ app.translator.trans('gallery.next.button') }}">
           </a>
         </div>
         {% endif %}
