@@ -37,6 +37,7 @@
 
 {% if page.gallery.button_color is defined and page.gallery.button_color_hover is defined %}
 <style>
+  a.button,
   .button,
   button,
   input[type="submit"],
@@ -44,6 +45,7 @@
   input[type="button"] {
     background: {{ page.gallery.button_color }}
   }
+  a.button:hover,
   .button:hover,
   button:hover,
   input[type="submit"]:hover,
