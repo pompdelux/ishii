@@ -97,6 +97,22 @@ class Gallery
      */
     public function add(Request $request, $galleryId)
     {
+        if($this->app['facebook']->getUser()){
+            try{
+                $this->app->user = $this->app['facebook']->api('/me');
+            }catch(Exception $e){
+                $this->app['monolog']->addError($e->getMessage());
+                $this->app['monolog']->addError(debug_backtrace($e));
+                $this->app->user = null;
+                //return $this->app->redirect($this->app['facebook']->getLoginUrl());
+            }
+        }else{
+            return $this->app->redirect($this->app['facebook']->getLoginUrl(array(
+                'scope' => 'email',
+                'redirect_uri' => $this->app->url('gallery_add', array('galleryId' => $galleryId)),
+                'display' => 'iframe'
+            )));
+        }
         if($this->app['debug'])
             $this->app['monolog']->addInfo($request);
         if(!$this->app['gallery']['is_open']){ // TODO: der skal laves en fin side! 
@@ -129,18 +145,6 @@ class Gallery
             $form->bind($request);
 
             if ($form->isValid()) {
-                if($this->app['facebook']->getUser()){
-                    try{
-                        $this->app->user = $this->app['facebook']->api('/me');
-                    }catch(Exception $e){
-                        $this->app['monolog']->addError($e->getMessage());
-                        $this->app['monolog']->addError(debug_backtrace($e));
-                        $this->app->user = null;
-                        //return $this->app->redirect($this->app['facebook']->getLoginUrl());
-                    }
-                }else{
-                    //return $this->app->redirect($this->app['facebook']->getLoginUrl());
-                }
 
                 if(!$this->app->user AND !$this->app['debug']){
                     $this->app->abort(404, $this->app['translator']->trans('facebook.user.login.error'));
