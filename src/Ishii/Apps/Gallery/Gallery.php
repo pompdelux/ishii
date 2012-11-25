@@ -104,9 +104,10 @@ class Gallery
                 $this->app['monolog']->addError($e->getMessage());
                 $this->app['monolog']->addError(debug_backtrace($e));
                 $this->app->user = null;
-                //return $this->app->redirect($this->app['facebook']->getLoginUrl());
             }
-        }else{
+        }
+
+        if(!$this->app->user){
             return $this->app->redirect($this->app['facebook']->getLoginUrl(array(
                 'scope' => 'email',
                 'redirect_uri' => $this->app->url('gallery_add', array('galleryId' => $galleryId)),
@@ -114,8 +115,10 @@ class Gallery
                 'access_token' => $this->app['facebook']->getAccessToken()
             )));
         }
+
         if($this->app['debug'])
             $this->app['monolog']->addInfo($request);
+
         if(!$this->app['gallery']['is_open']){ // TODO: der skal laves en fin side! 
             $this->app->abort(404, $this->app['translator']->trans('404.title'));
         }
@@ -146,11 +149,6 @@ class Gallery
             $form->bind($request);
 
             if ($form->isValid()) {
-
-                if(!$this->app->user AND !$this->app['debug']){
-                    $this->app->abort(404, $this->app['translator']->trans('facebook.user.login.error'));
-                    //return $this->app->redirect('/');
-                }
 
                 $this->app['page']->setUser(array($this->app->user));
                 
