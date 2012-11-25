@@ -16,11 +16,7 @@
       {{ form_rest(form) }}
       </div>
       <div class="row">
-        {% if page.user is null %}
-          <button id="submit-picture" class="submit button pull-right">{{ app.translator.trans('gallery.upload.picture.submit') }}</button>
-        {% else %}
-          <input id="submit-picture" type="submit" class="button pull-right" disabled value="{{ app.translator.trans('gallery.upload.picture.submit') }}">
-        {% endif %}
+        <input id="submit-picture" type="submit" class="button pull-right" disabled value="{{ app.translator.trans('gallery.upload.picture.submit') }}">
         <a href="{{ url('gallery_homepage', {'galleryId' : page.gallery.id }) }}" class=" pull-left">{{ app.translator.trans('gallery.upload.cancel') }}</a>
       </div>
     </form>
