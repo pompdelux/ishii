@@ -37,16 +37,14 @@ $(document).ready(function () {
     $('#add-picture').submit(function(e){
         $form = $('#add-picture');
         $this = $(this);
-        if($('#form_accept_conditions').is(':checked')){
-            return true;
-        }else{ // Not all fields are filled
+        if(!$('#form_accept_conditions').is(':checked')){
             $('.alerts:last').append($('' +
                         '  <div class="alert alert-error">' +
                         '    <div class="container">' +
                         '      <p><strong>Woops!</strong> Du skal udfylde alle felter. Har du husket at godkende vores betingelser?</p>' +
                         '    </div>' +
                         '  </div>').hide().fadeIn(500));
-            return false;
+            e.preventDefault();
         }
     });
 
