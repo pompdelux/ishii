@@ -3,7 +3,9 @@
 
 {% block navigation %}
   <a href="{{ url('gallery_homepage', {'galleryId' : page.gallery.id }) }}" class="button">{{ app.translator.trans('gallery.button.back.to.homepage') }}</a>
-  <a href="{{ url('gallery_add', {'galleryId' : page.gallery.id }) }}" class="button" title="{{ app.translator.trans('gallery.button.add.picture') }}">{{ app.translator.trans('gallery.button.participate') }}</a>
+  <div class="top-participate">
+    <a href="{{ url('gallery_add', {'galleryId' : page.gallery.id }) }}" class="button" title="{{ app.translator.trans('gallery.button.add.picture') }}">{{ app.translator.trans('gallery.button.participate') }}</a>
+  </div>
 {% endblock %}
 
 {% block content %}

@@ -11,24 +11,34 @@ $(document).ready(function () {
         }
     });
     // Facebook Me... :-)
-    $('#submit-picture').click(function(e){
+    $('.top-participate a').click(function(e){
         e.preventDefault();
+        $this = $(this);
+
+        FB.login(function(response) {
+            if (response.authResponse) {
+                //console.log('Welcome!  Fetching your information.... ');
+                FB.api('/me', function(response) {
+                    //console.log('Good to see you, ' + response.name + '.');
+                    location.href = $this.attr('href');
+                });
+            } else {
+                //console.log('User cancelled login or did not fully authorize.');
+                $('.alerts:last').append($('' +
+                            '  <div class="alert alert-error">' +
+                            '    <div class="container">' +
+                            '      <p><strong>Woops!</strong> Du skal godkende denne applikation på Facebook for at deltage.</p>' +
+                            '    </div>' +
+                            '  </div>').hide().fadeIn(500));
+            }
+        }, {scope: 'email'});
+    });
+    // Facebook Me... :-)
+    $('#submit-picture').click(function(e){
         $form = $('#add-picture');
         $this = $(this);
         if($('#form_accept_conditions').is(':checked')){
-            FB.login(function(response) {
-                if (response.authResponse) {
-                    //console.log('Welcome!  Fetching your information.... ');
-                    FB.api('/me', function(response) {
-                        //console.log('Good to see you, ' + response.name + '.');
-                        $('#form_uuid').val(response.id);
-                        $this.attr("disabled", "disabled");
-                        $('#add-picture').submit();
-                    });
-                } else {
-                    //console.log('User cancelled login or did not fully authorize.');
-                }
-            }, {scope: 'email'});
+            return true;
         }else{ // Not all fields are filled
             $('.alerts:last').append($('' +
                         '  <div class="alert alert-error">' +
@@ -36,6 +46,7 @@ $(document).ready(function () {
                         '      <p><strong>Woops!</strong> Du skal udfylde alle felter. Har du husket at godkende vores betingelser?</p>' +
                         '    </div>' +
                         '  </div>').hide().fadeIn(500));
+            return false;
         }
     });
 

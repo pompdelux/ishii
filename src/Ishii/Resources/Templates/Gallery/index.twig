@@ -2,7 +2,7 @@
 
 {% block content %}
   
-  <div class="row top">
+  <div class="row top top-participate">
     {% if page.gallery.top_image is not none %}
       {% if page.gallery.is_open %}
       <a href="{{ url('gallery_add', {'galleryId' : page.gallery.id }) }}" title="{{ app.translator.trans('gallery.button.add.picture') }}">
