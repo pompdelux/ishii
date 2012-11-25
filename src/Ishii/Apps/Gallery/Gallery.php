@@ -109,6 +109,7 @@ class Gallery
                 'constraints' => new Assert\Image()
             ))
             ->add('title', 'text', array(
+                'required' => false,
                 'label' => $this->app['translator']->trans('gallery.upload.title.label')
             ))
             ->add('description', 'textarea', array(
@@ -135,10 +136,10 @@ class Gallery
                         $this->app['monolog']->addError($e->getMessage());
                         $this->app['monolog']->addError(debug_backtrace($e));
                         $this->app->user = null;
-                        return $this->app->redirect($this->app['facebook']->getLoginUrl());
+                        //return $this->app->redirect($this->app['facebook']->getLoginUrl());
                     }
                 }else{
-                    return $this->app->redirect($this->app['facebook']->getLoginUrl());
+                    //return $this->app->redirect($this->app['facebook']->getLoginUrl());
                 }
 
                 if(!$this->app->user AND !$this->app['debug']){
@@ -211,7 +212,7 @@ class Gallery
         return $this->app->render("Gallery/add.twig", array(
             'form' => $form->createView(),
             'galleryId' => $galleryId
-        ), new Response('',200,array('P3P: CP' => 'NOI ADM DEV COM NAV OUR STP'))); // Old browser fuckbug. Ie in a nutshell!
+        ), new Response('',200,array('P3P:' => 'CP="IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT"'))); // Old browser fuckbug. Ie in a nutshell!
     }
 
     /**
