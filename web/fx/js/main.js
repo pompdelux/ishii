@@ -34,7 +34,7 @@ $(document).ready(function () {
         }, {scope: 'email'});
     });
     // Facebook Me... :-)
-    $('#submit-picture').click(function(e){
+    $('#add-picture').submit(function(e){
         $form = $('#add-picture');
         $this = $(this);
         if($('#form_accept_conditions').is(':checked')){
