@@ -33,26 +33,6 @@ $(document).ready(function () {
             }
         }, {scope: 'email'});
     });
-    // Facebook Me... :-)
-    $('#add-picture').submit(function(e){
-        $form = $('#add-picture');
-        $this = $(this);
-        if(!$('#form_accept_conditions').is(':checked')){
-            $('.alerts:last').append($('' +
-                        '  <div class="alert alert-error">' +
-                        '    <div class="container">' +
-                        '      <p><strong>Woops!</strong> Du skal udfylde alle felter. Har du husket at godkende vores betingelser?</p>' +
-                        '    </div>' +
-                        '  </div>').hide().fadeIn(500));
-            e.preventDefault();
-        }
-    });
-
-    $('#add-picture').submit(function(e){
-        if($(this).find('#form_uuid').val().length === 0){
-            e.preventDefault();
-        }
-    });
 
     $('#add-picture #form_title').keyup(function(e){
         $('#preview h3').text($(this).val());
