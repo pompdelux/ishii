@@ -103,18 +103,6 @@ class Gallery
             $this->app->abort(404, $this->app['translator']->trans('404.title'));
         }
 
-        if($this->app['facebook']->getUser()){
-            try{
-                $this->app->user = $this->app['facebook']->api('/me');
-            }catch(Exception $e){
-                $this->app['monolog']->addError($e->getMessage());
-                $this->app['monolog']->addError(debug_backtrace($e));
-                $this->app->user = null;
-                return $this->app->redirect($this->app['facebook']->getLoginUrl());
-            }
-        }else{
-            return $this->app->redirect($this->app['facebook']->getLoginUrl());
-        }
         $form = $this->app['form.factory']->createBuilder('form')
             ->add('picture', 'file', array(
                 'label' => $this->app['translator']->trans('gallery.upload.picture.label'),
@@ -140,6 +128,18 @@ class Gallery
             $form->bind($request);
 
             if ($form->isValid()) {
+                if($this->app['facebook']->getUser()){
+                    try{
+                        $this->app->user = $this->app['facebook']->api('/me');
+                    }catch(Exception $e){
+                        $this->app['monolog']->addError($e->getMessage());
+                        $this->app['monolog']->addError(debug_backtrace($e));
+                        $this->app->user = null;
+                        return $this->app->redirect($this->app['facebook']->getLoginUrl());
+                    }
+                }else{
+                    return $this->app->redirect($this->app['facebook']->getLoginUrl());
+                }
 
                 if(!$this->app->user AND !$this->app['debug']){
                     $this->app->abort(404, $this->app['translator']->trans('facebook.user.login.error'));
