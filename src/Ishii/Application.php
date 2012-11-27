@@ -38,6 +38,7 @@ class Application extends SilexApplication
         $this['config'] = $this->share(function() {
             return Yaml::parse(__DIR__.'/Resources/Config/app.yaml');
         });
+
         $this['security.firewalls'] = array(
             'admin' => array(
                 'pattern' => '^/admin',
@@ -58,6 +59,7 @@ class Application extends SilexApplication
         $this['page'] = $this->share(function () {
             return new \Ishii\Page();
         });
+
         // https://github.com/tobiassjosten/FacebookServiceProvider
         $this->register(new FacebookServiceProvider(), array(
             'facebook.app_id' => $this['config']['facebook_apps']['default']['app_id'],
@@ -65,9 +67,7 @@ class Application extends SilexApplication
         ));
 
         $this->register(new SessionServiceProvider());
-
         $this->register(new UrlGeneratorServiceProvider());
-
         $this->register(new TwigServiceProvider(), array(
             'twig.path' => __DIR__.'/Resources/Templates',
         ));
@@ -103,9 +103,7 @@ class Application extends SilexApplication
 
         $this['translator'] = $this->share($this->extend('translator', function($translator, $app) {
             $translator->addLoader('yaml', new YamlFileLoader());
-
             $translator->addResource('xliff', __DIR__.'/Resources/Translations/da.xlf', 'da');
-
             return $translator;
         }));
 

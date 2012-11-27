@@ -130,21 +130,21 @@ class Admin
             if ($form->isValid()) {
                 $data = $form->getData();
 
-
                 /**
-                *
-                * Upload pictures to a certain folder. Maybe it can iterate trhough the files array. But this was easier for now.
-                *
-                */
+                 *
+                 * Upload pictures to a certain folder. Maybe it can iterate trhough the files array. But this was easier for now.
+                 *
+                 */
                 $uploaded_files = array();
                 $messages = array();
-                if($file = $form['top_image']->getData()){
+
+                if ($file = $form['top_image']->getData()) {
                     $new_filename = $gallery['id'].'-top_image';
                     $new_filename .= ($file->guessExtension())?'.'.$file->guessExtension():'.bin';
-                    
-                    if($file->move(__DIR__.'/../../../..'.$this->app['config']['upload_path_gallery'], $new_filename)){
+
+                    if ($file->move(__DIR__.'/../../../..'.$this->app['config']['upload_path_gallery'], $new_filename)) {
                         $uploaded_files['top_image'] = $new_filename;
-                    }else{
+                    } else {
                         $messages[] = array(
                             'type' => 'error',
                             'short' => $this->app['translator']->trans('admin.new.picture.uploaded.failed.short'),
@@ -152,13 +152,14 @@ class Admin
                         );
                     }
                 }
-                if($file = $form['bottom_image']->getData()){
+
+                if ($file = $form['bottom_image']->getData()) {
                     $new_filename = $gallery['id'].'-bottom_image';
                     $new_filename .= ($file->guessExtension())?'.'.$file->guessExtension():'.bin';
-                    
-                    if($file->move(__DIR__.'/../../../..'.$this->app['config']['upload_path_gallery'], $new_filename)){
+
+                    if ($file->move(__DIR__.'/../../../..'.$this->app['config']['upload_path_gallery'], $new_filename)) {
                         $uploaded_files['bottom_image'] = $new_filename;
-                    }else{
+                    } else {
                         $messages[] = array(
                             'type' => 'error',
                             'short' => $this->app['translator']->trans('admin.new.picture.uploaded.failed.short'),
@@ -166,13 +167,14 @@ class Admin
                         );
                     }
                 }
-                if($file = $form['fangate_image']->getData()){
+
+                if ($file = $form['fangate_image']->getData()) {
                     $new_filename = $gallery['id'].'-fangate_image';
                     $new_filename .= ($file->guessExtension())?'.'.$file->guessExtension():'.bin';
-                    
-                    if($file->move(__DIR__.'/../../../..'.$this->app['config']['upload_path_gallery'], $new_filename)){
+
+                    if ($file->move(__DIR__.'/../../../..'.$this->app['config']['upload_path_gallery'], $new_filename)) {
                         $uploaded_files['fangate_image'] = $new_filename;
-                    }else{
+                    } else {
                         $messages[] = array(
                             'type' => 'error',
                             'short' => $this->app['translator']->trans('admin.new.picture.uploaded.failed.short'),
@@ -180,13 +182,14 @@ class Admin
                         );
                     }
                 }
-                if($file = $form['uploadform_image']->getData()){
+
+                if ($file = $form['uploadform_image']->getData()) {
                     $new_filename = $gallery['id'].'-uploadform_image';
                     $new_filename .= ($file->guessExtension())?'.'.$file->guessExtension():'.bin';
-                    
-                    if($file->move(__DIR__.'/../../../..'.$this->app['config']['upload_path_gallery'], $new_filename)){
+
+                    if ($file->move(__DIR__.'/../../../..'.$this->app['config']['upload_path_gallery'], $new_filename)) {
                         $uploaded_files['uploadform_image'] = $new_filename;
-                    }else{
+                    } else {
                         $messages[] = array(
                             'type' => 'error',
                             'short' => $this->app['translator']->trans('admin.new.picture.uploaded.failed.short'),
@@ -210,20 +213,22 @@ class Admin
                 );
                 $data_to_save = array_merge($data_to_save, $uploaded_files);
 
-                if($id){
-                    $post = $this->app['db']->update('gallery_galleries', 
+                if ($id) {
+                    $post = $this->app['db']->update('gallery_galleries',
                         $data_to_save,
                         array('id' =>$gallery['id'])
                     );
-                }else{
+                } else {
                     $this->app['db']->insert('gallery_galleries', $data_to_save);
                     $messages[] = array(
                         'type' => 'success',
                         'short' => $this->app['translator']->trans('admin.gallery.updated.short'),
                         'ext' => $this->app['translator']->trans('admin.gallery.updated.description')
                     );
+
                     return $this->app->redirect($this->app->url('admin_gallery_edit', array('id' => $this->app['db']->lastInsertId())));
                 }
+
                 $messages[] = array(
                     'type' => 'info',
                     'short' => $this->app['translator']->trans('admin.gallery.updated.short'),
@@ -249,11 +254,11 @@ class Admin
     public function picture_toggle_active(Request $request, $id)
     {
         $picture = $this->app['db']->fetchAssoc("SELECT active FROM gallery_pictures WHERE id = ?", array((int)$id));
-        
-        if($image = $this->app['db']->update('gallery_pictures', 
+
+        if ($image = $this->app['db']->update('gallery_pictures',
             array('active' => !$picture['active']),
             array('id' => $id)
-        )){
+        )) {
             return $this->app->json(array(
                 'status' => true,
                 'message' => 'Billede er blevet toggled'
@@ -268,13 +273,14 @@ class Admin
      * @return Response             Response object
      */
     public function delete_gallery(Request $request, $id)
-    {        
-        if($image = $this->app['db']->delete('gallery_galleries', array('id' => $id))){
+    {
+        if ($image = $this->app['db']->delete('gallery_galleries', array('id' => $id))) {
             return $this->app->json(array(
                 'status' => true,
                 'message' => 'Galleriet er blevet slettet!'
             ));
         }
+
         return $this->app->json(array(
             'status' => false,
             'message' => 'Der skete en fejl'
@@ -300,15 +306,14 @@ class Admin
 
         $this->app['page']->setPictures($gallery_pictures);
         $this->app['page']->setGalleryId($id);
-        
-        if($offset > 0){
+
+        if ($offset > 0) {
             $this->app['page']->setPrev(array('active' => true, 'offset' => $offset - 10));
         }
 
-        if(($total_pictures - 10) > $offset){
+        if (($total_pictures - 10) > $offset) {
             $this->app['page']->setNext(array('active' => true, 'offset' => $offset + 10));
         }
-        
 
         return $this->app->render("Admin/pictures.twig");
     }
@@ -322,13 +327,15 @@ class Admin
      */
     public function pull_winners(Request $request, $id, $count)
     {
-        if($request->query->get('count'))
+        if($request->query->get('count')) {
             $count = $request->query->get('count');
+        }
+
         $this->app['page']['title'] = 'POMPdeLUX Facebook galleri';
         $this->app['page']['browser_title'] = ' » Vindere';
 
         $gallery_pictures = $this->app['db']->fetchAll("SELECT * FROM gallery_pictures p LEFT JOIN gallery_users u ON (u.uid = p.uid) WHERE p.gallery_id = ? ORDER BY RAND() LIMIT {$count}", array((int) $id));
-        
+
         $this->app['page']->setGalleryId($id);
         $this->app['page']->setPictures($gallery_pictures);
 

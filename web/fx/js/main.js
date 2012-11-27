@@ -10,6 +10,7 @@ $(document).ready(function () {
             $(this).val(val.slice(0, maxlength));
         }
     });
+
     // Facebook Me... :-)
     $('.top-participate a').click(function(e){
         e.preventDefault();
@@ -41,7 +42,7 @@ $(document).ready(function () {
         $('#preview p').text($(this).val());
     });
 
-    if(jQuery.isFunction(jQuery.fn.uploadify)){
+    if (jQuery.isFunction(jQuery.fn.uploadify)) {
         $('#form_picture').uploadify({
             'swf'       : '/fx/js/vendor/uploadify/uploadify.swf',
             'uploader'  : base_url+'index.php/upload',
@@ -52,7 +53,7 @@ $(document).ready(function () {
                 alert('Flash was not detected.');
             },
             'onUploadSuccess' : function(file, data, response) {
-                if(response){
+                if (response) {
                     $('#preview img').attr('src', '/uploads/tmp/'+data).show();
                     $('#form_tmp_file').val(data);
                 }
@@ -63,7 +64,7 @@ $(document).ready(function () {
     $('.facebook-share').click(function(e){
         e.preventDefault();
         $this = $(this);
-        
+
         // calling the API ...
         var obj = {
             method: 'feed',
@@ -74,8 +75,6 @@ $(document).ready(function () {
             description: $this.data('description')
         };
 
-        FB.ui(obj, function(response){
-
-        });
+        FB.ui(obj, function(response){ });
     });
 });

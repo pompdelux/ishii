@@ -15,17 +15,15 @@ $app = new Application(array('debug' => true));
 $app['debug'] = true;
 
 $app->before( function() use ( $app ) {
-    $flash = $app[ 'session' ]->get( 'flash' );
-    $app[ 'session' ]->set( 'flash', null );
+    $flash = $app['session']->get('flash');
+    $app['session']->set('flash', null);
 
-    if ( !empty( $flash ) )
-    {
-        $app[ 'twig' ]->addGlobal( 'flash', (array)$flash );
+    if (!empty($flash)) {
+        $app['twig']->addGlobal('flash', (array) $flash);
     }
 });
 
 $app->mount('/gallery', new Ishii\Apps\Gallery\Controller());
-
 $app->mount('/admin', new Ishii\Apps\Admin\Controller());
 
 $app->error(function (\Exception $e, $code) use ($app) {
@@ -45,6 +43,7 @@ $app->error(function (\Exception $e, $code) use ($app) {
 
 });
 
+
 /**
  * Image getter. Returns an resized image. Image keeps ratio aspects
  * Uses a cached version if it exists, otherwise it creates one and returns that.
@@ -53,20 +52,24 @@ $app->error(function (\Exception $e, $code) use ($app) {
  * @param  int      	$width  the width of the wanted image
  * @return Response             Response object
  */
-$app->get('/image/{file}/{width}', function($file, $width) use ($app){
-    try{
-       $image = $app['imagine']->open(__DIR__.'/..'.$app['config']['upload_path'].'/cache/'.$width.'-'.$file); 
-    }catch(Imagine\Exception\Exception $e){
+$app->get('/image/{file}/{width}', function($file, $width) use ($app) {
+    try {
+       $image = $app['imagine']->open(__DIR__.'/..'.$app['config']['upload_path'].'/cache/'.$width.'-'.$file);
+    } catch(Imagine\Exception\Exception $e) {
         _log($e->getMessage());
-        try{
-            if(!is_dir(__DIR__.'/..'.$app['config']['upload_path'].'/cache/'))
+        try {
+            if(!is_dir(__DIR__.'/..'.$app['config']['upload_path'].'/cache/')) {
                 mkdir(__DIR__.'/..'.$app['config']['upload_path'].'/cache/', 0777);
+            }
+
             $image = $app['imagine']->open(__DIR__.'/..'.$app['config']['upload_path'].'/'.$file);
             $size = $image->getSize();
             $transformation = new Filter\Transformation();
             $transformation->thumbnail($size->widen($width));
-            $image = $transformation->apply($image)
-                ->save(__DIR__.'/..'.$app['config']['upload_path'].'/cache/'.$width.'-'.$file);
+            $image = $transformation
+                ->apply($image)
+                ->save(__DIR__.'/..'.$app['config']['upload_path'].'/cache/'.$width.'-'.$file)
+            ;
             _log('debug: file resized');
         }catch(Imagine\Exception\Exception $e){
             $app['monolog']->addError($e->getMessage());
@@ -83,6 +86,7 @@ $app->get('/image/{file}/{width}', function($file, $width) use ($app){
     return $response;
 })->bind('image')->value('width', 600);
 
+
 /**
  * Image getter. Returns a cropped version of the image. The thumbnail has a fixed height/width of @param $dimension
  * Uses a cached version if it exists, otherwise it creates one and returns that.
@@ -92,19 +96,23 @@ $app->get('/image/{file}/{width}', function($file, $width) use ($app){
  * @return Response                 Response object
  */
 $app->get('/thumb/{file}/{dimension}', function($file, $dimension) use ($app){
-    try{
-        $image = $app['imagine']->open(__DIR__.'/..'.$app['config']['upload_path'].'/cache/thumb-'.$dimension.'-'.$file); 
-    }catch(Imagine\Exception\Exception $e){
-        try{
-            if(!is_dir(__DIR__.'/..'.$app['config']['upload_path'].'/cache/'))
+    try {
+        $image = $app['imagine']->open(__DIR__.'/..'.$app['config']['upload_path'].'/cache/thumb-'.$dimension.'-'.$file);
+    } catch(Imagine\Exception\Exception $e) {
+        try {
+            if (!is_dir(__DIR__.'/..'.$app['config']['upload_path'].'/cache/')) {
                 mkdir(__DIR__.'/..'.$app['config']['upload_path'].'/cache/', 0777);
+            }
+
             $image = $app['imagine']->open(__DIR__.'/..'.$app['config']['upload_path'].'/'.$file);
             $size = $image->getSize();
             $transformation = new Filter\Transformation();
             $transformation->thumbnail(new Imagine\Image\Box($dimension, $dimension), Imagine\Image\ImageInterface::THUMBNAIL_OUTBOUND);
-            $image = $transformation->apply($image)
-                ->save(__DIR__.'/..'.$app['config']['upload_path'].'/cache/thumb-'.$width.'-'.$file);
-        }catch(Imagine\Exception\Exception $e){
+            $image = $transformation
+                ->apply($image)
+                ->save(__DIR__.'/..'.$app['config']['upload_path'].'/cache/thumb-'.$width.'-'.$file)
+            ;
+        } catch(Imagine\Exception\Exception $e) {
             $app['monolog']->addError($e->getMessage());
             $app->abort(404);
         }
@@ -123,27 +131,29 @@ $app->get('/thumb/{file}/{dimension}', function($file, $dimension) use ($app){
  *
  * @return JSON                 json object
  */
-$app->match('/upload', function(Request $request) use ($app){
+$app->match('/upload', function(Request $request) use ($app) {
     $file = $request->files->get('Filedata');
 
     $new_filename = $file->getClientOriginalName();
     $new_filename .= '-'.time();
     $new_filename .= ($file->guessExtension())?'.'.$file->guessExtension():'.bin';
 
-    if(!is_dir(__DIR__.'/..'.$app['config']['upload_path'].'/tmp/'))
+    if (!is_dir(__DIR__.'/..'.$app['config']['upload_path'].'/tmp/')) {
         mkdir(__DIR__.'/..'.$app['config']['upload_path'].'/tmp/', 0777);
-    if($file->move(__DIR__.'/..'.$app['config']['upload_path'].'/tmp/', $new_filename)){
+    }
+
+    if ($file->move(__DIR__.'/..'.$app['config']['upload_path'].'/tmp/', $new_filename)) {
         $image = $app['imagine']->open(__DIR__.'/..'.$app['config']['upload_path'].'/tmp/'.$new_filename);
         $size = $image->getSize();
         $transformation = new Filter\Transformation();
         $transformation->resize($size->widen(600));
         $image = $transformation->apply($image)->save(__DIR__.'/..'.$app['config']['upload_path'].'/tmp/'.$new_filename);
-        
+
         $response = new Symfony\Component\HttpFoundation\Response();
         $response->setContent($new_filename);
 
         return $response;
-    }else{
+    } else {
         return $app->json(array(
             'status' => false,
             'message' => 'Der skete en fejl'

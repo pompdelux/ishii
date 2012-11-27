@@ -19,12 +19,12 @@ class Controller implements ControllerProviderInterface
     public function connect(Application $app)
     {
         $controller = $app['controllers_factory'];
-        
+
         $this->app = $app;
         if (!$this->admin) {
             $this->admin = new Admin($app);
         }
-        
+
         $admin = $this->admin;
 
         $controller->get('/', function (Application $app, Request $request) use ($admin) {
