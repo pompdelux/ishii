@@ -3,6 +3,21 @@ ishii
 
 facebook app(s) for pompdelux
 
+Requirements
+=====
+
+- Composer
+- PHP5
+- MySql ..
+
+Install
+=====
+
+1. git clone git@github.com:bellcom/ishii.git
+2. copy src/Ishii/Resources/Config/app.sample.yaml => src/Ishii/Resources/Config/app.yaml and edit the config for your site
+3. composer update
+4. Add tables to db
+
 Database
 =====
 Pompdelux tables are prefixed with "gallery_"
