@@ -102,12 +102,6 @@ class Gallery
                 $this->app->user = $this->app['facebook']->api('/me');
             }catch(Exception $e){
                 $this->app['monolog']->addError('FacebookERR0R '.$e->getMessage());
-                return $this->app->redirect($this->app['facebook']->getLoginUrl(array(
-                    'scope' => 'email',
-                    'redirect_uri' => $this->app->url('gallery_add', array('galleryId' => $galleryId)),
-                    'display' => 'popup',
-                    'access_token' => $this->app['facebook']->getAccessToken()
-                )));
             }
         }
 
@@ -116,7 +110,7 @@ class Gallery
             $this->app['monolog']->addInfo('Facebook User: '.json_encode($this->app->user));
             
         }
-        
+
         if(!$this->app->user){
             return $this->app->redirect($this->app['facebook']->getLoginUrl(array(
                 'scope' => 'email',
