@@ -97,21 +97,20 @@ class Gallery
      */
     public function add(Request $request, $galleryId)
     {
-        if($this->app['facebook']->getUser()){
+        $user_id = $this->app['facebook']->getUser();
+        if($this->app['debug']){
+            $this->app['monolog']->addInfo($request);
+        }
+        if($user_id){
             try{
                 $this->app->user = $this->app['facebook']->api('/me');
+                if($this->app['debug']){
+                    $this->app['monolog']->addInfo('Facebook User: '.json_encode($this->app->user));
+                }
             }catch(Exception $e){
                 $this->app['monolog']->addError('FacebookERR0R '.$e->getMessage());
             }
-        }
-
-        if($this->app['debug']){
-            $this->app['monolog']->addInfo($request);
-            $this->app['monolog']->addInfo('Facebook User: '.json_encode($this->app->user));
-            
-        }
-
-        if(!$this->app->user){
+        }else{
             return $this->app->redirect($this->app['facebook']->getLoginUrl(array(
                 'scope' => 'email',
                 'redirect_uri' => $this->app->url('gallery_add', array('galleryId' => $galleryId)),
