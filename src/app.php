@@ -34,7 +34,6 @@ $app->error(function (\Exception $e, $code) use ($app) {
     }*/
 
     $app['monolog']->addError($e);
-    $app['monolog']->addError(print_r(debug_backtrace($e)));
     if ($code == 404) {
         return new Symfony\Component\HttpFoundation\Response( $app['twig']->render('404.twig', array('message' => $e->getMessage())), 404);
     }
