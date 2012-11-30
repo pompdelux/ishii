@@ -620,6 +620,8 @@ a.like-button:hover {
   text-decoration: none}
 .top-participate{
   display: inline-block;}
+.top-participate .topimage{
+  width: 100%;}
 
 /***** PAGNIATION *****/
 #pagination .prev a,
