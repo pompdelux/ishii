@@ -84,9 +84,14 @@ class Controller implements ControllerProviderInterface
             // If the user comes from a link, ousite of iframe, redirect to the appropiate url on page. But only if not mobile!
             $referer = $request->server->get('HTTP_REFERER');
             if (strpos($referer, 'facebook.com') AND !isset($signed_request['page']) AND (!$detect->isMobile() AND !$detect->isTablet())) {
+
                 $fb_app_data = $galleryId;
                 if (isset($path[4])) { // Ugly method to find pictureId
                     $fb_app_data .= '|'.$path[4];
+                }
+                if($this->app['debug']){
+                    $this->app['monolog']->addInfo('Redirecting to '.$this->app['page']['facebook']['page_url'].'?app_data='.$fb_app_data);
+                    $this->app['monolog']->addInfo($signed_request);
                 }
 
                 return $this->app->redirect($this->app['page']['facebook']['page_url'].'?app_data='.$fb_app_data);
