@@ -46,6 +46,16 @@ $(document).ready(function () {
                         '    </div>' +
                         '  </div>').hide().fadeIn(500));
         }
+        if(!$('#form_tmp_file').val() && !$('#form_picture').val()){
+            e.preventDefault();
+
+            $('.alerts:last').append($('' +
+                        '  <div class="alert alert-error">' +
+                        '    <div class="container">' +
+                        '      <p><strong>Woops!</strong> Du skal huske at vælge et billede!</p>' +
+                        '    </div>' +
+                        '  </div>').hide().fadeIn(500));
+        }
     });
 
     $('#add-picture #form_title').keyup(function(e){
