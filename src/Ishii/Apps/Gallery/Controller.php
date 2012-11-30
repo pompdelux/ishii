@@ -73,7 +73,11 @@ class Controller implements ControllerProviderInterface
                 // Redirect to the right picture if app_data is set
                 if (isset($signed_request['app_data'])) {
                     $pictureId = explode('|', $signed_request['app_data'])[1]; // galleryId|pictureId
-                    die('<script>location.href=\''.$this->app['url_generator']->generate('gallery_picture', array('galleryId' => $galleryId, 'pictureId' => $pictureId)).'\'</script>');
+                    if(is_integer($pictureId)){
+                        die('<script>location.href=\''.$this->app['url_generator']->generate('gallery_picture', array('galleryId' => $galleryId, 'pictureId' => $pictureId)).'\'</script>');
+                    }else{
+                        die('<script>location.href=\''.$this->app['url_generator']->generate('gallery_homepage', array('galleryId' => $galleryId)).'\'</script>');
+                    }
                 }
 
             }
