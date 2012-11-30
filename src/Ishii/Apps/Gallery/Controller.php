@@ -91,7 +91,7 @@ class Controller implements ControllerProviderInterface
                 }
                 if($this->app['debug']){
                     $this->app['monolog']->addInfo('Redirecting to '.$this->app['page']['facebook']['page_url'].'?app_data='.$fb_app_data);
-                    $this->app['monolog']->addInfo($signed_request);
+                    $this->app['monolog']->addInfo(json_encode($signed_request));
                 }
 
                 return $this->app->redirect($this->app['page']['facebook']['page_url'].'?app_data='.$fb_app_data);

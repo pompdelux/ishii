@@ -101,7 +101,7 @@ class Gallery
             try{
                 $this->app->user = $this->app['facebook']->api('/me');
             }catch(Exception $e){
-                $this->app['monolog']->addError($e->getMessage());
+                $this->app['monolog']->addError('FacebookERR0R '.$e->getMessage());
                 return $this->app->redirect($this->app['facebook']->getLoginUrl(array(
                     'scope' => 'email',
                     'redirect_uri' => $this->app->url('gallery_add', array('galleryId' => $galleryId)),
