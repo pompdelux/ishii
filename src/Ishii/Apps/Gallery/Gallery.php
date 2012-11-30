@@ -100,6 +100,7 @@ class Gallery
         //$this->app['facebook']->setPersistentData('state', $request->attributes['state']);
         $user_id = $this->app['facebook']->getUser();
         if($this->app['debug']){
+            $this->app['monolog']->addInfo('query: '.$_REQUEST['state']);
             $this->app['monolog']->addInfo($request);
             $this->app['monolog']->addInfo(json_encode($request));
         }

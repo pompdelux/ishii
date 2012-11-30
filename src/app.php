@@ -15,6 +15,14 @@ $app = new Application(array('debug' => true));
 $app['debug'] = true;
 
 $app->before( function() use ( $app ) {
+
+    // Facebook fix. GET doesnt get into the REQUEST used for Fb SDK?
+    if(isset($_GET['state']))
+        $_REQUEST['state'] = $_GET['state'];
+    if(isset($_GET['code']))
+        $_REQUEST['code'] = $_GET['code'];
+
+
     $flash = $app['session']->get('flash');
     $app['session']->set('flash', null);
 

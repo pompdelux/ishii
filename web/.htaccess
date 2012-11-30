@@ -1,18 +1,18 @@
-Options +FollowSymLinks -MultiViews
+#Options +FollowSymLinks -MultiViews
 # Turn mod_rewrite on
-RewriteEngine On
-RewriteBase /
+#RewriteEngine On
+#RewriteBase /
 
 # external redirect from /index.php/foo to /foo/
-RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/+index\.php(/[^\s\?]+)? [NC]
-RewriteRule ^ %1/ [L,R]
+#RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/+index\.php(/[^\s\?]+)? [NC]
+#RewriteRule ^ %1/ [L,R]
 
 # external redirect to add trailing slash
-RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/+((?!.+/[\s\?])[^\s\?]+) [NC]
-RewriteRule ^ %1/ [L,R]
+#RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/+((?!.+/[\s\?])[^\s\?]+) [NC]
+#RewriteRule ^ %1/ [L,R]
 
 # internal forward from /foo to /index.php/foo
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME} !-l
-RewriteRule ^ index.php%{REQUEST_URI} [L,NC]
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteCond %{REQUEST_FILENAME} !-l
+#RewriteRule ^ index.php%{REQUEST_URI} [L,NC]
