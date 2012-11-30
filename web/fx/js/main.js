@@ -35,6 +35,19 @@ $(document).ready(function () {
         }, {scope: 'email'});
     });
 
+    $('#add-picture').submit(function(e){
+        if(!$('#form_accept_conditions').is(':checked')){
+            e.preventDefault();
+
+            $('.alerts:last').append($('' +
+                        '  <div class="alert alert-error">' +
+                        '    <div class="container">' +
+                        '      <p><strong>Woops!</strong> Du skal huske at godkende konkurrencebetingelserne!</p>' +
+                        '    </div>' +
+                        '  </div>').hide().fadeIn(500));
+        }
+    });
+
     $('#add-picture #form_title').keyup(function(e){
         $('#preview h3').text($(this).val());
     });
