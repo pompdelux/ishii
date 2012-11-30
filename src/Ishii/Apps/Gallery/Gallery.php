@@ -120,8 +120,11 @@ class Gallery
             )));
         }
 
-        if($this->app['debug'])
+        if($this->app['debug']){
             $this->app['monolog']->addInfo($request);
+            $this->app['monolog']->addInfo('Facebook User: '.json_encode($this->app->user));
+            
+        }
 
         if(!$this->app['gallery']['is_open']){ // TODO: der skal laves en fin side! 
             $this->app->abort(404, $this->app['translator']->trans('404.title'));
