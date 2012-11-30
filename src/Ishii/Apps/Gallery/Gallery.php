@@ -111,6 +111,12 @@ class Gallery
             }
         }
 
+        if($this->app['debug']){
+            $this->app['monolog']->addInfo($request);
+            $this->app['monolog']->addInfo('Facebook User: '.json_encode($this->app->user));
+            
+        }
+        
         if(!$this->app->user){
             return $this->app->redirect($this->app['facebook']->getLoginUrl(array(
                 'scope' => 'email',
@@ -118,12 +124,6 @@ class Gallery
                 'display' => 'popup',
                 'access_token' => $this->app['facebook']->getAccessToken()
             )));
-        }
-
-        if($this->app['debug']){
-            $this->app['monolog']->addInfo($request);
-            $this->app['monolog']->addInfo('Facebook User: '.json_encode($this->app->user));
-            
         }
 
         if(!$this->app['gallery']['is_open']){ // TODO: der skal laves en fin side! 
