@@ -97,9 +97,11 @@ class Gallery
      */
     public function add(Request $request, $galleryId)
     {
+        //$this->app['facebook']->setPersistentData('state', $request->attributes['state']);
         $user_id = $this->app['facebook']->getUser();
         if($this->app['debug']){
             $this->app['monolog']->addInfo($request);
+            $this->app['monolog']->addInfo(json_encode($request));
         }
         if($user_id){
             try{
@@ -114,8 +116,7 @@ class Gallery
             return $this->app->redirect($this->app['facebook']->getLoginUrl(array(
                 'scope' => 'email',
                 'redirect_uri' => $this->app->url('gallery_add', array('galleryId' => $galleryId)),
-                'display' => 'popup',
-                'access_token' => $this->app['facebook']->getAccessToken()
+                'display' => 'popup'
             )));
         }
 

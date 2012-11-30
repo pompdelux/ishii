@@ -112,15 +112,22 @@ class Controller implements ControllerProviderInterface
             return $gallery->gallery($request, $galleryId, $offset);
         })
         ->bind('gallery_homepage')
+        ->assert('galleryId', '\d+')
+        ->assert('offset', '\d+')
         ->value('offset', 0);
 
         $controller->match('/{galleryId}/add/', function (Application $app, Request $request, $galleryId) use ($gallery) {
             return $gallery->add($request, $galleryId);
-        })->bind('gallery_add');
+        })
+        ->assert('galleryId', '\d+')
+        ->bind('gallery_add');
 
         $controller->get('{galleryId}/picture/{pictureId}', function (Application $app, Request $request, $galleryId, $pictureId) use ($gallery) {
             return $gallery->view($request, $galleryId, $pictureId);
-        })->bind('gallery_picture');
+        })
+        ->assert('galleryId', '\d+')
+        ->assert('pictureId', '\d+')
+        ->bind('gallery_picture');
 
         $controller->get('/random', function (Application $app, Request $request) use ($gallery) {
             return $gallery->index($request);

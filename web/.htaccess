@@ -8,8 +8,8 @@ RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/+index\.php(/[^\s\?]+)? [NC]
 RewriteRule ^ %1/ [L,R]
 
 # external redirect to add trailing slash
-#RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/+((?!.+/[\s\?])[^\s\?]+) [NC]
-#RewriteRule ^ %1/ [L,R]
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/+((?!.+/[\s\?])[^\s\?]+) [NC]
+RewriteRule ^ %1/ [L,R]
 
 # internal forward from /foo to /index.php/foo
 RewriteCond %{REQUEST_FILENAME} !-f
