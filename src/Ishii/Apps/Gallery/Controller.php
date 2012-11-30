@@ -56,7 +56,7 @@ class Controller implements ControllerProviderInterface
                 //Get the signed request from facebook.
                 $signed_request = $this->app['facebook']->getSignedRequest();
             } catch(Exception $e) {
-                $this->app['monolog']->addError($e->getMessage());
+                $this->app['monolog']->addError('FacebookERR0R: '.$e->getMessage());
                 $this->app->abort(500);
             }
 
