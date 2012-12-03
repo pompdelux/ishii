@@ -627,7 +627,7 @@ img.scale-with-grid {
   width: 100%;}
 .oldie .top-participate a .topimage.scale-with-grid,
 .oldie .top-participate a .topimage{
-  max-width: auto !important;
+  max-width: none !important; /* ie screws with max-width */
   width: 750px;
   height: auto;}
 
