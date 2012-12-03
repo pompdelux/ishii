@@ -622,8 +622,9 @@ a.like-button:hover {
   display: inline-block;}
 .top-participate .topimage{
   width: 100%;}
-.oldie .top-participate .topimage{
-  width: 796px;
+.oldie .top-participate a{display: block;}
+.oldie .top-participate a .topimage{
+  width: 100%;
   height: auto;}
 
 /***** PAGNIATION *****/
