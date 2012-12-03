@@ -612,6 +612,9 @@ a.like-button:hover {
    ========================================================================== */
 
 
+img.scale-with-grid {
+    max-width: 100%;
+    height: auto; }
 
 .center{
     text-align: center;}
@@ -624,7 +627,7 @@ a.like-button:hover {
   width: 100%;}
 .oldie .top-participate a .topimage.scale-with-grid,
 .oldie .top-participate a .topimage{
-  max-width: auto;
+  max-width: auto !important;
   width: 750px;
   height: auto;}
 
@@ -852,10 +855,6 @@ form.pull-winners input[type=text]{width:20px;}
 
 /* #Images Stolen from base.css@skeleton
 ================================================== */
-
-img.scale-with-grid {
-    max-width: 100%;
-    height: auto; }
 
 /*
  * Image replacement
