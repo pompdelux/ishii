@@ -84,7 +84,10 @@ class Gallery
         }
             
 
-        return $this->app->render("Gallery/index.twig");
+        return $this->app->render("Gallery/index.twig", 
+            array(),
+            new Response('',200,array('P3P:' => 'CP="IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT"')) // Old browser fuckbug. Ie in a nutshell!
+        );
     }
 
 
@@ -249,6 +252,10 @@ class Gallery
         $this->app['page']['browser_title'] = $this->app['page']['picture']['title'] . ' ' . $this->app['page']['gallery']['title'];
         
         //$this->app['page']->setAllPictures($all_pictures);
-        return $this->app->render("Gallery/picture.twig");
+        return $this->app->render("Gallery/picture.twig",
+            array(),
+            new Response('',200,array('P3P:' => 'CP="IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT"')) // Old browser fuckbug. Ie in a nutshell!
+        );
+
     }
 }
