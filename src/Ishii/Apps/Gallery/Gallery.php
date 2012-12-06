@@ -123,7 +123,7 @@ class Gallery
                 'display' => 'popup'
             )));
         }
-        $this->app['page']->setRequest($request);
+        $this->app['page']->setRequest(array($request->query));
 
         if(!$this->app['gallery']['is_open']){ // TODO: der skal laves en fin side! 
             $this->app->abort(404, $this->app['translator']->trans('404.title'));
