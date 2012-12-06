@@ -99,13 +99,20 @@ class Gallery
      */
     public function add(Request $request, $galleryId)
     {
+        $user_id = $this->app['facebook']->getUser();
+
         // These are to append on the URL on the POST form.
         $state = $request->query->get('state'); // From Facebook auth page
         $code = $request->query->get('code');
+        $token = $request->query->get('token');
+        if(!$token)
+            $token = $this->app['facebook']->getAccessToken();
+        else
+            $this->app['facebook']->setAccessToken($token);
         $this->app['page']->setState(!empty($state)?$state:'');
         $this->app['page']->setCode(!empty($code)?$code:'');
+        $this->app['page']->setToken(!empty($token)?$token:'');
 
-        $user_id = $this->app['facebook']->getUser();
         if($this->app['debug'])
         {
             $this->app['monolog']->addInfo('query: '.isset($_REQUEST['state'])?$_REQUEST['state']:'NAN');
@@ -125,7 +132,7 @@ class Gallery
                 $this->app->user = null;
             }
         }
-        if(!$this->app->user OR (empty($state) && empty($code)))
+        if(!$this->app->user AND empty($state) AND empty($code) AND empty($token))
         {
             if($this->app['debug'])
             {
