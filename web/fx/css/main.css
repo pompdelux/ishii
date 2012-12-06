@@ -719,6 +719,8 @@ img.scale-with-grid {
     margin:0 0 10px;
     line-height: normal;}
 
+.uploadify-queue{color: black;}
+
 /***** Pull winners *****/
 form.pull-winners{display: inline-block;}
 form.pull-winners input{display: inline-block;}
