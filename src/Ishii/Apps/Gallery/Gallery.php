@@ -124,10 +124,11 @@ class Gallery
         }
 
         // These are to append on the URL on the POST form.
-        $state = !empty($request->query->get('state'))?$request->query->get('state'):'';
-        $code = !empty($request->query->get('code'))?$request->query->get('code'):'';
-        $this->app['page']->setState(array($state));
-        $this->app['page']->setCode(array($code));
+        $state = $request->query->get('state');
+        $code = $request->query->get('code');
+        
+        $this->app['page']->setState(array(!empty($state)?$state:''));
+        $this->app['page']->setCode(array(!empty($code)?$code:''));
 
         if(!$this->app['gallery']['is_open']){ // TODO: der skal laves en fin side! 
             $this->app->abort(404, $this->app['translator']->trans('404.title'));
