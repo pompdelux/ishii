@@ -5,6 +5,8 @@
   <div class="row">
     {% if page.gallery.uploadform_image is not none %}
     <img src="{{ '/gallery_images/' ~ page.gallery.uploadform_image|raw }}" class="uploadformimage scale-with-grid">
+    {% elseif page.gallery.top_image is not none %}
+    <img src="{{ '/gallery_images/' ~ page.gallery.top_image|raw }}" class="uploadformimage scale-with-grid">
     {% else %}
     <h2>{{ app.translator.trans('gallery.upload.picture.h2') }}</h2>
     {% endif %}
