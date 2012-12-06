@@ -612,7 +612,7 @@ a.like-button:hover {
    ========================================================================== */
 
 .container {
-  padding-top: 10px;}
+  margin-top: 10px;}
 img.scale-with-grid {
     max-width: 100%;
     height: auto; }
