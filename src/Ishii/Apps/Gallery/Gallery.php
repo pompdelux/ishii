@@ -127,6 +127,12 @@ class Gallery
         }
         if(!$this->app->user OR (empty($state) && empty($code)))
         {
+            if($this->app['debug'])
+            {
+                $this->app['monolog']->addInfo('Redirecting to FB');
+                $this->app['monolog']->addInfo('User: '.json_encode($this->app->user));
+                $this->app['monolog']->addInfo('State: '.$state.' \n Code: '.$code);
+            }
             return $this->app->redirect($this->app['facebook']->getLoginUrl(array(
                 'scope' => 'email',
                 'redirect_uri' => $this->app->url('gallery_add', array('galleryId' => $galleryId)),
