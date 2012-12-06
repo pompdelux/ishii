@@ -108,7 +108,7 @@ class Gallery
         $user_id = $this->app['facebook']->getUser();
         if($this->app['debug'])
         {
-            $this->app['monolog']->addInfo('query: '.$_REQUEST['state']);
+            $this->app['monolog']->addInfo('query: '.isset($_REQUEST['state'])?$_REQUEST['state']:'NAN');
             $this->app['monolog']->addInfo($request);
             $this->app['monolog']->addInfo('User ID: '.$user_id);
         }
@@ -120,7 +120,7 @@ class Gallery
                 if($this->app['debug']){
                     $this->app['monolog']->addInfo('Facebook User: '.json_encode($this->app->user));
                 }
-            }catch(FacebookApiException $e){
+            }catch(\FacebookApiException $e){
                 $this->app['monolog']->addError('FacebookERR0R '.$e->getMessage());
                 $this->app->user = null;
             }
