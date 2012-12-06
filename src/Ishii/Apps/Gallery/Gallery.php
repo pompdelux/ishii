@@ -110,6 +110,7 @@ class Gallery
         if($user_id){
             try{
                 $this->app->user = $this->app['facebook']->api('/me');
+                $this->app['page']->setUser(array($this->app->user));
                 if($this->app['debug']){
                     $this->app['monolog']->addInfo('Facebook User: '.json_encode($this->app->user));
                 }
@@ -154,11 +155,9 @@ class Gallery
             $form->bind($request);
 
             if ($form->isValid()) {
-
-                $this->app['page']->setUser(array($this->app->user));
                 
                 $data = $form->getData();
-                
+
                 $db_user = $this->app['db']->fetchAssoc("SELECT * FROM gallery_users WHERE uid = ? ", array((int) $this->app->user['id']));
                 if(!$db_user){
                     $db_user = $this->app['db']->insert('gallery_users', array(
