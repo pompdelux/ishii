@@ -100,7 +100,6 @@ class Gallery
      */
     public function add(Request $request, $galleryId)
     {
-        //$this->app['facebook']->setPersistentData('state', $request->attributes['state']);
         $user_id = $this->app['facebook']->getUser();
         if($this->app['debug']){
             $this->app['monolog']->addInfo('query: '.$_REQUEST['state']);

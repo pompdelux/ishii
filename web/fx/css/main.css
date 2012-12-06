@@ -720,6 +720,7 @@ img.scale-with-grid {
     line-height: normal;}
 
 .uploadify-queue{color: black;}
+.uploadify-queue-item .cancel a{background: none;}
 
 /***** Pull winners *****/
 form.pull-winners{display: inline-block;}
