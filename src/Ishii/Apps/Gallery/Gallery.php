@@ -100,22 +100,27 @@ class Gallery
     public function add(Request $request, $galleryId)
     {
         $user_id = $this->app['facebook']->getUser();
-        if($this->app['debug']){
+        if($this->app['debug'])
+        {
             $this->app['monolog']->addInfo('query: '.$_REQUEST['state']);
             $this->app['monolog']->addInfo($request);
             $this->app['monolog']->addInfo('User ID: '.$user_id);
         }
-        if($user_id){
+        if($user_id)
+        {
             try{
                 $this->app->user = $this->app['facebook']->api('/me');
                 $this->app['page']->setUser(array($this->app->user));
                 if($this->app['debug']){
                     $this->app['monolog']->addInfo('Facebook User: '.json_encode($this->app->user));
                 }
-            }catch(Exception $e){
+            }catch(FacebookApiException $e){
                 $this->app['monolog']->addError('FacebookERR0R '.$e->getMessage());
+                $this->app->user = null;
             }
-        }else{
+        }
+        if(!$this->app->user)
+        {
             return $this->app->redirect($this->app['facebook']->getLoginUrl(array(
                 'scope' => 'email',
                 'redirect_uri' => $this->app->url('gallery_add', array('galleryId' => $galleryId)),
@@ -124,9 +129,8 @@ class Gallery
         }
 
         // These are to append on the URL on the POST form.
-        $state = $request->query->get('state');
+        $state = $request->query->get('state'); // From Facebook auth page
         $code = $request->query->get('code');
-        
         $this->app['page']->setState(!empty($state)?$state:'');
         $this->app['page']->setCode(!empty($code)?$code:'');
 
