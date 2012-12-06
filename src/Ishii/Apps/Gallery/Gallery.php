@@ -106,6 +106,7 @@ class Gallery
             $this->app['monolog']->addInfo('query: '.$_REQUEST['state']);
             $this->app['monolog']->addInfo($request);
             $this->app['monolog']->addInfo(json_encode($request));
+            $this->app['monolog']->addInfo('User ID: '.$user_id);
         }
         if($user_id){
             try{
