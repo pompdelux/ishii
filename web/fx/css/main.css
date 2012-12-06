@@ -611,7 +611,8 @@ a.like-button:hover {
    Author's custom styles
    ========================================================================== */
 
-
+#container {
+  padding-top: 10px;}
 img.scale-with-grid {
     max-width: 100%;
     height: auto; }
