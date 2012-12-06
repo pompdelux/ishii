@@ -738,8 +738,13 @@ form.pull-winners input[type=text]{width:20px;}
  * Make facebook comments be responsive, 
  * when mobile, facebook will return a mobile friendly solution
  **/
-.fb-comments, .fb-comments span[style], .fb-comments iframe[style] {
+.fb_iframe_widget, .fb_iframe_widgetfb-comments span[style], .fb_iframe_widget iframe[style] {
     width: 100% !important;
+}
+.fb_iframe_widget{
+  background: white;
+  border-radius: 5px;
+  padding: 5px;
 }
 
 
