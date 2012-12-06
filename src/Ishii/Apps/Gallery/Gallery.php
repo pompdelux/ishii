@@ -107,8 +107,10 @@ class Gallery
         $token = $request->query->get('token');
         if(!$token)
             $token = $this->app['facebook']->getAccessToken();
-        else
+        else{
             $this->app['facebook']->setAccessToken($token);
+            $this->app['facebook']->setExtendedAccessToken();
+        }
         $this->app['page']->setState(!empty($state)?$state:'');
         $this->app['page']->setCode(!empty($code)?$code:'');
         $this->app['page']->setToken(!empty($token)?$token:'');
@@ -132,7 +134,7 @@ class Gallery
                 $this->app->user = null;
             }
         }
-        if(!$this->app->user AND empty($state) AND empty($code) AND empty($token))
+        if(!$this->app->user)
         {
             if($this->app['debug'])
             {
