@@ -227,7 +227,7 @@
             </trans-unit>
             <trans-unit id="admin.add.gallery.description.uploadform_image">
                 <source>admin.add.gallery.description.uploadform_image</source>
-                <target>Et eventuelt billede som vises øverst på Deltag siden</target>
+                <target>Et eventuelt billede som vises øverst på Deltag siden, hvis ingen vælges vises Top Billede</target>
             </trans-unit>
             <trans-unit id="admin.add.gallery.label.active">
                 <source>admin.add.gallery.label.active</source>
@@ -300,7 +300,7 @@
             </trans-unit>
             <trans-unit id="admin.add.gallery.label.button_color_hover">
                 <source>admin.add.gallery.label.button_color_hover</source>
-                <target>Baggrundsfarvetil knapper ved hover effekt</target>
+                <target>Baggrundsfarve til knapper ved hover effekt</target>
             </trans-unit>
             <trans-unit id="admin.add.gallery.description.button_color_hover">
                 <source>admin.add.gallery.description.button_color_hover</source>
