@@ -99,6 +99,12 @@ class Gallery
      */
     public function add(Request $request, $galleryId)
     {
+        // These are to append on the URL on the POST form.
+        $state = $request->query->get('state'); // From Facebook auth page
+        $code = $request->query->get('code');
+        $this->app['page']->setState(!empty($state)?$state:'');
+        $this->app['page']->setCode(!empty($code)?$code:'');
+
         $user_id = $this->app['facebook']->getUser();
         if($this->app['debug'])
         {
@@ -119,7 +125,7 @@ class Gallery
                 $this->app->user = null;
             }
         }
-        if(!$this->app->user)
+        if(!$this->app->user OR (empty($state) && empty($code)))
         {
             return $this->app->redirect($this->app['facebook']->getLoginUrl(array(
                 'scope' => 'email',
@@ -127,12 +133,6 @@ class Gallery
                 'display' => 'popup'
             )));
         }
-
-        // These are to append on the URL on the POST form.
-        $state = $request->query->get('state'); // From Facebook auth page
-        $code = $request->query->get('code');
-        $this->app['page']->setState(!empty($state)?$state:'');
-        $this->app['page']->setCode(!empty($code)?$code:'');
 
         if(!$this->app['gallery']['is_open']){ // TODO: der skal laves en fin side! 
             $this->app->abort(404, $this->app['translator']->trans('404.title'));
