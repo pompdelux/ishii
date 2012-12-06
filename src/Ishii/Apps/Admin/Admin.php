@@ -47,6 +47,7 @@ class Admin
      */
     public function edit(Request $request, $id = NULL)
     {
+        $messages = array();
 
         $this->app['page']['title'] = 'POMPdeLUX Facebook galleri';
         $this->app['page']['browser_title'] = ' » Seneste';
@@ -58,6 +59,8 @@ class Admin
             $gallery['is_open'] = $gallery['is_open']?TRUE:FALSE;
 
             $this->app['page']->setGallery(array($gallery));
+        }else{
+            $gallery = array();
         }
 
 
@@ -72,7 +75,8 @@ class Admin
             ))
             ->add('top_image', 'file', array(
                 'required' => false,
-                'label' => $this->app['translator']->trans('admin.add.gallery.label.top_image')
+                'label' => $this->app['translator']->trans('admin.add.gallery.label.top_image'),
+                'data_class' => null
             ))
             ->add('top_submit_button', 'text', array(
                 'required' => false,
@@ -80,15 +84,22 @@ class Admin
             ))
             ->add('bottom_image', 'file', array(
                 'required' => false,
-                'label' => $this->app['translator']->trans('admin.add.gallery.label.bottom_image')
+                'label' => $this->app['translator']->trans('admin.add.gallery.label.bottom_image'),
+                'data_class' => null
             ))
             ->add('fangate_image', 'file', array(
                 'required' => false,
-                'label' => $this->app['translator']->trans('admin.add.gallery.label.fangate_image')
+                'label' => $this->app['translator']->trans('admin.add.gallery.label.fangate_image'),
+                'data_class' => null
             ))
             ->add('uploadform_image', 'file', array(
                 'required' => false,
-                'label' => $this->app['translator']->trans('admin.add.gallery.label.uploadform_image')
+                'label' => $this->app['translator']->trans('admin.add.gallery.label.uploadform_image'),
+                'data_class' => null
+            ))
+            ->add('css', 'textarea', array(
+                'required' => false,
+                'label' => $this->app['translator']->trans('admin.add.gallery.label.css')
             ))
             ->add('button_color', 'text', array(
                 'required' => false,
@@ -136,7 +147,6 @@ class Admin
                  *
                  */
                 $uploaded_files = array();
-                $messages = array();
 
                 if ($file = $form['top_image']->getData()) {
                     $new_filename = $gallery['id'].'-top_image';
@@ -202,6 +212,7 @@ class Admin
                     'title' => $data['title'],
                     'description' => $data['description'],
                     'top_submit_button' => $data['top_submit_button'],
+                    'css' => $data['css'],
                     'button_color' => $data['button_color'],
                     'button_color_hover' => $data['button_color_hover'],
                     'active' => $data['active'],

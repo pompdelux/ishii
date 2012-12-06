@@ -279,6 +279,17 @@
                 <source>admin.add.gallery.description.page_id</source>
                 <target>Denne kan findes under indstillinger af siden, derefter er den gemt i URL. Eks.:268059699909582</target>
             </trans-unit>
+            <trans-unit id="admin.add.gallery.label.css">
+                <source>admin.add.gallery.label.css</source>
+                <target>Andet CSS</target>
+            </trans-unit>
+            <trans-unit id="admin.add.gallery.description.css">
+                <source>admin.add.gallery.description.css</source>
+                <target><![CDATA[
+                Her kan du definere yderligere css regler. Et eksempel kunne være:<br>
+                <pre>body{background:black;color:white;}</pre>
+                ]]></target>
+            </trans-unit>
             <trans-unit id="admin.add.gallery.label.button_color">
                 <source>admin.add.gallery.label.button_color</source>
                 <target>Baggrundsfarve til knapper</target>

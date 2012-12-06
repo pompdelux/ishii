@@ -55,6 +55,11 @@
   }
 </style>
 {% endif %}
+{% if page.gallery.css is defined %}
+<style>
+  {{ page.gallery.css|raw }}
+</style>
+{% endif %}
 
 <script type="text/javascript" src="{{ base_url }}fx/js/vendor/modernizr-2.6.2.min.js"></script>
 
