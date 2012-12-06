@@ -13,7 +13,7 @@
   </div>
   <div class="alerts"></div>
   <div class="row">
-    <form action="{{ url('gallery_add', {'galleryId' : page.gallery.id }) }}" method="post" id="add-picture" class="eight columns alpha" {{ form_enctype(form) }}>
+    <form action="{{ url('gallery_add', {'galleryId' : page.gallery.id , 'state' : page.request.state , 'code' : page.request.code}) }}" method="post" id="add-picture" class="eight columns alpha" {{ form_enctype(form) }}>
       <div class="row">
       {{ form_rest(form) }}
       </div>

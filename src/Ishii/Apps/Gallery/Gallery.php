@@ -104,7 +104,6 @@ class Gallery
         if($this->app['debug']){
             $this->app['monolog']->addInfo('query: '.$_REQUEST['state']);
             $this->app['monolog']->addInfo($request);
-            $this->app['monolog']->addInfo(json_encode($request));
             $this->app['monolog']->addInfo('User ID: '.$user_id);
         }
         if($user_id){
@@ -124,6 +123,7 @@ class Gallery
                 'display' => 'popup'
             )));
         }
+        $this->app['page']->setRequest($request);
 
         if(!$this->app['gallery']['is_open']){ // TODO: der skal laves en fin side! 
             $this->app->abort(404, $this->app['translator']->trans('404.title'));
