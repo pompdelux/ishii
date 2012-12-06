@@ -611,12 +611,11 @@ a.like-button:hover {
    Author's custom styles
    ========================================================================== */
 
-#container {
+.container {
   padding-top: 10px;}
 img.scale-with-grid {
     max-width: 100%;
     height: auto; }
-
 .center{
     text-align: center;}
 /***** Top *****/
