@@ -632,6 +632,8 @@ img.scale-with-grid {
   width: 750px;
   height: auto;}
 
+.no-pictures{text-align: center;}
+
 /***** PAGNIATION *****/
 #pagination .prev a,
 #pagination .next a{text-decoration: none;}

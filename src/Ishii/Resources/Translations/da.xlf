@@ -71,7 +71,7 @@
             </trans-unit>
             <trans-unit id="gallery.no.pictures">
                 <source>gallery.no.pictures</source>
-                <target>Der er endnu ingen billeder indsendt til denne konkurrence. Vær den første til at indsende dit personlige billede.</target>
+                <target>Der er endnu ingen billeder indsendt. Vær den første til at indsende dit personlige billede.</target>
             </trans-unit>
             <trans-unit id="gallery.prev.button">
                 <source>gallery.prev.button</source>
