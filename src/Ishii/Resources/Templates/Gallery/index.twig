@@ -35,7 +35,7 @@
           <div class="picture-meta">
             <img src="https://graph.facebook.com/{{ image.uid }}/picture" class="profile-picture">
             <span class="profile-name">{{ image.first_name ~ ' ' ~ image.last_name }}</span>
-            <span class="date">{{ image.created_date|date("m. F Y h:i") }}</span>
+            <span class="date">{{ image.created_date|date("m. F Y H:i") }}</span>
           </div>
           <div class="row">
             <div class="ten columns offset-by-one alpha">
