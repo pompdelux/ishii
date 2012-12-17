@@ -129,9 +129,13 @@
                 <source>gallery.upload.description.label</source>
                 <target>En kort beskrivelse (maks 255 tegn)</target>
             </trans-unit>
+            <trans-unit id="gallery.upload.accept.competition.conditions.label">
+                <source>gallery.upload.accept.competition.conditions.label</source>
+                <target>Jeg accepterer POMPdeLUX' konkurrencebetingelser</target>
+            </trans-unit>
             <trans-unit id="gallery.upload.accept.conditions.label">
                 <source>gallery.upload.accept.conditions.label</source>
-                <target>Jeg acceptere POMPdeLUX' konkurrencebetingelser</target>
+                <target>Jeg accepterer POMPdeLUX' betingelser</target>
             </trans-unit>
             <trans-unit id="gallery.upload.picture.submit">
                 <source>gallery.upload.picture.submit</source>
