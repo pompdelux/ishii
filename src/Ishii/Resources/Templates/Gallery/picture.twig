@@ -16,7 +16,7 @@
     <div class="picture-meta">
       <img src="https://graph.facebook.com/{{ page.picture.uid }}/picture" class="profile-picture">
       <span class="profile-name">{{ page.picture.first_name ~ ' ' ~ page.picture.last_name }}</span>
-      <span class="date">{{ page.picture.created_date|date("m. F Y h:i") }}</span>
+      <span class="date">{{ page.picture.created_date|date("j. F Y H:i") }}</span>
     </div>
     <div class="row center">
       <img src="{{ path('image', {'file' : page.picture.url, 'width' : 610}) }}" alt="{{ page.picture.title }}" class="scale-with-grid">
