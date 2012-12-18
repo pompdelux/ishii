@@ -111,7 +111,7 @@
             </trans-unit>
             <trans-unit id="gallery.share.caption">
                 <source>gallery.share.caption</source>
-                <target>Jeg har lige stemt på at dette billede skal vinde POMPdeLUX konkurrencen</target>
+                <target> </target>
             </trans-unit>
             <trans-unit id="gallery.upload.picture.h2">
                 <source>gallery.upload.picture.h2</source>
