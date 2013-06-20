@@ -11,6 +11,7 @@
 			<th>Beskrivelse</th>
 			<th>Aktiv</th>
 			<th>&Aring;ben</th>
+			<th>URL</th>
 			<th></th>
 		</tr>
 	</thead>
@@ -22,6 +23,11 @@
 			<td>{{ gallery.description }}</td>
 			<td>{{ gallery.active }}</td>
 			<td>{{ gallery.is_open }}</td>
+			<td>
+				<a href="{{ url('gallery_homepage', {'galleryId' : gallery.id}) }}" class="btn">
+					{{ url('gallery_homepage', {'galleryId' : gallery.id}) }}
+				</a>
+			</td>
 			<td>
 			 	<a href="{{ url('admin_gallery_pictures', {'id' : gallery.id}) }}" class="btn">Vis billeder</a>
 			 	<a href="{{ url('admin_gallery_edit', {'id' : gallery.id}) }}" class="btn">Rediger</a>
