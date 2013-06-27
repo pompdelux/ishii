@@ -37,7 +37,7 @@
 			</td>
 			<td>
 				{% if picture.url is defined %}
-				<a href="{{ path('image', {'file' : picture.url, 'width' : 150}) }}">
+				<a href="{{  url('gallery_picture', {'galleryId' : page.galleryid, 'pictureId' : picture.id}) }}">
 					<img src="{{ path('image', {'file' : picture.url, 'width' : 150}) }}" alt="">
 				</a>
 				{% endif %}
