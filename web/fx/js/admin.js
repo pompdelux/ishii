@@ -8,7 +8,7 @@
       async : false,
       success : function(response, textStatus, jqXHR) {
         if (response.status) {
-          alert('Yepeee!');
+          alert(reponse.message);
         }
       }
     });
