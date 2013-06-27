@@ -46,6 +46,18 @@
 		{% endfor %}
 	</tbody>
 </table>
+<div id="pagination" class="row">
+  {% if page.prev and page.prev.active %}
+  <div class="prev">
+    <a href="{{ url('admin_gallery_pictures', {'id' : page.galleryid , 'offset' : page.prev.offset }) }}#top">{{ app.translator.trans('gallery.prev.button') }}</a>
+  </div>
+  {% endif %}
+  {% if page.next and page.next.active %}
+  <div class="next">
+    <a href="{{ url('admin_gallery_pictures', {'id' : page.galleryid , 'offset' : page.next.offset }) }}#top">{{ app.translator.trans('gallery.next.button') }}</a>
+  </div>
+  {% endif %}
+</div>
 {% else %}
 <p>Der er ingen billeder i denne konkurrence endnu.</p>
 {% endif %}
