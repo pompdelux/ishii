@@ -512,7 +512,7 @@ input[type="button"] {
   margin-bottom: 20px;
   line-height: normal;
   padding: 8px 10px;
-  font-family: "Georgia", "Times New Roman", serif; 
+  font-family: "Georgia", "Times New Roman", serif;
   border: none;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -737,7 +737,7 @@ form.pull-winners input[type=text]{width:20px;}
 /***** HACKS *****/
 
 /**
- * Make facebook comments be responsive, 
+ * Make facebook comments be responsive,
  * when mobile, facebook will return a mobile friendly solution
  **/
 .fb-comments, .fb-comments span[style], .fb-comments iframe[style] {
@@ -778,6 +778,9 @@ form.pull-winners input[type=text]{width:20px;}
             opacity: 1;
             filter:alpha(opacity=100);
             filter: “alpha(opacity=100)”}
+        .top{
+          width: 100%;
+        }
         .top div,
         .top img,
         .top a{
