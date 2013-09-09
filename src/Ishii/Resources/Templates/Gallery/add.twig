@@ -15,6 +15,11 @@
   <div class="row">
     <form action="{{ url('gallery_add', {'galleryId' : page.gallery.id , 'state' : page.state|raw , 'code' : page.code|raw , 'token' : page.token|raw}) }}" method="post" id="add-picture" class="eight columns alpha" {{ form_enctype(form) }}>
       <div class="row">
+      {{ form_row(form.picture) }}
+      {{ form_row(form.title) }}
+      {{ form_row(form.description) }}
+      {{ form_row(form.accept_conditions) }}
+      <a href="http://www.pompdelux.com/da_DK/forside/konkurrence/konkurrencebetingelser" target="_blank">Se Konkurrencebetingelser her</a>
       {{ form_rest(form) }}
       </div>
       <div class="row">
