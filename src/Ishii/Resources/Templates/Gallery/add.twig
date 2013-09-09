@@ -34,7 +34,9 @@
 
   <div class="row">
     {% if page.gallery.bottom_image is not none %}
-    <img src="{{ '/gallery_images/' ~ page.gallery.bottom_image|raw }}" class="bottomimage scale-with-grid">
+    <a href="http://www.pompdelux.com/da_DK/forside/konkurrence/konkurrencebetingelser" target="_blank" class="disclaimer">
+      <img src="{{ '/gallery_images/' ~ page.gallery.bottom_image|raw }}" class="bottomimage scale-with-grid">
+    </a>
     {% else %}
     <p>{{ app.translator.trans('gallery.default.disclaimer') }}</p>
     {% endif %}
