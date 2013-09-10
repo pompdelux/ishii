@@ -281,7 +281,7 @@
             </trans-unit>
             <trans-unit id="admin.add.gallery.description.page_id">
                 <source>admin.add.gallery.description.page_id</source>
-                <target>Denne kan findes under indstillinger af siden, derefter er den gemt i URL. Eks.:268059699909582</target>
+                <target><![CDATA[Denne kan findes under indstillinger af siden, derefter er den gemt i URL. Eks.:268059699909582<br>HUSK! at tilret Facebook Applikationen til den nye konkurrence. Se hvordan <a href="https://github.com/bellcom/hanzo/wiki/Facebook-Konkurrence-applikation" target="_blank">her</a>.]]></target>
             </trans-unit>
             <trans-unit id="admin.add.gallery.label.css">
                 <source>admin.add.gallery.label.css</source>
