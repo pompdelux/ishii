@@ -13,3 +13,6 @@ app/config/parameters.ini
 src/Ishii/Resources/Config/app.yaml
 
 web/privacy_policy.html
+
+*.sublime-project
+*.sublime-workspace
