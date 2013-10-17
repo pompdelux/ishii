@@ -5,36 +5,64 @@
   <form action="#" method="post" id="edit-gallery" class="eight columns alpha" {{ form_enctype(form) }}>
     {{ form_row(form.title) }}
     <div class="input-description">{{ app.translator.trans('admin.add.gallery.description.title')|raw }}</div>
+
     {{ form_row(form.description) }}
     <div class="input-description">{{ app.translator.trans('admin.add.gallery.description.description')|raw }}</div>
+
     {{ form_row(form.top_submit_button) }}
     <div class="input-description">{{ app.translator.trans('admin.add.gallery.description.top_submit_button')|raw }}</div>
+
     {{ form_row(form.top_image) }}
     <div class="input-description">{{ app.translator.trans('admin.add.gallery.description.top_image')|raw }}</div>
+    {% if page.gallery[0].bottom_image %}
+        <img src="{{ '/gallery_images/' ~ page.gallery[0].top_image|raw }}" class="scale-with-grid">
+    {% endif %}
+
     {{ form_row(form.bottom_image) }}
     <div class="input-description">{{ app.translator.trans('admin.add.gallery.description.bottom_image')|raw }}</div>
+    {% if page.gallery[0].bottom_image %}
+        <img src="{{ '/gallery_images/' ~ page.gallery[0].bottom_image|raw }}" class="scale-with-grid">
+    {% endif %}
+
     {{ form_row(form.fangate_image) }}
     <div class="input-description">{{ app.translator.trans('admin.add.gallery.description.fangate_image')|raw }}</div>
+    {% if page.gallery[0].bottom_image %}
+        <img src="{{ '/gallery_images/' ~ page.gallery[0].fangate_image|raw }}" class="scale-with-grid">
+    {% endif %}
+
     {{ form_row(form.uploadform_image) }}
     <div class="input-description">{{ app.translator.trans('admin.add.gallery.description.uploadform_image')|raw }}</div>
+    {% if page.gallery[0].bottom_image %}
+        <img src="{{ '/gallery_images/' ~ page.gallery[0].uploadform_image|raw }}" class="scale-with-grid">
+    {% endif %}
+
     {{ form_row(form.css) }}
     <div class="input-description">{{ app.translator.trans('admin.add.gallery.description.css')|raw }}</div>
+
     {{ form_row(form.button_color) }}
     <div class="input-description">{{ app.translator.trans('admin.add.gallery.description.button_color')|raw }}</div>
+
     {{ form_row(form.button_color_hover) }}
     <div class="input-description">{{ app.translator.trans('admin.add.gallery.description.button_color_hover')|raw }}</div>
+
     {{ form_row(form.active) }}
     <div class="input-description">{{ app.translator.trans('admin.add.gallery.description.active')|raw }}</div>
+
     {{ form_row(form.is_open) }}
     <div class="input-description">{{ app.translator.trans('admin.add.gallery.description.is_open')|raw }}</div>
+
     {{ form_row(form.app_id) }}
     <div class="input-description">{{ app.translator.trans('admin.add.gallery.description.app_id')|raw }}</div>
+
     {{ form_row(form.secret) }}
     <div class="input-description">{{ app.translator.trans('admin.add.gallery.description.secret')|raw }}</div>
+
     {{ form_row(form.page_url) }}
     <div class="input-description">{{ app.translator.trans('admin.add.gallery.description.page_url')|raw }}</div>
+
     {{ form_row(form.page_id) }}
     <div class="input-description">{{ app.translator.trans('admin.add.gallery.description.page_id')|raw }}</div>
+
     {{ form_rest(form) }}
     <input type="submit" class="button pull-right" value="{{ app.translator.trans('admin.gallery.edit.gallery.submit') }}">
   </form>
